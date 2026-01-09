@@ -73,5 +73,5 @@
 
 .foundersImage:hover {
     /* "Border" effect for transparent PNG */
-    filter: drop-shadow(0 0 0 3px #2596be);
+    filter: drop-shadow(0 0 0 3px var(--cyan-medium));
 }

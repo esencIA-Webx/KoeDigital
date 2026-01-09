@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Work_Sans, Playfair_Display, Kaushan_Script } from "next/font/google";
+import { Work_Sans, Bebas_Neue, Bonheur_Royale } from "next/font/google";
 import "./globals.css";
 
 const workSans = Work_Sans({
@@ -8,13 +8,14 @@ const workSans = Work_Sans({
   weight: ["300", "400", "500", "600", "800"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const kaushan = Kaushan_Script({
-  variable: "--font-script",
+const bonheurRoyale = Bonheur_Royale({
+  variable: "--font-bonheur",
   weight: "400",
   subsets: ["latin"],
 });
@@ -57,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${workSans.variable} ${playfair.variable} ${kaushan.variable}`}>
+    <html lang="es" className={`${workSans.variable} ${bebasNeue.variable} ${bonheurRoyale.variable}`}>
       <body>
         {children}
       </body>

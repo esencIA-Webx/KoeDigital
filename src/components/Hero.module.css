@@ -109,7 +109,7 @@
 
 .playToggleBtn:hover {
     transform: scale(1.1);
-    background: #ffeaa7;
+    background: var(--olive-light);
 }
 
 /* Re-using sticker styling if desired */
