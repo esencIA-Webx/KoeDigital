@@ -1,0 +1,98 @@
+.servicesSection {
+    padding: 100px 0;
+    background: var(--bg-peach);
+    position: relative;
+}
+
+/* Wavy top separate to blend with previous section */
+.waveTop {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffe0b2' d='M0,96L80,112C160,128,320,160,480,160C640,160,800,128,960,122.7C1120,117,1280,139,1360,149.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: none;
+    /* Can enable if we want complex waves */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.scriptHeader {
+    font-family: var(--font-script);
+    font-size: 3.5rem;
+    color: var(--text-purple);
+    margin-left: 1rem;
+}
+
+.blockHeader {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: 3rem;
+    color: var(--btn-blue);
+    text-transform: uppercase;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.cardImage {
+    height: 200px;
+    background: #eee;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 1rem;
+}
+
+.cardContent {
+    padding: 1rem;
+    text-align: center;
+}
+
+.cardTitle {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--text-purple);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.cardDesc {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.cardBtn {
+    display: inline-block;
+    background: var(--btn-blue);
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+}

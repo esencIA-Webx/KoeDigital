@@ -1,27 +1,97 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Final Palette from User */
+  --bg-cream-light: #f7f3f0;
+  --bg-cream-dark: #e7e2de;
+
+  --green-light: #6c8c7d;
+  --green-dark: #547968;
+
+  --olive-light: #ccca4c;
+  --olive-dark: #9a9223;
+
+  --pink-light: #e399b8;
+  --pink-dark: #cc5a78;
+
+  --cyan-light: #c1dedc;
+
+  --orange-light: #f3a16d;
+  --orange-dark: #f95e42;
+
+  /* Semantic Mappings */
+  --background: var(--bg-cream-light);
+  --foreground: var(--green-dark);
+  /* Using dark green as primary text/navy substitute */
+
+  --bg-cyan: var(--cyan-light);
+  --bg-coral: var(--orange-dark);
+  --bg-peach: var(--orange-light);
+  /* Substitute for previous peach */
+  --bg-green: var(--green-dark);
+
+  --text-yellow: var(--olive-light);
+  --text-purple: var(--olive-dark);
+  /* Substitute for purple */
+  --text-navy: var(--green-dark);
+  --text-white: #ffffff;
+
+  --btn-blue: var(--cyan-light);
+  --btn-yellow: var(--olive-light);
+
+  --accent-color: var(--orange-dark);
+
+  /* Typography Mappings */
+  /* WORK SANS EXTRANEGRITA - TITULOS */
+  --font-title: var(--font-work-sans), sans-serif;
+
+  /* Roca One (Playfair proxy) - Subtitulos */
+  --font-subtitle: var(--font-playfair), serif;
+
+  /* WORK SANS - Textos */
+  --font-body: var(--font-work-sans), sans-serif;
+
+  /* Royal brand (Script proxy) - Detalles */
+  --font-detail: var(--font-script), cursive;
+
+  --font-main: var(--font-work-sans), sans-serif;
+  --font-display: var(--font-playfair), serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-family: var(--font-main);
 }
 
-html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-main);
+  font-weight: 800;
+  /* Work Sans Extrabold for Titles */
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
 }
 
 * {
@@ -33,10 +103,21 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover {
+  opacity: 0.7;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-padding {
+  padding: 5rem 0;
 }

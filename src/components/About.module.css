@@ -1,0 +1,77 @@
+.aboutSection {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1.5rem;
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+
+    /* Gradient + Grainy Noise Overlay */
+    background:
+        /* Noise Layer */
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E"),
+        /* Smooth Gradient */
+        linear-gradient(180deg, var(--bg-coral) 0%, var(--bg-peach) 100%);
+
+    background-size: 200px 200px, 100% 100%;
+    /* Tile the noise, stretch the gradient */
+}
+
+.title {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    color: var(--text-yellow);
+    margin-bottom: 2rem;
+    display: inline-block;
+    border-bottom: 3px solid var(--text-yellow);
+}
+
+.text {
+    font-family: var(--font-main);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    font-weight: 500;
+}
+
+.signature {
+    font-family: var(--font-script);
+    font-size: 2.5rem;
+    color: var(--text-navy);
+    margin-top: 2rem;
+    transform: rotate(-3deg);
+    display: block;
+}
+
+.imageWrapper {
+    margin: 2rem auto 0;
+    width: fit-content;
+}
+
+.foundersImage {
+    width: auto;
+    height: auto;
+    max-height: 500px;
+    max-width: 100%;
+    /* No background or border by default */
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+
+    /* Smooth transition for hover */
+    transition: filter 0.3s ease;
+}
+
+.foundersImage:hover {
+    /* "Border" effect for transparent PNG */
+    filter: drop-shadow(0 0 0 3px #2596be);
+}

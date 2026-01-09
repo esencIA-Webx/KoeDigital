@@ -1,0 +1,135 @@
+.heroSection {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-cyan);
+    /* Fallback */
+}
+
+/* Video Container - Behind everything */
+.videoContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.heroVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.heroVideo.active {
+    opacity: 1;
+}
+
+/* Content overlaid on video */
+.contentOverlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 1rem;
+    /* Add visual backdrop if video is playing to ensure text readability? User didn't ask, but safe to remove split background? 
+     User said "arreglando seccion por seccion". 
+     I will keep the Split look as the "Poster"/Initial state? 
+     Or if video occupies entire hero, maybe the text just lives on top. 
+     User said "video que ocupa todo el hero section".
+     I'll make the Content Overlay centered.
+  */
+    max-width: 1000px;
+}
+
+.subtitle {
+    font-family: var(--font-script);
+    font-size: 3rem;
+    color: var(--text-navy);
+    /* Adjust based on video? Probably need white if video is dark. Sticking to brand colors. */
+    margin-bottom: 1rem;
+    display: block;
+    transform: rotate(-3deg);
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+.mainTitle {
+    font-family: var(--font-main);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.9;
+    color: var(--bg-coral);
+    /* Pop color */
+    text-shadow: 3px 3px 0px rgba(255, 255, 255, 1);
+    margin-bottom: 2rem;
+}
+
+.description {
+    font-family: var(--font-main);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-navy);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+/* Play Button Logic */
+.playBtnContainer {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10;
+}
+
+.playToggleBtn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--btn-yellow);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+    color: var(--bg-coral);
+}
+
+.playToggleBtn:hover {
+    transform: scale(1.1);
+    background: #ffeaa7;
+}
+
+/* Re-using sticker styling if desired */
+.sticker {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--bg-coral);
+    transform: rotate(15deg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    padding: 1rem;
+}
