@@ -10,6 +10,7 @@
     z-index: 1;
     color: white;
     text-align: center;
+    overflow: hidden;
 
     /* Gradient + Grainy Noise Overlay */
     background:
@@ -22,6 +23,42 @@
     /* Tile the noise, stretch the gradient */
 }
 
+/* Decorative Bottom Texture */
+.aboutSection::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 450px;
+    background-image: url('/texture-bottom.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+
+    /* Blur for soft natural effect */
+    filter: blur(1.5px);
+
+    /* Enhanced gradient mask for blur + fade blend */
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 15%,
+            rgba(0, 0, 0, 0.4) 30%,
+            rgba(0, 0, 0, 0.7) 50%,
+            rgba(0, 0, 0, 0.9) 70%,
+            black 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 15%,
+            rgba(0, 0, 0, 0.4) 30%,
+            rgba(0, 0, 0, 0.7) 50%,
+            rgba(0, 0, 0, 0.9) 70%,
+            black 100%);
+    opacity: 0.5;
+}
+
 .title {
     font-family: var(--font-main);
     font-weight: 800;
@@ -31,6 +68,8 @@
     margin-bottom: 2rem;
     display: inline-block;
     border-bottom: 3px solid var(--text-yellow);
+    position: relative;
+    z-index: 2;
 }
 
 .text {
@@ -40,6 +79,8 @@
     max-width: 800px;
     margin: 0 auto 2rem;
     font-weight: 500;
+    position: relative;
+    z-index: 2;
 }
 
 .signature {
@@ -49,11 +90,15 @@
     margin-top: 2rem;
     transform: rotate(-3deg);
     display: block;
+    position: relative;
+    z-index: 2;
 }
 
 .imageWrapper {
     margin: 2rem auto 0;
     width: fit-content;
+    position: relative;
+    z-index: 2;
 }
 
 .foundersImage {

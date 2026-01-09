@@ -35,48 +35,184 @@
     display: inline-block;
 }
 
-.blocksContainer {
+.cardsContainer {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    align-items: center;
     position: relative;
     z-index: 1;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 0 8rem;
+    /* More space for buttons */
+    /* Space for arrows */
+    min-height: 500px;
 }
 
-.processBlock {
-    background: transparent;
-    /* Icons on map */
-    width: 200px;
+.processCard {
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 10px 10px 0px var(--bg-coral);
+    border: 3px solid var(--text-navy);
+    width: 100%;
+    position: relative;
+    background-color: white;
+}
+
+.stepSticker {
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    background: white;
+    padding: 8px 16px;
+    font-family: var(--font-script);
+    color: var(--bg-coral);
+    font-size: 2rem;
+    font-weight: 600;
+    transform: rotate(-10deg);
+    z-index: 10;
+    filter: drop-shadow(10px 10px 0px var(--bg-coral));
+    /* Hard shadow matches card exactly */
+
+    /* Stamp Effect Mask */
+    mask:
+        conic-gradient(#000 0 0) content-box,
+        radial-gradient(circle at center, #0000 98%, #000) 0 0 / 10px 10px round border-box;
+    -webkit-mask:
+        conic-gradient(#000 0 0) content-box,
+        radial-gradient(circle at center, #0000 98%, #000) 0 0 / 10px 10px round border-box;
+}
+
+.stickerInner {
+    background: #fcf8f5;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--text-yellow);
+    border: 3px solid var(--text-navy);
+    box-shadow: 4px 4px 0px var(--bg-coral);
+    color: var(--text-navy);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.2s ease;
+}
+
+.navButton:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 6px 6px 0px var(--bg-coral);
+}
+
+.navButton:active {
+    transform: translateY(-50%) scale(0.95);
+    box-shadow: 2px 2px 0px var(--bg-coral);
+}
+
+.prevButton {
+    left: 1rem;
+    /* Asymmetrical positioning/Margins */
+}
+
+.nextButton {
+    right: 1rem;
+}
+
+.cardHeader {
     text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.processBlock:hover {
-    transform: scale(1.1);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--bg-cyan);
 }
 
 .iconContainer {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--text-purple);
-    filter: drop-shadow(2px 2px 0px white);
+    filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.1));
 }
 
-.blockTitle {
+.cardTitle {
     font-family: var(--font-main);
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--text-navy);
     text-transform: uppercase;
-    background: white;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
-    display: inline-block;
+    margin: 0;
 }
+
+.cardContent {
+    text-align: left;
+}
+
+.cardDescription {
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-navy);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.cardSubtitle {
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: var(--text-navy);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+.includesSection {
+    margin-top: 1.5rem;
+}
+
+.includesLabel {
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-purple);
+    margin-bottom: 0.75rem;
+}
+
+.includesList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.includesList li {
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    color: var(--text-navy);
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.4;
+}
+
+.includesList li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--bg-coral);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
 
 .exploreBtn {
     display: inline-block;
@@ -91,4 +227,76 @@
     position: relative;
     z-index: 1;
     box-shadow: 4px 4px 0px var(--bg-coral);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .scriptTitle {
+        font-size: 3rem;
+    }
+
+    .cardsContainer {
+        padding: 0 1rem;
+        padding-bottom: 5rem;
+        /* Space for buttons below */
+        display: block;
+        /* Stack for mobile if needed, but we keep flex for centering */
+    }
+
+    .processCard {
+        padding: 1.5rem;
+    }
+
+    .navButton {
+        top: auto;
+        bottom: 0;
+        transform: translateY(0);
+    }
+
+    .navButton:hover {
+        transform: translateY(0) scale(1.1);
+    }
+
+    .navButton:active {
+        transform: translateY(0) scale(0.95);
+    }
+
+    .prevButton {
+        left: 20%;
+    }
+
+    .nextButton {
+        right: 20%;
+    }
+
+    .iconContainer {
+        font-size: 2.5rem;
+    }
+
+    .cardTitle {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .scriptTitle {
+        font-size: 2.5rem;
+    }
+
+    .processSection {
+        padding: 60px 0;
+    }
+
+    .prevButton {
+        left: 10%;
+    }
+
+    .nextButton {
+        right: 10%;
+    }
+
+    .exploreBtn {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
 }

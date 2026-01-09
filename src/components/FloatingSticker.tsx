@@ -12,6 +12,7 @@ interface FloatingStickerProps {
     rotate?: number;
     speed?: number; // Parallax speed (e.g., 0.5 for slow, 2 for fast)
     delay?: number; // Floating delay
+    shadowColor?: string;
 }
 
 export default function FloatingSticker({
@@ -19,7 +20,8 @@ export default function FloatingSticker({
     top, left, right, bottom,
     rotate = 0,
     speed = 1,
-    delay = 0
+    delay = 0,
+    shadowColor
 }: FloatingStickerProps) {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -71,7 +73,7 @@ export default function FloatingSticker({
                         conic-gradient(#000 0 0) content-box, 
                         radial-gradient(circle at center, #0000 98%, #000) 0 0 / 10px 10px round border-box
                     `,
-                    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
+                    filter: `drop-shadow(8px 8px 0px ${shadowColor || 'rgba(0,0,0,0.1)'})`,
 
                     fontFamily: 'var(--font-script)',
                     color: 'var(--bg-coral)',
@@ -81,7 +83,7 @@ export default function FloatingSticker({
                     alignItems: 'center',
                     justifyContent: 'center',
                     transform: 'rotate(0deg)', // Reset local rotation
-                    opacity: 0.8
+                    opacity: 1
                 }}>
                     <span style={{
                         background: '#fcf8f5',

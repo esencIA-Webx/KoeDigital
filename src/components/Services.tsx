@@ -7,16 +7,87 @@ import FloatingSticker from './FloatingSticker';
 
 export default function Services() {
     const plans = [
-        { title: "Social Media", desc: "Gestión estratégica integral.", btn: "Ver planes" },
-        { title: "Publicidad", desc: "Campañas de alto rendimiento (Ads).", btn: "Consultar" },
-        { title: "Web Design", desc: "Sitios que venden y enamoran.", btn: "Cotizar" }
+        {
+            title: "Plan Dirección",
+            price: "$250.000",
+            desc: "Un plan enfocado en el análisis estratégico y la organización de la comunicación de la marca. Está pensado para definir objetivos, ordenar la presencia digital y establecer una base clara para el desarrollo de contenido.",
+            includes: [
+                "Análisis inicial de marca para definir objetivos",
+                "Optimización completa de perfiles en todas las plataformas",
+                "Planificación de la estrategia de comunicación",
+                "Creación de categorías de contenido por red social",
+                "Guía creativa simple con guiones orientativos para reels"
+            ],
+            process: [
+                { week: "Semana 1", task: "Análisis inicial, objetivos y optimización de perfiles." },
+                { week: "Semana 2", task: "Desarrollo de estrategia: enfoque, tono y lineamientos." },
+                { week: "Semana 3", task: "Creación de categorías de contenido específicas." },
+                { week: "Semana 4", task: "Entrega de guía creativa con guiones para reels." }
+            ],
+            deliverables: [
+                "Estrategia de comunicación",
+                "Categorías de contenido",
+                "Guía creativa para reels"
+            ],
+            note: "Este plan no incluye diseño ni programación de contenido."
+        },
+        {
+            title: "Plan Esencial",
+            price: "$450.000",
+            desc: "Un plan orientado a la gestión activa de redes sociales, combinando estrategia, creación de contenido y publicación, con seguimiento de métricas y soporte publicitario.",
+            includes: [
+                "Análisis inicial de marca y definición de objetivos",
+                "Optimización completa de la red social",
+                "Búsqueda de temas, creación, diseño y redacción",
+                "Diseño gráfico de piezas para historias y feed",
+                "Guión y edición simple de reels",
+                "Análisis de métricas",
+                "Publicidad en Meta Ads / Google Ads"
+            ],
+            process: [
+                { week: "Semana 1", task: "Análisis, brief estratégico y calendario de contenido." },
+                { week: "Semana 2", task: "Corrección de ideas y comienzo de diseño/edición." },
+                { week: "Semana 3", task: "Producción visual y edición asegurando calidad." },
+                { week: "Semana 4", task: "Correcciones finales y programación." }
+            ],
+            deliverables: [
+                "6 posteos",
+                "2 reels",
+                "8 historias"
+            ]
+        },
+        {
+            title: "Plan Escala",
+            price: "$550.000",
+            desc: "Un plan pensado para marcas que buscan aumentar su presencia digital y escalar su comunicación, con mayor volumen de contenido y acompañamiento estratégico continuo.",
+            includes: [
+                "Análisis inicial de marca y revisión del plan de marketing",
+                "Optimización completa de la red social",
+                "Búsqueda de temas, creación, diseño, redacción y subida",
+                "Diseño gráfico de piezas para historias y feed",
+                "Guión y edición simple de reels",
+                "Análisis de métricas",
+                "Publicidad en Meta Ads / Google Ads"
+            ],
+            process: [
+                { week: "Semana 1", task: "Análisis de marca, brief estratégico y calendario." },
+                { week: "Semana 2", task: "Correcciones y comienzo del diseño y edición." },
+                { week: "Semana 3", task: "Producción visual y edición de contenido." },
+                { week: "Semana 4", task: "Correcciones finales, programación y publicación." }
+            ],
+            deliverables: [
+                "8 posteos",
+                "4 reels",
+                "20 historias"
+            ]
+        }
     ];
 
     return (
         <section className={styles.servicesSection}>
             <div className={styles.header}>
-                <span className={styles.blockHeader}>NEW</span>
-                <span className={styles.scriptHeader}>& Noteworthy</span>
+                <span className={styles.blockHeader}>PLANES</span>
+                <span className={styles.scriptHeader}>Social Media</span>
             </div>
 
             <div className={styles.grid}>
@@ -28,22 +99,55 @@ export default function Services() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: i * 0.2 }}
-                        whileHover={{ scale: 1.02 }}
+                        whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
                     >
-                        <div className={styles.cardImage} />
-                        <div className={styles.cardContent}>
+                        <div className={styles.cardHeaderContent}>
                             <h3 className={styles.cardTitle}>{plan.title}</h3>
+                            <span className={styles.cardPrice}>{plan.price}</span>
                             <p className={styles.cardDesc}>{plan.desc}</p>
-                            <Link href="#contacto" className={styles.cardBtn}>{plan.btn}</Link>
+                        </div>
+
+                        <div className={styles.contentSection}>
+                            <h4 className={styles.sectionTitle}>Qué incluye</h4>
+                            <ul className={styles.detailList}>
+                                {plan.includes.map((item, idx) => (
+                                    <li key={idx}>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className={styles.contentSection}>
+                            <h4 className={styles.sectionTitle}>Proceso de trabajo</h4>
+                            {plan.process.map((step, idx) => (
+                                <div key={idx} className={styles.weekItem}>
+                                    <span className={styles.weekTitle}>{step.week}</span>
+                                    <p className={styles.weekDesc}>{step.task}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className={styles.contentSection}>
+                            <h4 className={styles.sectionTitle}>Entregables</h4>
+                            <ul className={styles.detailList}>
+                                {plan.deliverables.map((item, idx) => (
+                                    <li key={idx}>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className={styles.cardBtnWrapper}>
+                            <Link href="#contacto" className={styles.cardBtn}>
+                                Contratar Plan
+                            </Link>
                         </div>
                     </motion.div>
                 ))}
             </div>
 
-            <FloatingSticker top="20%" left="5%" rotate={15} speed={0.6}>
+            <FloatingSticker top="20%" left="5%" rotate={15} speed={0.6} shadowColor="var(--btn-blue)">
                 Crecimiento
             </FloatingSticker>
-            <FloatingSticker bottom="15%" right="5%" rotate={-5} speed={0.9} delay={1.5}>
+            <FloatingSticker bottom="15%" right="5%" rotate={-5} speed={0.9} delay={1.5} shadowColor="var(--btn-blue)">
                 Creatividad
             </FloatingSticker>
         </section>
