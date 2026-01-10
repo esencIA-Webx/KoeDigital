@@ -1,0 +1,70 @@
+.manifestoSection {
+    background: var(--bg-green);
+    color: var(--bg-cream-light);
+    padding: 100px 0 60px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle divider */
+    overflow: hidden;
+    /* Ensure texture doesn't spill out */
+}
+
+/* Decorative Top Texture */
+.manifestoSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 450px;
+    background-image: url('/manifesto-texture.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+
+    /* Blur removed for sharpness */
+    /* filter: blur(0px); */
+
+    /* Sharp transition: Fade out bottom 30% */
+    mask-image: linear-gradient(to top,
+            transparent 0%,
+            black 30%,
+            black 100%);
+    -webkit-mask-image: linear-gradient(to top,
+            transparent 0%,
+            black 30%,
+            black 100%);
+    opacity: 1;
+}
+
+.quoteContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+    /* Ensure text is above texture */
+}
+
+.quote {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--text-yellow);
+    text-transform: uppercase;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.author {
+    margin-top: 2rem;
+    font-family: var(--font-display);
+    /* Using display/roca one font for the signature for a nice touch */
+    font-size: 1.2rem;
+    opacity: 0.9;
+    letter-spacing: 0.05em;
+    color: white;
+}

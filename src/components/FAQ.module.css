@@ -4,7 +4,7 @@
 }
 
 .faqContainer {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -14,19 +14,148 @@
     margin-bottom: 3rem;
 }
 
-.faqItem {
-    border-bottom: 1px solid #eee;
-    padding: 1.5rem 0;
+/* Carousel Container */
+.carouselContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 280px;
+    margin-bottom: 2rem;
 }
 
+/* Slide Wrapper */
+.slideWrapper {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 1rem;
+}
+
+.slide {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Question & Answer Styles (preserved from original) */
 .question {
     font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
     color: var(--foreground);
+    line-height: 1.4;
 }
 
 .answer {
     color: #666;
     line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Navigation Buttons */
+.navButton {
+    background: var(--foreground);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.navButton:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.navButton:active {
+    transform: scale(0.95);
+}
+
+/* Dot Indicators */
+.dotIndicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.dot:hover {
+    background: #bbb;
+    transform: scale(1.1);
+}
+
+.dotActive {
+    background: var(--foreground);
+    transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .carouselContainer {
+        gap: 1rem;
+        min-height: 320px;
+    }
+
+    .navButton {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .slideWrapper {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .question {
+        font-size: 1.1rem;
+    }
+
+    .answer {
+        font-size: 0.95rem;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carouselContainer {
+        gap: 0.5rem;
+    }
+
+    .navButton {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .question {
+        font-size: 1rem;
+    }
+
+    .answer {
+        font-size: 0.9rem;
+    }
 }

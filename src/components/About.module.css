@@ -7,10 +7,15 @@
     align-items: center;
     position: relative;
     overflow: hidden;
-    /* Smooth Gradient: Top #c1dedc (20%), transitioning to #7da1b9 */
-    background: linear-gradient(to bottom, #c1dedc 0%, #c1dedc 20%, #7da1b9 100%);
+
+    /* Grainy Noise Overlay from Remote + Our Gradient */
+    background:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E"),
+        linear-gradient(to bottom, #c1dedc 0%, #c1dedc 20%, #7da1b9 100%);
+    background-size: 200px 200px, 100% 100%;
     background-color: #7da1b9;
     /* Fallback */
+
     padding: 4rem 2rem;
     z-index: 1;
     color: white;
@@ -60,12 +65,10 @@
 /* Line Colors */
 .lineOne {
     color: #9a9223;
-    /* Darker Gold/Olive */
 }
 
 .lineTwo {
     color: #ccca4c;
-    /* Lighter Gold/Yellow */
     margin-top: -0.15em;
     /* Nudge even closer */
 }

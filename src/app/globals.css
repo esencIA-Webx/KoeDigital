@@ -1,21 +1,27 @@
 :root {
-  /* Final Palette from User */
+  /* Official New Palette - Updated 2026-01-09 */
   --bg-cream-light: #f7f3f0;
   --bg-cream-dark: #e7e2de;
 
-  --green-light: #6c8c7d;
-  --green-dark: #547968;
+  /* Greens */
+  --green-light: #6B8B7D;
+  --green-dark: #537867;
 
-  --olive-light: #ccca4c;
-  --olive-dark: #9a9223;
+  /* Yellows */
+  --olive-light: #CCCA4B;
+  --olive-dark: #999123;
 
-  --pink-light: #e399b8;
-  --pink-dark: #cc5a78;
+  /* Pinks */
+  --pink-light: #E399B8;
+  --pink-dark: #CC5978;
 
-  --cyan-light: #c1dedc;
+  /* Cyans/Celestes */
+  --cyan-light: #C1DEDB;
+  --cyan-medium: #7DA1B9;
 
-  --orange-light: #f3a16d;
-  --orange-dark: #f95e42;
+  /* Oranges */
+  --orange-light: #F2A16D;
+  --orange-dark: #F95D41;
 
   /* Semantic Mappings */
   --background: var(--bg-cream-light);
@@ -40,21 +46,25 @@
   --accent-color: var(--orange-dark);
 
   /* Typography Mappings */
-  /* WORK SANS EXTRANEGRITA - TITULOS */
+  /* WORK SANS EXTRABOLD (800) - TÍTULOS */
   --font-title: var(--font-work-sans), sans-serif;
 
-  /* Roca One (Playfair proxy) - Subtitulos */
+  /* Playfair Display - SUBTÍTULOS (Roca One alternative) */
   --font-subtitle: var(--font-playfair), serif;
 
-  /* WORK SANS - Textos */
+  /* WORK SANS - TEXTOS (toda la familia) */
   --font-body: var(--font-work-sans), sans-serif;
 
-  /* Royal brand (Script proxy) - Detalles */
-  --font-detail: var(--font-script), cursive;
+  /* Pinyon Script - DETALLES / Fondo difuminado (Royal Brand alternative) */
+  --font-detail: var(--font-pinyon), cursive;
 
   --font-main: var(--font-work-sans), sans-serif;
   --font-display: var(--font-playfair), serif;
 }
+
+
+
+
 
 html {
   font-family: var(--font-main);

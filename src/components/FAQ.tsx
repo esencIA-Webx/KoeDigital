@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import styles from './FAQ.module.css';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FAQ() {
     const faqs = [
@@ -19,6 +20,69 @@ export default function FAQ() {
         }
     ];
 
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
+
+    // Autoplay functionality
+    useEffect(() => {
+        if (!isAutoPlaying) return;
+
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 6000); // 6 seconds
+
+        return () => clearInterval(interval);
+    }, [currentSlide, isAutoPlaying]);
+
+    const nextSlide = () => {
+        setDirection(1);
+        setCurrentSlide((prev) => (prev + 1) % faqs.length);
+    };
+
+    const prevSlide = () => {
+        setDirection(-1);
+        setCurrentSlide((prev) => (prev - 1 + faqs.length) % faqs.length);
+    };
+
+    const goToSlide = (index: number) => {
+        setDirection(index > currentSlide ? 1 : -1);
+        setCurrentSlide(index);
+        setIsAutoPlaying(false);
+        // Resume autoplay after 3 seconds of inactivity
+        setTimeout(() => setIsAutoPlaying(true), 3000);
+    };
+
+    const handleNavClick = (callback: () => void) => {
+        setIsAutoPlaying(false);
+        callback();
+        // Resume autoplay after 3 seconds
+        setTimeout(() => setIsAutoPlaying(true), 3000);
+    };
+
+    const handleMouseEnter = () => {
+        setIsAutoPlaying(false);
+    };
+
+    const handleMouseLeave = () => {
+        setIsAutoPlaying(true);
+    };
+
+    const slideVariants = {
+        enter: (direction: number) => ({
+            x: direction > 0 ? 100 : -100,
+            opacity: 0
+        }),
+        center: {
+            x: 0,
+            opacity: 1
+        },
+        exit: (direction: number) => ({
+            x: direction > 0 ? -100 : 100,
+            opacity: 0
+        })
+    };
+
     return (
         <section className={styles.faqSection}>
             <div className={`container ${styles.faqContainer}`}>
@@ -32,19 +96,59 @@ export default function FAQ() {
                     Preguntas Frecuentes
                 </motion.h2>
 
-                {faqs.map((item, i) => (
-                    <motion.div
-                        key={i}
-                        className={styles.faqItem}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1, duration: 0.5 }}
+                <div
+                    className={styles.carouselContainer}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button
+                        className={`${styles.navButton} ${styles.navButtonPrev}`}
+                        onClick={() => handleNavClick(prevSlide)}
+                        aria-label="Pregunta anterior"
                     >
-                        <h3 className={styles.question}>{item.q}</h3>
-                        <p className={styles.answer}>{item.a}</p>
-                    </motion.div>
-                ))}
+                        ←
+                    </button>
+
+                    <div className={styles.slideWrapper}>
+                        <AnimatePresence mode="wait" custom={direction}>
+                            <motion.div
+                                key={currentSlide}
+                                custom={direction}
+                                variants={slideVariants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                transition={{
+                                    x: { type: "tween", duration: 0.6, ease: "easeInOut" },
+                                    opacity: { duration: 0.6, ease: "easeInOut" }
+                                }}
+                                className={styles.slide}
+                            >
+                                <h3 className={styles.question}>{faqs[currentSlide].q}</h3>
+                                <p className={styles.answer}>{faqs[currentSlide].a}</p>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    <button
+                        className={`${styles.navButton} ${styles.navButtonNext}`}
+                        onClick={() => handleNavClick(nextSlide)}
+                        aria-label="Siguiente pregunta"
+                    >
+                        →
+                    </button>
+                </div>
+
+                <div className={styles.dotIndicators}>
+                    {faqs.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`${styles.dot} ${index === currentSlide ? styles.dotActive : ''}`}
+                            onClick={() => goToSlide(index)}
+                            aria-label={`Ir a pregunta ${index + 1}`}
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );

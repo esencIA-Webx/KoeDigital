@@ -40,36 +40,128 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
     padding: 0 1.5rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .card {
     background: white;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    border-radius: 8px;
+    padding: 2rem;
+    border: 3px solid var(--text-purple);
+    box-shadow: 8px 8px 0px var(--btn-blue);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 10px 10px 0px var(--btn-blue);
 }
 
-.cardImage {
-    height: 200px;
-    background: #eee;
-    border-radius: 8px 8px 0 0;
+.cardHeaderContent {
+    border-bottom: 2px solid var(--btn-blue);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.cardTitle {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--text-purple);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.cardPrice {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--btn-blue);
+    margin: 1rem 0;
+    display: block;
+}
+
+.cardDesc {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.contentSection {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.sectionTitle {
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-purple);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detailList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detailList li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+.detailList li::before {
+    content: "•";
+    color: var(--btn-blue);
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+.weekItem {
     margin-bottom: 1rem;
 }
 
-.cardContent {
-    padding: 1rem;
+.weekTitle {
+    font-weight: 700;
+    color: var(--btn-blue);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.weekDesc {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.cardBtnWrapper {
+    margin-top: auto;
+    padding-top: 2rem;
     text-align: center;
 }
+
+
 
 .cardTitle {
     font-family: var(--font-main);

@@ -5,6 +5,7 @@ import Process from "@/components/Process";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import FAQ from "@/components/FAQ";
+import Manifesto from "@/components/Manifesto";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -27,6 +28,11 @@ export default function Home() {
       <div id="faq">
         <FAQ />
       </div>
+
+      <div id="manifesto">
+        <Manifesto />
+      </div>
+
       <div id="contacto">
         <Footer />
       </div>
