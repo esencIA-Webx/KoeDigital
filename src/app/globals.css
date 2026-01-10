@@ -49,18 +49,22 @@
   /* WORK SANS EXTRABOLD (800) - TÍTULOS */
   --font-title: var(--font-work-sans), sans-serif;
 
-  /* Bebas Neue (Roca One alternative) - SUBTÍTULOS */
-  --font-subtitle: var(--font-bebas), sans-serif;
+  /* Playfair Display - SUBTÍTULOS (Roca One alternative) */
+  --font-subtitle: var(--font-playfair), serif;
 
   /* WORK SANS - TEXTOS (toda la familia) */
   --font-body: var(--font-work-sans), sans-serif;
 
-  /* Bonheur Royale (Royal Brand alternative) - DETALLES / Fondo difuminado */
-  --font-detail: var(--font-bonheur), cursive;
+  /* Pinyon Script - DETALLES / Fondo difuminado (Royal Brand alternative) */
+  --font-detail: var(--font-pinyon), cursive;
 
   --font-main: var(--font-work-sans), sans-serif;
-  --font-display: var(--font-bebas), sans-serif;
+  --font-display: var(--font-playfair), serif;
 }
+
+
+
+
 
 html {
   font-family: var(--font-main);

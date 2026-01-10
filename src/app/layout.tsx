@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Work_Sans, Bebas_Neue, Bonheur_Royale } from "next/font/google";
+import { Work_Sans, Playfair_Display, Pinyon_Script } from "next/font/google"; // Removed Pinyon_Script check, assuming availability or similar standard
 import "./globals.css";
 
 const workSans = Work_Sans({
@@ -8,14 +8,14 @@ const workSans = Work_Sans({
   weight: ["300", "400", "500", "600", "800"],
 });
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "600", "700"], // Weights suitable for subtitles
 });
 
-const bonheurRoyale = Bonheur_Royale({
-  variable: "--font-bonheur",
+const pinyonScript = Pinyon_Script({
+  variable: "--font-pinyon",
   weight: "400",
   subsets: ["latin"],
 });
@@ -58,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${workSans.variable} ${bebasNeue.variable} ${bonheurRoyale.variable}`}>
+    <html lang="es" className={`${workSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable}`}>
       <body>
         {children}
       </body>
