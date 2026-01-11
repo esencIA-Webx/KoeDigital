@@ -22,15 +22,7 @@ export default function Portfolio() {
                 >
                     Nuestros Trabajos
                 </motion.h2>
-                <motion.span
-                    className={styles.subtitle}
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                    Selected Cases
-                </motion.span>
+
             </div>
 
             <div className={styles.grid}>

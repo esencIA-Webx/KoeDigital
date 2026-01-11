@@ -1,15 +1,27 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Play, Pause } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import styles from './Hero.module.css';
 
 export default function Hero() {
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLElement>(null);
+
+    // Initial check and resize listener
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -21,12 +33,18 @@ export default function Hero() {
 
     const toggleVideo = () => {
         if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
+            if (videoRef.current.ended) {
+                videoRef.current.currentTime = 0;
                 videoRef.current.play();
+                setIsPlaying(true);
+            } else {
+                if (isPlaying) {
+                    videoRef.current.pause();
+                } else {
+                    videoRef.current.play();
+                }
+                setIsPlaying(!isPlaying);
             }
-            setIsPlaying(!isPlaying);
         }
     };
 
@@ -35,80 +53,17 @@ export default function Hero() {
 
             {/* Video Background */}
             <div className={styles.videoContainer}>
-                {/* Placeholder video - using a generic sample or empty src until user uploads */}
                 <video
+                    key={isMobile ? 'mobile' : 'desktop'} // Remount video when source changes
                     ref={videoRef}
-                    className={`${styles.heroVideo} ${isPlaying ? styles.active : ''}`}
-                    src="/hero-placeholder.mp4"
-                    loop
-                    muted={false}
+                    className={`${styles.heroVideo} ${styles.active}`}
+                    src={isMobile ? "/KoeVert.mov" : "/Koe.mov"}
+                    autoPlay
+                    muted
                     playsInline
+                    onEnded={() => setIsPlaying(false)}
                 />
             </div>
-
-            <div className={styles.contentOverlay}>
-                <motion.span
-                    className={styles.subtitle}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                    Donde las marcas
-                </motion.span>
-
-                <motion.h1
-                    className={styles.mainTitle}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                    ENCUENTRAN<br />SU VOZ
-                </motion.h1>
-
-                <motion.p
-                    className={styles.description}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                >
-                    Estrategia, contenido y publicidad pensados a medida.
-                </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                    <Link href="#como-trabajamos" style={{
-                        background: 'var(--bg-coral)',
-                        color: 'white',
-                        padding: '1rem 3rem',
-                        borderRadius: '50px',
-                        fontWeight: 800,
-                        textTransform: 'uppercase',
-                        display: 'inline-block',
-                        textDecoration: 'none'
-                    }}>
-                        <motion.span
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{ display: 'inline-block' }}
-                        >
-                            Conocé cómo trabajamos
-                        </motion.span>
-                    </Link>
-                </motion.div>
-            </div>
-
-            {/* Funny Sticker - Parallax Effect */}
-            <motion.div
-                className={styles.sticker}
-                style={{ y: stickerY, rotate: 15 }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-            >
-                KOE IS<br />DIGITAL
-            </motion.div>
 
             {/* Play/Pause Toggle */}
             <div className={styles.playBtnContainer}>

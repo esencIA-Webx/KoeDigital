@@ -170,18 +170,22 @@
 /* Mobile Styles */
 @media (max-width: 1024px) {
     .headerWrapper {
-        top: 0;
+        top: 1rem;
         padding: 0;
     }
 
     .pillContainer {
-        border-radius: 0;
-        max-width: 100%;
-        border: none;
-        border-bottom: 1px solid #eee;
-        padding: 1rem;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 0.6rem 1.2rem;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
     .navGroup,
@@ -195,50 +199,72 @@
 
     .circleLogo {
         transform: scale(1);
-        width: 40px;
-        height: 40px;
-        font-size: 0.7rem;
+        width: 60px;
+        /* Increased from 40px */
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         box-shadow: none;
     }
 
+    .logoImage {
+        width: 100%;
+        height: auto;
+    }
+
     .mobileMenuBtn {
-        display: block;
-        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--text-navy);
+        color: white;
         border: none;
         cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: transform 0.2s ease;
+    }
+
+    .mobileMenuBtn:active {
+        transform: scale(0.9);
     }
 
     /* Mobile Drawer */
     .mobileDrawer {
         display: flex;
-        /* Override display: none */
         position: fixed;
-        top: 72px;
-        /* Header height approx */
+        top: 0;
         left: 0;
         width: 100%;
-        height: calc(100vh - 72px);
-        background: var(--bg-cream-light);
-        /* Match theme */
-        padding: 2rem;
+        height: 100vh;
+        background: rgba(247, 243, 240, 0.98);
+        /* var(--bg-cream-light) with glass */
+        backdrop-filter: blur(15px);
+        padding: 6rem 2rem 2rem;
+        /* Top padding to avoid header */
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
         align-items: center;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        justify-content: center;
+        transform: translateY(-100%);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: -1;
+        /* Behind the header pill */
     }
 
     .mobileDrawer.open {
-        transform: translateX(0);
+        transform: translateY(0);
     }
 
     .mobileLink {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: 800;
         color: var(--text-navy);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
         position: relative;
-        /* Needed for pseudo-elements */
     }
 
     /* Mobile Hover Animation - Reusing styles adapted for size */
@@ -280,5 +306,12 @@
     .mobileLink:active::after,
     .mobileLink:hover::after {
         opacity: 1;
+    }
+
+    .contactBtn {
+        margin-left: 0;
+        margin-top: 1rem;
+        font-size: 1rem;
+        padding: 1rem 2.5rem;
     }
 }

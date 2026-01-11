@@ -10,37 +10,12 @@
     /* Fallback */
 }
 
-/* Decorative Bottom Texture (Texture 3) */
+/* Decorative Bottom Texture (Texture 3) - REMOVED per user req */
+/*
 .heroSection::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 400px;
-    /* Adjust height as needed */
-    background-image: url('/hero-texture.png');
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    z-index: 1;
-    /* Above video/bg, below contentOverlay which needs z-index > 1 */
-    pointer-events: none;
-
-    /* Blur removed for sharpness */
-    /* filter: blur(0px); */
-
-    /* Sharp transition: Fade in top 30%, fully visible rest */
-    mask-image: linear-gradient(to bottom,
-            transparent 0%,
-            black 30%,
-            black 100%);
-    -webkit-mask-image: linear-gradient(to bottom,
-            transparent 0%,
-            black 30%,
-            black 100%);
-    opacity: 1;
+    ...
 }
+*/
 
 /* Video Container - Behind everything */
 .videoContainer {
@@ -56,66 +31,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.heroVideo.active {
     opacity: 1;
 }
 
-/* Content overlaid on video */
-.contentOverlay {
-    position: relative;
-    z-index: 10;
-    /* Ensure content is above the texture (z-index 1) */
-    text-align: center;
-    padding: 0 1rem;
-    /* Add visual backdrop if video is playing to ensure text readability? User didn't ask, but safe to remove split background? 
-     User said "arreglando seccion por seccion". 
-     I will keep the Split look as the "Poster"/Initial state? 
-     Or if video occupies entire hero, maybe the text just lives on top. 
-     User said "video que ocupa todo el hero section".
-     I'll make the Content Overlay centered.
-  */
-    max-width: 1000px;
-}
-
-.subtitle {
-    font-family: var(--font-script);
-    font-size: 3rem;
-    color: var(--text-navy);
-    /* Adjust based on video? Probably need white if video is dark. Sticking to brand colors. */
-    margin-bottom: 1rem;
-    display: block;
-    transform: rotate(-3deg);
-    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
-}
-
-.mainTitle {
-    font-family: var(--font-main);
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 0.9;
-    color: var(--bg-coral);
-    /* Pop color */
-    text-shadow: 3px 3px 0px rgba(255, 255, 255, 1);
-    margin-bottom: 2rem;
-}
-
-.description {
-    font-family: var(--font-main);
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-navy);
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(5px);
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    display: inline-block;
-    margin-bottom: 2rem;
-}
+/* Unused Content Overlay Styles Removed */
 
 /* Play Button Logic */
 .playBtnContainer {

@@ -3,7 +3,6 @@
 import styles from './Services.module.css';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import FloatingSticker from './FloatingSticker';
 
 export default function Services() {
     const plans = [
@@ -143,13 +142,6 @@ export default function Services() {
                     </motion.div>
                 ))}
             </div>
-
-            <FloatingSticker top="20%" left="5%" rotate={15} speed={0.6} shadowColor="var(--btn-blue)">
-                Crecimiento
-            </FloatingSticker>
-            <FloatingSticker bottom="15%" right="5%" rotate={-5} speed={0.9} delay={1.5} shadowColor="var(--btn-blue)">
-                Creatividad
-            </FloatingSticker>
         </section>
     );
 }

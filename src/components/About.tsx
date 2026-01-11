@@ -18,22 +18,9 @@ export default function About() {
     // Parallax logic
     const yLeft = useTransform(scrollYProgress, [0, 1], [50, -50]);
     const yRight = useTransform(scrollYProgress, [0, 1], [-50, 50]);
-    const stampYFast = useTransform(scrollYProgress, [0, 1], [100, -200]);
-    const stampYSlow = useTransform(scrollYProgress, [0, 1], [-50, 150]);
 
     return (
         <section className={styles.aboutSection} ref={sectionRef}>
-            {/* Stamp Icons with Parallax */}
-            <motion.div className={`${styles.stamp} ${styles.stamp1}`} style={{ y: stampYFast, rotate: -15 }}>
-                <Image src="/stamp-pink.png" alt="Stamp" width={120} height={120} />
-            </motion.div>
-            <motion.div className={`${styles.stamp} ${styles.stamp2}`} style={{ y: stampYSlow, rotate: 20 }}>
-                <Image src="/stamp-orange.png" alt="Stamp" width={140} height={140} />
-            </motion.div>
-            <motion.div className={`${styles.stamp} ${styles.stamp3}`} style={{ y: stampYFast, rotate: 10 }}>
-                <Image src="/stamp-yellow.png" alt="Stamp" width={130} height={130} />
-            </motion.div>
-
             {/* Top Title: Fade In + From Top */}
             <motion.h2
                 className={styles.topTitle}
@@ -62,12 +49,13 @@ export default function About() {
                         viewport={{ once: true }}
                     >
                         <Image
-                            src="/about-sofi-sunflower.png"
+                            src="/Sofi.png?v=3"
                             alt="Sofi"
                             width={500}
                             height={700}
                             className={styles.founderImage}
                             priority
+                            unoptimized /* Force bypass of Next.js optimization cache if needed */
                         />
                     </motion.div>
 
@@ -76,7 +64,7 @@ export default function About() {
                         className={`${styles.textWrapper} ${styles.textLeft} ${ceciRevealed ? styles.revealed : ''}`}
                     >
                         <p>
-                            Formamos Koe Digital con una premisa clara: alejar a las marcas de las "fórmulas mágicas" y acercarlas a resultados reales a través de estrategias sólidas.
+                            Formamos <strong>Koe Digital</strong> con una premisa clara: alejar a las marcas de las "fórmulas mágicas" y acercarlas a <strong>resultados reales</strong> a través de <strong>estrategias sólidas</strong>.
                         </p>
                     </div>
                 </div>
@@ -95,12 +83,13 @@ export default function About() {
                         viewport={{ once: true }}
                     >
                         <Image
-                            src="/about-ceci-sunflower.png"
+                            src="/Ceci.png?v=3"
                             alt="Ceci"
                             width={500}
                             height={700}
                             className={styles.founderImage}
                             priority
+                            unoptimized
                         />
                     </motion.div>
 
@@ -109,7 +98,7 @@ export default function About() {
                         className={`${styles.textWrapper} ${styles.textRight} ${sofiRevealed ? styles.revealed : ''}`}
                     >
                         <p>
-                            Entendemos que cada negocio tiene una voz única. Nuestro trabajo es encontrarla, amplificarla y conectarla con las personas correctas mediante contenido de valor y publicidad inteligente.
+                            Entendemos que cada negocio tiene una <strong>voz única</strong>. Nuestro trabajo es encontrarla, amplificarla y conectarla con las <strong>personas correctas</strong> mediante <strong>contenido de valor</strong> y <strong>publicidad inteligente</strong>.
                         </p>
                     </div>
                 </div>

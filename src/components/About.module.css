@@ -8,18 +8,31 @@
     position: relative;
     overflow: hidden;
 
-    /* Grainy Noise Overlay from Remote + Our Gradient */
-    background:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E"),
-        linear-gradient(to bottom, #c1dedc 0%, #c1dedc 20%, #7da1b9 100%);
-    background-size: 200px 200px, 100% 100%;
-    background-color: #7da1b9;
-    /* Fallback */
-
+    /* Gradient Background (#c1dedb -> white) */
+    background: linear-gradient(to bottom, #c1dedb 0%, #ffffff 100%);
+    background-color: #c1dedb;
     padding: 4rem 2rem;
     z-index: 1;
     color: white;
     text-align: center;
+}
+
+/* Noise Overlay via Pseudo-element for Gradient Visibility */
+.aboutSection::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    /* Behind content but on top of background */
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.9'/%3E%3C/svg%3E");
+    /* Increased base opacity in SVG to 0.9 and lowered freq to 0.6 for "crunchier" grain */
+    background-size: 200px 200px;
+    opacity: 1;
+    mix-blend-mode: overlay;
+    /* Mask to make it visible only/more at the bottom */
+    mask-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 1) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 1) 100%);
 }
 
 /* Absolute Positioning for Titles based on USER REQ */
@@ -38,17 +51,21 @@
     z-index: 20;
     width: max-content;
     /* Ensure it stays on two lines as formatted */
+    text-shadow: 3px 3px 0px rgba(255, 255, 255, 1);
+    /* 3D Solid Shadow */
 }
 
 .topTitle {
-    top: 5%;
+    top: 15%;
+    /* Nudged down from 5% */
     left: 5%;
     /* Top Left Corner */
     font-size: clamp(2.5rem, 6vw, 4.5rem);
 }
 
 .bottomTitle {
-    bottom: 5%;
+    bottom: 12%;
+    /* Nudged up from 5% */
     right: 5%;
     /* Bottom Right Corner */
     font-size: clamp(2.2rem, 5vw, 4rem);
@@ -94,23 +111,25 @@
 }
 
 .columnLeft {
-    z-index: 12;
+    z-index: 11;
     margin-right: -25px;
     /* Adjusted to match -50px total gap */
 }
 
 .columnRight {
-    z-index: 11;
+    z-index: 12;
+    /* Ceci on top */
 }
 
 .imageWrapper {
     position: relative;
     z-index: 10;
     /* Above text */
-    border-radius: 0;
-    /* Square/Rectangular images as per reference */
+    border-radius: 20px;
+    /* Rounded corners as requested */
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    box-shadow: 8px 8px 0px #1D3557;
+    /* Dark Blue 3D Shadow */
     margin: 0;
     /* Ensure no gaps */
 }
@@ -122,29 +141,13 @@
     max-height: 75vh;
     /* Occupy even more space */
     max-width: 100%;
+    transition: transform 0.5s ease;
+    /* Smooth zoom transition */
 }
 
-/* Stamp Styles for absolute placement */
-.stamp {
-    position: absolute;
-    z-index: 15;
-    pointer-events: none;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
-}
-
-.stamp1 {
-    top: 10%;
-    right: 10%;
-}
-
-.stamp2 {
-    bottom: 15%;
-    left: 5%;
-}
-
-.stamp3 {
-    top: 40%;
-    left: 12%;
+.imageWrapper:hover .founderImage {
+    transform: scale(1.05);
+    /* Zoom effect on hover */
 }
 
 /* Text Container that hides behind */
@@ -154,7 +157,14 @@
     transform: translateY(-50%);
     width: 350px;
     /* Width of the text block */
-    background: transparent;
+    background: white;
+    /* White background for the box */
+    border: 2px solid #1D3557;
+    /* Dark Blue Border */
+    border-radius: 20px;
+    /* Rounded corners */
+    box-shadow: 6px 6px 0px #1D3557;
+    /* Dark Blue 3D Shadow */
     padding: 1.5rem;
     z-index: 1;
     /* Behind image */
@@ -170,9 +180,22 @@
     /* Regular */
     font-size: 1.35rem;
     /* Slightly larger for readability */
-    color: white;
+    color: black;
     line-height: 1.6;
     text-align: left;
+}
+
+.textWrapper p strong {
+    font-weight: 800;
+    color: var(--bg-coral);
+    /* Highlight color */
+    transition: color 0.3s ease;
+    cursor: default;
+}
+
+.textWrapper p strong:hover {
+    color: var(--text-navy);
+    /* Change to Navy on hover */
 }
 
 /* Left Column Text: Slides out to the Left */
@@ -207,51 +230,89 @@
 }
 
 @media (max-width: 900px) {
+    .aboutSection {
+        padding: 4rem 1rem;
+        /* Less padding on mobile */
+    }
+
+    .topTitle {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 2rem;
+        text-align: center;
+        width: 100%;
+        font-size: 2.2rem;
+    }
+
+    .bottomTitle {
+        display: none;
+        /* Hide second title for cleaner mobile view */
+    }
+
     .contentContainer {
         flex-direction: column;
-        gap: 4rem;
+        gap: 2.5rem;
+        padding: 0;
     }
 
-    .aboutSection {
-        background: linear-gradient(to bottom, #c1dedc 0%, #c1dedc 15%, #7da1b9 15%, #7da1b9 100%);
-    }
-
-    /* On mobile, maybe show text below or handle differently? 
-       For now, keeping the logic but vertical stacking might require space.
-       Let's adjust slide to be visible on constrained widths.
-    */
-    .textLeft.revealed {
-        right: 0;
-        left: 0;
-        top: 100%;
-        transform: none;
-        position: relative;
-        text-align: center;
+    .column {
         width: 100%;
-        padding-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0;
+        margin: 0 !important;
     }
 
-    .textLeft p {
-        text-align: center;
+    .columnLeft {
+        flex-direction: row;
+        /* Sofia Left, Text Right */
     }
 
-    .textRight.revealed {
-        left: 0;
-        top: 100%;
-        transform: none;
-        position: relative;
+    .columnRight {
+        flex-direction: row-reverse;
+        /* Text Left, Ceci Right */
+    }
+
+    .imageWrapper {
+        flex: 0 0 130px;
+        /* Fixed width for photo on mobile */
+        height: 170px;
+        border-radius: 12px;
+        box-shadow: 4px 4px 0px #1D3557;
+    }
+
+    .founderImage {
         width: 100%;
-        text-align: center;
-        padding-top: 1rem;
+        height: 100%;
+        object-fit: cover;
     }
 
     .textWrapper {
-        position: absolute;
-        /* Reset for animation */
+        position: relative;
+        top: 0;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important;
+        width: calc(100% - 142px);
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        padding: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
     }
 
-    /* Modify default non-revealed state for mobile if needed, 
-       but let's see if the slide works horizontally on tablet. 
-       If phone, better to stack. 
-    */
+    .textWrapper p {
+        font-size: 0.95rem;
+        line-height: 1.35;
+        text-align: left !important;
+        color: black;
+    }
+
+    .textWrapper p strong {
+        font-size: 0.95rem;
+    }
 }
