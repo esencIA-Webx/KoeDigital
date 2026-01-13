@@ -12,7 +12,9 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <Hero />
+      <div id="hero">
+        <Hero />
+      </div>
       <div id="sobre">
         <About />
       </div>
