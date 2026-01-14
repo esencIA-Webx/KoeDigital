@@ -56,19 +56,15 @@
 }
 
 .topTitle {
-    top: 15%;
-    /* Nudged down from 5% */
+    top: 5vh;
     left: 5%;
-    /* Top Left Corner */
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2rem, 5vw, 4.5rem);
 }
 
 .bottomTitle {
-    bottom: 12%;
-    /* Nudged up from 5% */
+    bottom: 5vh;
     right: 5%;
-    /* Bottom Right Corner */
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(1.8rem, 4vw, 4rem);
 }
 
 .lineOne,
@@ -229,55 +225,100 @@
     transform: translateY(-50%);
 }
 
-@media (max-width: 900px) {
-    .aboutSection {
-        padding: 4rem 1rem;
-        /* Less padding on mobile */
-    }
-
+@media (max-width: 1400px) {
     .topTitle {
-        position: relative;
-        top: 0;
-        left: 0;
-        margin-bottom: 2rem;
-        text-align: center;
-        width: 100%;
-        font-size: 2.2rem;
+        top: 8%;
+        font-size: clamp(2rem, 4.5vw, 3.5rem);
     }
 
     .bottomTitle {
-        display: none;
-        /* Hide second title for cleaner mobile view */
+        bottom: 8%;
+        font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    }
+
+    .textWrapper {
+        width: 300px;
+        padding: 1.2rem;
+    }
+
+    .textWrapper p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 1150px) {
+
+    .topTitle,
+    .bottomTitle {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        text-align: center;
+        margin: 2rem 0;
+        text-shadow: 2px 2px 0px rgba(255, 255, 255, 1);
+    }
+
+    .topTitle {
+        margin-top: 0;
+    }
+
+    .bottomTitle {
+        display: block;
+        /* Show it but relative */
     }
 
     .contentContainer {
         flex-direction: column;
+        gap: 4rem;
+    }
+
+    .column {
+        margin: 0 !important;
+        z-index: 10;
+    }
+
+    .textLeft.revealed {
+        right: calc(100% + 20px);
+    }
+
+    .textRight.revealed {
+        left: calc(100% + 20px);
+    }
+}
+
+@media (max-width: 900px) {
+    .aboutSection {
+        padding: 4rem 1rem;
+    }
+
+    .topTitle {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .bottomTitle {
+        display: none;
+    }
+
+    .contentContainer {
         gap: 2.5rem;
-        padding: 0;
     }
 
     .column {
         width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        padding: 0;
-        margin: 0 !important;
-    }
-
-    .columnLeft {
         flex-direction: row;
-        /* Sofia Left, Text Right */
+        gap: 1.2rem;
     }
 
     .columnRight {
         flex-direction: row-reverse;
-        /* Text Left, Ceci Right */
     }
 
     .imageWrapper {
         flex: 0 0 130px;
-        /* Fixed width for photo on mobile */
         height: 170px;
         border-radius: 12px;
         box-shadow: 4px 4px 0px #1D3557;
