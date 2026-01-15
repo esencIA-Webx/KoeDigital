@@ -58,13 +58,13 @@
 .topTitle {
     top: 5vh;
     left: 5%;
-    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 4vw, 3.8rem);
 }
 
 .bottomTitle {
     bottom: 5vh;
     right: 5%;
-    font-size: clamp(1.8rem, 4vw, 4rem);
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
 }
 
 .lineOne,
@@ -134,7 +134,7 @@
     display: block;
     width: auto;
     height: auto;
-    max-height: 75vh;
+    max-height: 60vh;
     /* Occupy even more space */
     max-width: 100%;
     transition: transform 0.5s ease;
@@ -151,7 +151,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 350px;
+    width: 320px;
     /* Width of the text block */
     background: white;
     /* White background for the box */
@@ -161,7 +161,7 @@
     /* Rounded corners */
     box-shadow: 6px 6px 0px #1D3557;
     /* Dark Blue 3D Shadow */
-    padding: 1.5rem;
+    padding: 1.25rem;
     z-index: 1;
     /* Behind image */
     opacity: 0;
@@ -174,7 +174,7 @@
     font-family: var(--font-work-sans);
     font-weight: 400;
     /* Regular */
-    font-size: 1.35rem;
+    font-size: 1.15rem;
     /* Slightly larger for readability */
     color: black;
     line-height: 1.6;
