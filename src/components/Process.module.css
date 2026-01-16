@@ -3,7 +3,7 @@
     position: relative;
 
     /* Unified Background with Top Wave */
-    background-color: var(--bg-green);
+    background-color: var(--bg-cream-light);
     background-image: url('/textura 3.png');
     background-size: 100% auto;
     background-position: center -99px;
@@ -25,7 +25,7 @@
     height: 100px;
     z-index: 5;
 
-    background-color: var(--bg-green);
+    background-color: var(--bg-cream-light);
     background-image: url('/textura 3.png');
     background-size: 100% auto;
     background-position: center top;
