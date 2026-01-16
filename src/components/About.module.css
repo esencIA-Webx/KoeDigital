@@ -8,32 +8,23 @@
     position: relative;
     overflow: hidden;
 
-    /* Gradient Background (#c1dedb -> white) */
-    background: linear-gradient(to bottom, #c1dedb 0%, #ffffff 100%);
-    background-color: #c1dedb;
+    /* Background Texture */
+    background-color: #f7f3f0;
+    /* Fallback */
+    /* background-image: url('/Marco.png'); Removed per user request */
     padding: 4rem 2rem;
     z-index: 1;
-    color: white;
+    color: var(--text-navy);
+    /* Ensure text is dark on light background */
+    padding: 4rem 2rem;
+    z-index: 1;
+    color: var(--text-navy);
     text-align: center;
 }
 
 /* Noise Overlay via Pseudo-element for Gradient Visibility */
-.aboutSection::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    /* Behind content but on top of background */
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.9'/%3E%3C/svg%3E");
-    /* Increased base opacity in SVG to 0.9 and lowered freq to 0.6 for "crunchier" grain */
-    background-size: 200px 200px;
-    opacity: 1;
-    mix-blend-mode: overlay;
-    /* Mask to make it visible only/more at the bottom */
-    mask-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 1) 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 1) 100%);
-}
+/* Noise Overlay Removed */
+/* .aboutSection::before { ... } */
 
 /* Absolute Positioning for Titles based on USER REQ */
 .topTitle,
