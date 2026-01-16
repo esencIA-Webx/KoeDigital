@@ -5,7 +5,7 @@
     /* Reverted padding */
     position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: hidden;
+    overflow: visible;
     min-height: 600px;
 }
 
@@ -18,15 +18,40 @@
     width: 100%;
     height: 100%;
     background-image: url('/manifesto-texture.png');
-    background-image: url('/manifesto-texture.png');
     background-size: 100% auto;
     /* Match full width, proportional height */
     background-position: center -100px;
     /* Offset to account for wave height above */
     background-repeat: no-repeat;
+    background-attachment: fixed;
     z-index: 0;
     pointer-events: none;
     opacity: 1;
+}
+
+/* Wave Divider Top */
+.waveDividerTop {
+    position: absolute;
+    top: -99px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 5;
+
+    background-color: var(--bg-green);
+    background-image: url('/manifesto-texture.png');
+    background-size: 100% auto;
+    background-position: center -100px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    /* Mask (Hill Shape) */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 L0,50 C320,120 960,-20 1440,50 L1440,100 Z' fill='black'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 L0,50 C320,120 960,-20 1440,50 L1440,100 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
 }
 
 .contentWrapper {
@@ -191,5 +216,28 @@
 
     .submitBtn:hover {
         box-shadow: 8px 8px 0px var(--green-dark);
+    }
+}
+
+@media (max-width: 480px) {
+    .manifestoSection {
+        padding: 60px 0;
+    }
+
+    .contentWrapper {
+        padding: 0 1rem;
+        gap: 2rem;
+    }
+
+    .manifestoSection::before {
+        background-size: cover;
+    }
+
+    .quote {
+        font-size: 1.5rem;
+    }
+
+    .formContainer {
+        padding: 1.5rem;
     }
 }

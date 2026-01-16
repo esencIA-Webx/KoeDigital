@@ -5,10 +5,10 @@
     /* Unified Background with Top Wave */
     background-color: var(--bg-cream-light);
     background-image: url('/textura 3.png');
-    background-size: 100% auto;
-    background-position: center -99px;
-    /* Starts 99px "into" the image, matching the wave above */
+    background-size: cover;
+    background-position: center top;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
     overflow: visible;
     /* Allow wave to hang out top */
@@ -27,10 +27,10 @@
 
     background-color: var(--bg-cream-light);
     background-image: url('/textura 3.png');
-    background-size: 100% auto;
+    background-size: cover;
     background-position: center top;
-    /* Image starts here */
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
     /* Mask (Hill Shape) */
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 L0,50 C320,120 960,-20 1440,50 L1440,100 Z' fill='black'/%3E%3C/svg%3E");
@@ -385,5 +385,10 @@
     .exploreBtn {
         padding: 0.875rem 2rem;
         font-size: 1rem;
+    }
+
+    .processSection {
+        background-size: cover;
+        background-position: center top;
     }
 }

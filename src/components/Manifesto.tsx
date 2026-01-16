@@ -6,6 +6,9 @@ import styles from './Manifesto.module.css';
 export default function Manifesto() {
     return (
         <section className={styles.manifestoSection}>
+            {/* Wave Divider Top */}
+            <div className={styles.waveDividerTop}></div>
+
             <div className={styles.contentWrapper}>
                 {/* Left Column: Manifesto Text */}
                 <motion.div
