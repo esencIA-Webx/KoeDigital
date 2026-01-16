@@ -7,6 +7,36 @@
     text-align: center;
 }
 
+/* Decorative Top Texture */
+.processSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/textura 3.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+
+    /* Sharp transition: Solid at bottom, fade out top */
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 50%,
+            black 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 50%,
+            black 100%);
+    opacity: 0.6;
+    /* Adjust opacity if needed to blend with cyan background */
+    mix-blend-mode: multiply;
+    /* Optional: helps blend texture with background color */
+}
+
 /* Map Grid Lines Effect */
 .gridLines {
     position: absolute;
@@ -25,14 +55,53 @@
 
 .scriptTitle {
     font-family: var(--font-script);
-    font-size: 4rem;
+    font-size: 5rem;
     color: var(--bg-coral);
     position: relative;
     z-index: 1;
     text-shadow: 2px 2px 0px white;
-    margin-bottom: 3rem;
-    transform: rotate(-3deg);
+    margin-bottom: 2rem;
+    /* transform: rotate(-3deg); Removed per user request */
     display: inline-block;
+}
+
+.descriptionText {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    color: var(--text-navy);
+    font-family: var(--font-main);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    padding: 0 1rem;
+}
+
+.descriptionText p {
+    margin-bottom: 1rem;
+}
+
+.descriptionText ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+.descriptionText li {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    display: inline-block;
+    margin: 0 1rem;
+    font-weight: 600;
+}
+
+.descriptionText li::before {
+    content: "•";
+    color: var(--bg-coral);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
 }
 
 .cardsContainer {
@@ -92,42 +161,84 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.navButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--text-yellow);
-    border: 3px solid var(--text-navy);
-    box-shadow: 4px 4px 0px var(--bg-coral);
-    color: var(--text-navy);
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
+.navContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    position: relative;
     z-index: 2;
-    transition: all 0.2s ease;
+    padding: 0 1rem;
 }
 
-.navButton:hover {
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 6px 6px 0px var(--bg-coral);
+.navSticker {
+    background: white;
+    padding: 1rem 2rem;
+    font-family: var(--font-script);
+    color: var(--text-navy);
+    font-size: 1.8rem;
+    font-weight: 600;
+    /* transform handled by motion */
+    border: 3px solid var(--text-navy);
+    cursor: pointer;
+    box-shadow: 8px 8px 0px var(--bg-coral);
+    /* transitions handled by motion */
+    position: relative;
+
+    /* Stamp Effect Mask - Removed to match card rectangular style better or keep?
+       User said "mismo forma que tienen las cards" (same shape as cards).
+       Cards are rectangles with border-radius.
+       If I keep mask, I can't have border: 3px solid easily without complications.
+       The "activeSticker" logic had a mask.
+       If I add border, I should probably remove the mask or enclose it differently.
+       However, "buttons... like the floating stickers" was the previous request.
+       Now "shadows like the cards".
+
+       Solution: Keep sticker shape (if that's what "buttons like stickers" meant) but apply HARD shadow.
+       I will set box-shadow to hard coral.
+       I will ADD border: 3px solid var(--text-navy).
+       This works best without the stamp mask.
+       I will remove the mask to ensure the border renders cleanly like a card.
+    */
+    border-radius: 12px;
 }
 
-.navButton:active {
-    transform: translateY(-50%) scale(0.95);
-    box-shadow: 2px 2px 0px var(--bg-coral);
+.navSticker:hover {
+    color: var(--bg-coral);
+    box-shadow: 10px 10px 0px var(--bg-coral);
+    z-index: 10;
+    transform: translateY(-2px);
 }
 
-.prevButton {
-    left: 1rem;
-    /* Asymmetrical positioning/Margins */
+.activeSticker {
+    background: var(--bg-coral);
+    color: white;
+    box-shadow: 10px 10px 0px var(--text-navy);
+    z-index: 10;
+    border-color: var(--text-navy);
 }
 
-.nextButton {
-    right: 1rem;
+.activeSticker:hover {
+    background: var(--bg-coral);
+    color: white;
+    box-shadow: 10px 10px 0px var(--text-navy);
+}
+
+.processCard {
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 10px 10px 0px var(--bg-coral);
+    border: 3px solid var(--text-navy);
+    width: 100%;
+    position: relative;
+    background-color: white;
+    /* Ensure it has a min-height to reduce layout shift if content varies */
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .cardHeader {
@@ -160,73 +271,54 @@
 .cardDescription {
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: var(--text-navy);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.4;
 }
 
 .cardSubtitle {
     font-family: var(--font-main);
     font-weight: 400;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     color: var(--text-navy);
     margin-bottom: 1.5rem;
-    line-height: 1.5;
-    opacity: 0.85;
+    line-height: 1.6;
+    opacity: 0.9;
 }
 
-.includesSection {
-    margin-top: 1.5rem;
-}
 
-.includesLabel {
-    font-family: var(--font-main);
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--text-purple);
-    margin-bottom: 0.75rem;
-}
-
-.includesList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.includesList li {
-    font-family: var(--font-main);
-    font-size: 0.9rem;
-    color: var(--text-navy);
-    margin-bottom: 0.75rem;
-    padding-left: 1.5rem;
-    position: relative;
-    line-height: 1.4;
-}
-
-.includesList li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: var(--bg-coral);
-    font-weight: 700;
-    font-size: 1.2rem;
-}
 
 
 .exploreBtn {
     display: inline-block;
-    background: var(--text-yellow);
-    color: var(--bg-coral);
-    font-weight: 800;
-    text-transform: uppercase;
+    background: var(--bg-coral);
+    /* Active Color */
+    color: white;
+    /* Active Text Color */
+    font-family: var(--font-script);
+    font-weight: 600;
+    text-transform: none;
     padding: 1rem 3rem;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    margin-top: 4rem;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    /* margin-top handled by container */
     position: relative;
     z-index: 1;
-    box-shadow: 4px 4px 0px var(--bg-coral);
+    border: 3px solid var(--text-navy);
+    box-shadow: 8px 8px 0px var(--text-navy);
+    /* Active Shadow Color */
+    /* transitions handled by motion */
+    text-decoration: none;
+}
+
+.exploreBtn:hover {
+    /* transforms handled by motion */
+    box-shadow: 10px 10px 0px var(--text-navy);
+    color: white;
+    background: var(--bg-coral) !important;
+    opacity: 1 !important;
+    /* Force opacity 1 */
 }
 
 /* Responsive Styles */
