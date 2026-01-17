@@ -6,8 +6,6 @@ import { useState, useRef } from 'react';
 import styles from './About.module.css';
 
 export default function About() {
-    const [ceciRevealed, setCeciRevealed] = useState(false);
-    const [sofiRevealed, setSofiRevealed] = useState(false);
     const sectionRef = useRef(null);
 
     const { scrollYProgress } = useScroll({
@@ -15,107 +13,121 @@ export default function About() {
         offset: ["start end", "end start"]
     });
 
-    // Parallax logic
-    const yLeft = useTransform(scrollYProgress, [0, 1], [50, -50]);
-    const yRight = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+    // Subtler parallax for photos
+    const ySofi = useTransform(scrollYProgress, [0, 1], [0, -30]);
+    const yCeci = useTransform(scrollYProgress, [0, 1], [30, -10]);
 
     return (
         <section className={styles.aboutSection} ref={sectionRef}>
-            {/* Top Title: Fade In + From Top */}
-            <motion.h2
-                className={styles.topTitle}
-                initial={{ opacity: 0, y: -50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                viewport={{ once: true }}
-            >
-                <span className={styles.lineOne}>MÁS QUE UNA AGENCIA,</span>
-                <br />
-                <span className={styles.lineTwo}>TU EQUIPO ESTRATÉGICO.</span>
-            </motion.h2>
-
             <div className={styles.contentContainer}>
-                {/* Left Column: Sofi (swapped) */}
-                <div
-                    className={`${styles.column} ${styles.columnLeft}`}
-                    onMouseEnter={() => setCeciRevealed(true)}
-                >
+                {/* Photos at the top */}
+                <div className={styles.photosWrapper}>
                     <motion.div
-                        className={styles.imageWrapper}
-                        initial={{ opacity: 0, x: -100 }}
+                        className={styles.photoContainerSofi}
+                        style={{ y: ySofi }}
+                        initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        style={{ y: yLeft }}
-                        transition={{ duration: 1, delay: 0.2 }}
+                        transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
                         <Image
                             src="/Sofi.png?v=3"
                             alt="Sofi"
-                            width={500}
-                            height={700}
-                            className={styles.founderImage}
+                            width={300}
+                            height={420}
+                            className={styles.aboutImage}
                             priority
-                            unoptimized /* Force bypass of Next.js optimization cache if needed */
+                            unoptimized
                         />
                     </motion.div>
-
-                    {/* Text slides out to the LEFT from behind the image */}
-                    <div
-                        className={`${styles.textWrapper} ${styles.textLeft} ${ceciRevealed ? styles.revealed : ''}`}
-                    >
-                        <p>
-                            Formamos <strong>Koe Digital</strong> con una premisa clara: alejar a las marcas de las "fórmulas mágicas" y acercarlas a <strong>resultados reales</strong> a través de <strong>estrategias sólidas</strong>.
-                        </p>
-                    </div>
-                </div>
-
-                {/* Right Column: Ceci (swapped) */}
-                <div
-                    className={`${styles.column} ${styles.columnRight}`}
-                    onMouseEnter={() => setSofiRevealed(true)}
-                >
                     <motion.div
-                        className={styles.imageWrapper}
-                        initial={{ opacity: 0, x: 100 }}
+                        className={styles.photoContainerCeci}
+                        style={{ y: yCeci }}
+                        initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        style={{ y: yRight }}
-                        transition={{ duration: 1, delay: 0.2 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true }}
                     >
                         <Image
                             src="/Ceci.png?v=3"
                             alt="Ceci"
-                            width={500}
-                            height={700}
-                            className={styles.founderImage}
+                            width={300}
+                            height={420}
+                            className={styles.aboutImage}
                             priority
                             unoptimized
                         />
                     </motion.div>
+                </div>
 
-                    {/* Text slides out to the RIGHT from behind the image */}
-                    <div
-                        className={`${styles.textWrapper} ${styles.textRight} ${sofiRevealed ? styles.revealed : ''}`}
+                {/* Vertical Text Blocks */}
+                <div className={styles.textColumn}>
+                    <motion.div
+                        className={styles.introBlock}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        viewport={{ once: true }}
                     >
-                        <p>
-                            Entendemos que cada negocio tiene una <strong>voz única</strong>. Nuestro trabajo es encontrarla, amplificarla y conectarla con las <strong>personas correctas</strong> mediante <strong>contenido de valor</strong> y <strong>publicidad inteligente</strong>.
+                        <h2 className={styles.sectionHeading}>¡Hola! Somos Ceci y Sofi.</h2>
+                        <p className={styles.introText}>
+                            Nuestra intención es acompañar a las marcas con estrategia, criterio y foco en resultados.
+                            El principal objetivo es construir resultados reales y sostenibles.
                         </p>
-                    </div>
+                    </motion.div>
+
+                    <motion.div
+                        className={styles.institutionalBlock}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        viewport={{ once: true }}
+                    >
+                        <h3 className={styles.brandTitle}>KOE Digital</h3>
+                        <div className={styles.brandContent}>
+                            <p>Somos una agencia de marketing digital que acompaña a marcas, emprendedores y negocios en el desarrollo de su comunicación, estrategia y presencia digital.</p>
+                            <p>El trabajo en KOE parte siempre del entendimiento profundo del negocio, su contexto, sus objetivos y su mercado, para luego diseñar estrategias personalizadas, realistas y sostenibles en el tiempo.</p>
+                            <p>No se trata solo de crear contenido, sino de construir resultados.</p>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        className={styles.actionArea}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        viewport={{ once: true }}
+                    >
+                        <motion.div
+                            animate={{
+                                y: [0, -8, 0],
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            style={{ display: 'inline-block' }}
+                        >
+                            <a href="#contacto" className={styles.contactButton}>
+                                Contáctanos
+                            </a>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </div>
 
-            {/* Bottom Title: Fade In + From Bottom */}
-            <motion.h2
-                className={styles.bottomTitle}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+            <motion.div
+                className={styles.footerAccent}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 0.6 }}
+                transition={{ delay: 0.6 }}
                 viewport={{ once: true }}
             >
-                <span className={styles.lineOne}>NO CREEMOS EN EL HYPE,</span>
-                <br />
-                <span className={styles.lineTwo}>CREEMOS EN EL CRITERIO.</span>
-            </motion.h2>
+
+            </motion.div>
         </section>
     );
 }

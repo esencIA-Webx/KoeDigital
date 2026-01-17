@@ -143,20 +143,22 @@
 }
 
 .contactBtn {
-    background: var(--orange-dark);
-    /* Updated Accent */
+    background: var(--bg-coral);
     color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
     font-weight: 800;
     font-size: 0.8rem;
     text-transform: uppercase;
     margin-left: 2rem;
-    transition: transform 0.2s ease;
+    border: 2px solid var(--text-navy);
+    box-shadow: 5px 5px 0px var(--text-navy);
+    transition: all 0.2s ease;
 }
 
 .contactBtn:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 7px 7px 0px var(--text-navy);
 }
 
 .mobileMenuBtn {

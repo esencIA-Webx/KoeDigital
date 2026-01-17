@@ -84,16 +84,18 @@
     border-radius: 50%;
     background-color: white;
     color: var(--bg-green);
-    /* Icon color matches bg for contrast */
+    border: 2px solid var(--text-navy);
+    box-shadow: 4px 4px 0px var(--text-navy);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
 }
 
 .iconLink:hover {
-    transform: scale(1.1);
-    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px var(--text-navy);
+    opacity: 1;
 }
 
 /* Mobile Responsive */

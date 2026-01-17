@@ -7,14 +7,9 @@
     align-items: center;
     position: relative;
     overflow: hidden;
-
-    /* Gradient Background (#c1dedb -> white) */
-    background: linear-gradient(to bottom, #c1dedb 0%, #ffffff 100%);
-    background-color: #c1dedb;
-    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, #f7f3f0 0%, #ffffff 100%);
+    padding: 6rem 2rem;
     z-index: 1;
-    color: white;
-    text-align: center;
 }
 
 /* Noise Overlay via Pseudo-element for Gradient Visibility */
@@ -24,336 +19,160 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    /* Behind content but on top of background */
     background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.9'/%3E%3C/svg%3E");
-    /* Increased base opacity in SVG to 0.9 and lowered freq to 0.6 for "crunchier" grain */
     background-size: 200px 200px;
-    opacity: 1;
+    opacity: 0.3;
     mix-blend-mode: overlay;
-    /* Mask to make it visible only/more at the bottom */
-    mask-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 1) 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 1) 100%);
-}
-
-/* Absolute Positioning for Titles based on USER REQ */
-.topTitle,
-.bottomTitle {
-    position: absolute;
-    /* Place in corners relative to section */
-    font-family: var(--font-work-sans);
-    font-weight: 800;
-    /* ExtraBold */
-    text-transform: uppercase;
-    text-align: left;
-    /* Both aligned left */
-    line-height: 0.55;
-    /* Even tighter than 0.65 */
-    z-index: 20;
-    width: max-content;
-    /* Ensure it stays on two lines as formatted */
-    text-shadow: 3px 3px 0px rgba(255, 255, 255, 1);
-    /* 3D Solid Shadow */
-}
-
-.topTitle {
-    top: 5vh;
-    left: 5%;
-    font-size: clamp(2rem, 4vw, 3.8rem);
-}
-
-.bottomTitle {
-    bottom: 5vh;
-    right: 5%;
-    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-}
-
-.lineOne,
-.lineTwo {
-    display: block;
-    /* Force two lines */
-    white-space: nowrap;
-    /* Prevent intra-line wrapping */
-}
-
-/* Line Colors */
-.lineOne {
-    color: #9a9223;
-}
-
-.lineTwo {
-    color: #ccca4c;
-    margin-top: -0.15em;
-    /* Nudge even closer */
 }
 
 .contentContainer {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 900px;
+    width: 100%;
+    z-index: 10;
+    gap: 4rem;
+}
+
+/* Photos Wrapper at the top */
+.photosWrapper {
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: -50px;
-    /* Reduced overlap as requested */
+    gap: 2rem;
     position: relative;
     width: 100%;
-    max-width: 1400px;
-    margin: 0;
+    padding: 2rem 0;
 }
 
-.column {
+.photoContainerSofi,
+.photoContainerCeci {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-}
-
-.columnLeft {
-    z-index: 11;
-    margin-right: -25px;
-    /* Adjusted to match -50px total gap */
-}
-
-.columnRight {
-    z-index: 12;
-    /* Ceci on top */
-}
-
-.imageWrapper {
-    position: relative;
-    z-index: 10;
-    /* Above text */
     border-radius: 20px;
-    /* Rounded corners as requested */
     overflow: hidden;
-    box-shadow: 8px 8px 0px #1D3557;
-    /* Dark Blue 3D Shadow */
-    margin: 0;
-    /* Ensure no gaps */
-}
-
-.founderImage {
-    display: block;
-    width: auto;
-    height: auto;
-    max-height: 60vh;
-    /* Occupy even more space */
-    max-width: 100%;
-    transition: transform 0.5s ease;
-    /* Smooth zoom transition */
-}
-
-.imageWrapper:hover .founderImage {
-    transform: scale(1.05);
-    /* Zoom effect on hover */
-}
-
-/* Text Container that hides behind */
-.textWrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 320px;
-    /* Width of the text block */
+    box-shadow: 12px 12px 0px var(--text-navy);
+    border: 3px solid var(--text-navy);
     background: white;
-    /* White background for the box */
-    border: 2px solid #1D3557;
-    /* Dark Blue Border */
-    border-radius: 20px;
-    /* Rounded corners */
-    box-shadow: 6px 6px 0px #1D3557;
-    /* Dark Blue 3D Shadow */
-    padding: 1.25rem;
-    z-index: 1;
-    /* Behind image */
-    opacity: 0;
-    pointer-events: none;
-    transition: all 1.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    /* 1s more than previous 0.6s */
 }
 
-.textWrapper p {
+.photoContainerSofi {
+    z-index: 2;
+    transform: rotate(-3deg);
+}
+
+.photoContainerCeci {
+    z-index: 1;
+    margin-left: -50px;
+    transform: rotate(3deg);
+}
+
+.aboutImage {
+    display: block;
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Text Column Details */
+.textColumn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    text-align: center;
+    color: var(--text-navy);
+}
+
+.sectionHeading {
     font-family: var(--font-work-sans);
-    font-weight: 400;
-    /* Regular */
-    font-size: 1.15rem;
-    /* Slightly larger for readability */
-    color: black;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1.5rem;
+}
+
+.introText {
+    font-size: 1.25rem;
     line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+.institutionalBlock {
+    padding-top: 2rem;
+    border-top: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.brandTitle {
+    font-size: 2rem;
+    /* Increased size */
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #6c8c7d;
+    /* Requested color */
+    margin-bottom: 1.5rem;
+}
+
+.brandContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
     text-align: left;
 }
 
-.textWrapper p strong {
+.actionArea {
+    margin-top: 1rem;
+}
+
+.contactButton {
+    display: inline-block;
+    background: var(--bg-coral);
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 12px;
     font-weight: 800;
-    color: var(--bg-coral);
-    /* Highlight color */
-    transition: color 0.3s ease;
-    cursor: default;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 3px solid var(--text-navy);
+    box-shadow: 8px 8px 0px var(--text-navy);
+    transition: all 0.2s ease;
 }
 
-.textWrapper p strong:hover {
+.contactButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 10px 10px 0px var(--text-navy);
+}
+
+.footerAccent {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
     color: var(--text-navy);
-    /* Change to Navy on hover */
+    max-width: 600px;
+    opacity: 0.6;
 }
 
-/* Left Column Text: Slides out to the Left */
-.textLeft {
-    right: 50%;
-    /* Start aligned with center of image (effectively behind) */
-    text-align: right;
-}
-
-.textLeft p {
-    text-align: right;
-}
-
-/* Right Column Text: Slides out to the Right */
-.textRight {
-    left: 50%;
-}
-
-/* Revealed States using class */
-.textLeft.revealed {
-    opacity: 1;
-    right: calc(100% + 40px);
-    /* Move further out for separation */
-    transform: translateY(-50%);
-}
-
-.textRight.revealed {
-    opacity: 1;
-    left: calc(100% + 40px);
-    /* Move further out for separation */
-    transform: translateY(-50%);
-}
-
-@media (max-width: 1400px) {
-    .topTitle {
-        top: 8%;
-        font-size: clamp(2rem, 4.5vw, 3.5rem);
-    }
-
-    .bottomTitle {
-        bottom: 8%;
-        font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-    }
-
-    .textWrapper {
-        width: 300px;
-        padding: 1.2rem;
-    }
-
-    .textWrapper p {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 1150px) {
-
-    .topTitle,
-    .bottomTitle {
-        position: relative;
-        top: auto;
-        left: auto;
-        right: auto;
-        bottom: auto;
-        width: 100%;
-        text-align: center;
-        margin: 2rem 0;
-        text-shadow: 2px 2px 0px rgba(255, 255, 255, 1);
-    }
-
-    .topTitle {
-        margin-top: 0;
-    }
-
-    .bottomTitle {
-        display: block;
-        /* Show it but relative */
-    }
-
-    .contentContainer {
+@media (max-width: 768px) {
+    .photosWrapper {
         flex-direction: column;
-        gap: 4rem;
+        gap: 1.5rem;
     }
 
-    .column {
-        margin: 0 !important;
-        z-index: 10;
+    .photoContainerCeci {
+        margin-left: 0;
     }
 
-    .textLeft.revealed {
-        right: calc(100% + 20px);
+    .aboutImage {
+        width: 200px;
     }
 
-    .textRight.revealed {
-        left: calc(100% + 20px);
-    }
-}
-
-@media (max-width: 900px) {
-    .aboutSection {
-        padding: 4rem 1rem;
-    }
-
-    .topTitle {
-        font-size: 2.2rem;
-        margin-bottom: 2rem;
-    }
-
-    .bottomTitle {
-        display: none;
-    }
-
-    .contentContainer {
-        gap: 2.5rem;
-    }
-
-    .column {
-        width: 100%;
-        flex-direction: row;
-        gap: 1.2rem;
-    }
-
-    .columnRight {
-        flex-direction: row-reverse;
-    }
-
-    .imageWrapper {
-        flex: 0 0 130px;
-        height: 170px;
-        border-radius: 12px;
-        box-shadow: 4px 4px 0px #1D3557;
-    }
-
-    .founderImage {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .textWrapper {
-        position: relative;
-        top: 0;
-        left: 0 !important;
-        right: 0 !important;
-        transform: none !important;
-        width: calc(100% - 142px);
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        padding: 0;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-    .textWrapper p {
-        font-size: 0.95rem;
-        line-height: 1.35;
-        text-align: left !important;
-        color: black;
-    }
-
-    .textWrapper p strong {
-        font-size: 0.95rem;
+    .brandContent {
+        text-align: center;
     }
 }

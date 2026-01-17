@@ -55,29 +55,32 @@
 
 /* Navigation Buttons */
 .navButton {
-    background: var(--foreground);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    font-size: 1.5rem;
+    background: white;
+    color: var(--text-navy);
+    border: 2px solid var(--text-navy);
+    border-radius: 8px;
+    /* Slightly more modern rectangular */
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
+    box-shadow: 4px 4px 0px var(--text-navy);
 }
 
 .navButton:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px var(--text-navy);
+    background: var(--bg-cream-light);
 }
 
 .navButton:active {
-    transform: scale(0.95);
+    transform: translateY(0);
 }
 
 /* Dot Indicators */

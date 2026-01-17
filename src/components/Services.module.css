@@ -188,11 +188,21 @@
 
 .cardBtn {
     display: inline-block;
-    background: var(--btn-blue);
+    background: var(--bg-coral);
     color: white;
     font-weight: 800;
     text-transform: uppercase;
     padding: 0.8rem 2rem;
-    border-radius: 50px;
+    border-radius: 12px;
     font-size: 0.9rem;
+    border: 3px solid var(--text-navy);
+    box-shadow: 6px 6px 0px var(--text-navy);
+    transition: all 0.2s ease;
+}
+
+.cardBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 0px var(--text-navy);
+    background: var(--bg-coral);
+    opacity: 1;
 }

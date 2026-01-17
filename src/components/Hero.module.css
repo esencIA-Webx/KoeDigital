@@ -49,14 +49,14 @@
     height: 60px;
     border-radius: 50%;
     background: var(--btn-yellow);
-    border: none;
+    border: 3px solid var(--text-navy);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 6px 6px 0px var(--text-navy);
     transition: transform 0.2s ease, background 0.2s ease;
-    color: var(--bg-coral);
+    color: var(--text-navy);
 }
 
 .playToggleBtn:hover {

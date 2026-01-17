@@ -107,7 +107,17 @@
     align-self: flex-start;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--btn-blue);
-    font-size: 0.9rem;
-    border-bottom: 2px solid var(--btn-blue);
+    color: white;
+    background: var(--bg-coral);
+    padding: 0.6rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    border: 2px solid var(--text-navy);
+    box-shadow: 5px 5px 0px var(--text-navy);
+    transition: all 0.2s ease;
+}
+
+.viewBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 7px 7px 0px var(--text-navy);
 }
