@@ -44,9 +44,9 @@ const SECTION_THEME: { [key: string]: SectionTheme } = {
         shadowColor: 'var(--bg-coral)'
     },
     'servicios': {
-        themeColor: 'var(--orange-light)',
-        textColor: 'var(--btn-blue)', // Blue (Block header)
-        shadowColor: 'var(--btn-blue)'
+        themeColor: 'var(--pink-light)',
+        textColor: 'var(--pink-dark)', // Pink (Matches Social Media section)
+        shadowColor: 'var(--pink-dark)'
     },
     'portfolio': {
         themeColor: 'var(--orange-light)',

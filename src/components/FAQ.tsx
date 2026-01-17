@@ -86,6 +86,8 @@ export default function FAQ() {
     return (
         <section className={styles.faqSection}>
             <div className={`container ${styles.faqContainer}`}>
+
+
                 <motion.h2
                     className={styles.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -149,6 +151,9 @@ export default function FAQ() {
                         />
                     ))}
                 </div>
+
+                {/* Green Wave at Bottom - Rising into FAQ */}
+                <div className={styles.waveDividerBottom}></div>
             </div>
         </section>
     );

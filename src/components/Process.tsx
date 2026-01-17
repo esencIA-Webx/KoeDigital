@@ -62,6 +62,8 @@ export default function Process() {
 
     return (
         <section className={styles.processSection}>
+            {/* Wave Divider Top */}
+            <div className={styles.waveDividerTop}></div>
 
             <h2 className={styles.scriptTitle}>
                 {"4 pasos tan simples.".split("").map((char, index) => (
