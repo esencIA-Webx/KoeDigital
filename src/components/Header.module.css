@@ -161,6 +161,11 @@
     box-shadow: 7px 7px 0px var(--text-navy);
 }
 
+.contactBtn:active {
+    transform: translateY(5px) translateX(5px);
+    box-shadow: 0px 0px 0px var(--text-navy);
+}
+
 .mobileMenuBtn {
     display: none;
 }
@@ -185,9 +190,14 @@
         border: 1px solid rgba(0, 0, 0, 0.1);
         padding: 0.6rem 1.2rem;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
+        /* Push menu btn to right */
         align-items: center;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        /* Anchor for logo */
+        z-index: 20;
+        /* Keep above drawer */
     }
 
     .navGroup,
@@ -197,6 +207,11 @@
 
     .logoContainer {
         padding: 0;
+        position: absolute;
+        /* Center manually */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
     }
 
     .circleLogo {
@@ -220,17 +235,32 @@
         align-items: center;
         justify-content: center;
         background: var(--text-navy);
+        /* Fallback */
         color: white;
         border: none;
         cursor: pointer;
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        /* Slightly larger for touch */
+        height: 48px;
         border-radius: 50%;
-        transition: transform 0.2s ease;
+        /* Circular */
+        transition: all 0.2s ease;
+        z-index: 2;
+        /* Keep above logo/drawer */
+
+        /* New Button Style */
+        border: 2px solid var(--text-navy);
+        box-shadow: 5px 5px 0px var(--text-navy);
+    }
+
+    .mobileMenuBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 7px 7px 0px var(--text-navy);
     }
 
     .mobileMenuBtn:active {
-        transform: scale(0.9);
+        transform: translateY(5px) translateX(5px);
+        box-shadow: 0px 0px 0px var(--text-navy);
     }
 
     /* Mobile Drawer */
@@ -239,8 +269,10 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100vh;
+        width: 100vw;
+        /* Full Viewport Width */
+        height: 100dvh;
+        /* Full Viewport Height */
         background: rgba(247, 243, 240, 0.98);
         /* var(--bg-cream-light) with glass */
         backdrop-filter: blur(15px);
@@ -252,8 +284,8 @@
         justify-content: center;
         transform: translateY(-100%);
         transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: -1;
-        /* Behind the header pill */
+        z-index: 10;
+        /* Behind pill (z=20) but front of page */
     }
 
     .mobileDrawer.open {

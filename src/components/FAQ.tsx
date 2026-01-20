@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import styles from './FAQ.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import AnimatedTitle from './AnimatedTitle';
 
 export default function FAQ() {
     const faqs = [
@@ -70,33 +71,50 @@ export default function FAQ() {
 
     const slideVariants = {
         enter: (direction: number) => ({
-            x: direction > 0 ? 100 : -100,
-            opacity: 0
+            x: direction > 0 ? 300 : -300,
+            opacity: 0,
+            rotate: direction > 0 ? 5 : -5,
+            scale: 0.9,
+            zIndex: 0
         }),
         center: {
+            zIndex: 1,
             x: 0,
-            opacity: 1
+            opacity: 1,
+            rotate: 0,
+            scale: 1
         },
         exit: (direction: number) => ({
-            x: direction > 0 ? -100 : 100,
-            opacity: 0
+            zIndex: 0,
+            x: direction < 0 ? 300 : -300,
+            opacity: 0,
+            rotate: direction < 0 ? 5 : -5,
+            scale: 0.9
         })
     };
 
     return (
         <section className={styles.faqSection}>
+            {/* Curved Top Border */}
+            <div className={styles.waveDividerTop}></div>
+
             <div className={`container ${styles.faqContainer}`}>
 
 
-                <motion.h2
-                    className={styles.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    Preguntas Frecuentes
-                </motion.h2>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '4rem' }}>
+                    <AnimatedTitle
+                        text="PREGUNTAS"
+                        style={{ fontSize: '4rem', fontWeight: '800', color: 'var(--foreground)', textTransform: 'uppercase' }}
+                        hoverColor="var(--text-yellow)"
+                        shadowColor="#1D3557"
+                    />
+                    <AnimatedTitle
+                        text="Frecuentes"
+                        style={{ fontFamily: 'var(--font-detail)', fontSize: '5.5rem', color: 'var(--foreground)', marginBottom: '-10px' }}
+                        hoverColor="var(--text-yellow)"
+                        shadowColor="#1D3557"
+                    />
+                </div>
 
                 <div
                     className={styles.carouselContainer}
@@ -121,8 +139,10 @@ export default function FAQ() {
                                 animate="center"
                                 exit="exit"
                                 transition={{
-                                    x: { type: "tween", duration: 0.6, ease: "easeInOut" },
-                                    opacity: { duration: 0.6, ease: "easeInOut" }
+                                    x: { type: "spring", stiffness: 200, damping: 25 },
+                                    opacity: { duration: 0.3 },
+                                    scale: { duration: 0.3 },
+                                    rotate: { duration: 0.3 }
                                 }}
                                 className={styles.slide}
                             >

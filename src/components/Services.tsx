@@ -3,12 +3,13 @@
 import styles from './Services.module.css';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import AnimatedTitle from './AnimatedTitle';
 
 export default function Services() {
     const plans = [
         {
             title: "Plan Dirección",
-            price: "$250.000",
+            // Price removed
             desc: "Un plan enfocado en el análisis estratégico y la organización de la comunicación de la marca. Está pensado para definir objetivos, ordenar la presencia digital y establecer una base clara para el desarrollo de contenido.",
             includes: [
                 "Análisis inicial de marca para definir objetivos",
@@ -32,7 +33,7 @@ export default function Services() {
         },
         {
             title: "Plan Esencial",
-            price: "$450.000",
+            // Price removed
             desc: "Un plan orientado a la gestión activa de redes sociales, combinando estrategia, creación de contenido y publicación, con seguimiento de métricas y soporte publicitario.",
             includes: [
                 "Análisis inicial de marca y definición de objetivos",
@@ -57,7 +58,7 @@ export default function Services() {
         },
         {
             title: "Plan Escala",
-            price: "$550.000",
+            // Price removed
             desc: "Un plan pensado para marcas que buscan aumentar su presencia digital y escalar su comunicación, con mayor volumen de contenido y acompañamiento estratégico continuo.",
             includes: [
                 "Análisis inicial de marca y revisión del plan de marketing",
@@ -84,10 +85,10 @@ export default function Services() {
 
     return (
         <section className={styles.servicesSection}>
-            <div className={styles.header}>
-                <span className={styles.blockHeader}>PLANES</span>
-                <span className={styles.scriptHeader}>Social Media</span>
-            </div>
+            {/* Wave Divider Top */}
+            <div className={styles.waveDividerTop} />
+
+
 
             <div className={styles.grid}>
                 {plans.map((plan, i) => (
@@ -98,11 +99,11 @@ export default function Services() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: i * 0.2 }}
-                        whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
+                        whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                     >
                         <div className={styles.cardHeaderContent}>
                             <h3 className={styles.cardTitle}>{plan.title}</h3>
-                            <span className={styles.cardPrice}>{plan.price}</span>
+                            {/* Price removed */}
                             <p className={styles.cardDesc}>{plan.desc}</p>
                         </div>
 

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Search, Map, BarChart, Trophy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import AnimatedTitle from './AnimatedTitle';
 import styles from './Process.module.css';
 
 export default function Process() {
@@ -41,22 +42,25 @@ export default function Process() {
 
     const variants = {
         enter: (direction: number) => ({
-            x: direction > 0 ? 1000 : -1000,
+            x: direction > 0 ? 300 : -300,
             opacity: 0,
-            scale: 0.5,
+            rotate: direction > 0 ? 5 : -5,
+            scale: 0.9,
             zIndex: 0
         }),
         center: {
             zIndex: 1,
             x: 0,
             opacity: 1,
+            rotate: 0,
             scale: 1
         },
         exit: (direction: number) => ({
             zIndex: 0,
-            x: direction < 0 ? 1000 : -1000,
+            x: direction < 0 ? 300 : -300,
             opacity: 0,
-            scale: 0.5
+            rotate: direction < 0 ? 5 : -5,
+            scale: 0.9
         })
     };
 
@@ -65,42 +69,25 @@ export default function Process() {
             {/* Wave Divider Top */}
             <div className={styles.waveDividerTop}></div>
 
-            <h2 className={styles.scriptTitle}>
-                {"4 pasos tan simples.".split("").map((char, index) => (
-                    <motion.span
-                        key={index}
-                        style={{ display: "inline-block" }}
-                        whileHover={{
-                            y: -15,
-                            rotate: -5,
-                            scale: 1, // Explicitly prevent growing
-                            color: "var(--bg-coral)" // Explicitly prevent color change
-                        }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 150,
-                            damping: 15
-                        }}
-                    >
-                        {char === " " ? "\u00A0" : char}
-                    </motion.span>
-                ))}
-            </h2>
+
 
             <motion.div
-                className={styles.descriptionText}
+                className={styles.introCard}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
             >
-                <p>En KOE no aplicamos fórmulas genéricas.</p>
-                <p>Ofrecemos un servicio 100% personalizado, donde cada estrategia, diseño y acción está pensada a medida del negocio y alineada a objetivos concretos.</p>
-                <ul>
-                    <li>Visión integral: marca, comunicación y resultados.</li>
-                    <li>Estudio del mercado y la competencia directa.</li>
-                    <li>Procesos claros, ordenados y medibles.</li>
-                </ul>
+                <div className={styles.descriptionText} style={{ margin: 0, padding: 0 }}>
+                    <p className={styles.introCardTitle}>En KOE no aplicamos fórmulas genéricas.</p>
+                    <p>Ofrecemos un servicio 100% personalizado, donde cada estrategia, diseño y acción está pensada a medida del negocio y alineada a objetivos concretos.</p>
+                    <ul>
+                        <li>Visión integral: marca, comunicación y resultados.</li>
+                        <li>Estudio del mercado y la competencia directa.</li>
+                        <li>Procesos claros, ordenados y medibles.</li>
+                    </ul>
+                </div>
             </motion.div>
 
             <div className={styles.navContainer}>
@@ -121,7 +108,7 @@ export default function Process() {
                             // Floating animation
                             animate={{
                                 y: [0, -8, 0],
-                                rotate: currentIndex === index ? 2 : -3 // Maintain base rotation logic
+                                rotate: 0 // Maintain base rotation logic
                             }}
                             transition={{
                                 y: {
@@ -134,7 +121,7 @@ export default function Process() {
                             }}
                             whileHover={{
                                 scale: 1.1,
-                                rotate: 2,
+                                rotate: 0,
                                 transition: { duration: 0.2 }
                             }}
                             whileTap={{ scale: 0.95 }}
@@ -155,9 +142,10 @@ export default function Process() {
                         animate="center"
                         exit="exit"
                         transition={{
-                            x: { type: "spring", stiffness: 300, damping: 30 },
-                            opacity: { duration: 0.2 },
-                            scale: { duration: 0.2 }
+                            x: { type: "spring", stiffness: 200, damping: 25 },
+                            opacity: { duration: 0.3 },
+                            scale: { duration: 0.3 },
+                            rotate: { duration: 0.3 }
                         }}
                         className={styles.processCard}
                         whileHover={{ y: -10, transition: { type: "spring", stiffness: 300 } }}
@@ -201,7 +189,7 @@ export default function Process() {
                     // Floating animation matching stickers
                     animate={{
                         y: [0, -8, 0],
-                        rotate: -2
+                        rotate: 0
                     }}
                     transition={{
                         y: {
@@ -214,7 +202,7 @@ export default function Process() {
                     }}
                     whileHover={{
                         scale: 1.1,
-                        rotate: 2,
+                        rotate: 0,
                         transition: { duration: 0.2 }
                     }}
                     whileTap={{ scale: 0.95 }}

@@ -39,9 +39,12 @@
 /* Play Button Logic */
 .playBtnContainer {
     position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 10;
+    bottom: 5rem;
+    /* Lowered from 8rem */
+    right: 8rem;
+    /* Moved further left from 6rem */
+    z-index: 20;
+    /* Increased to sit above AboutIntro wave */
 }
 
 .playToggleBtn {
@@ -62,6 +65,11 @@
 .playToggleBtn:hover {
     transform: scale(1.1);
     background: var(--olive-light);
+}
+
+.playToggleBtn:active {
+    transform: scale(1.1) translate(6px, 6px);
+    box-shadow: 0px 0px 0px var(--text-navy);
 }
 
 /* Re-using sticker styling if desired */

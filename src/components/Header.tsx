@@ -230,33 +230,38 @@ export default function Header() {
                 </nav>
 
                 {/* Mobile Toggle */}
-                <button className={styles.mobileMenuBtn} onClick={toggleMenu} aria-label="Menu">
+                <button
+                    className={styles.mobileMenuBtn}
+                    onClick={toggleMenu}
+                    aria-label="Menu"
+                    style={{ backgroundColor: headerProps.themeColor, transition: 'background-color 0.3s ease' }}
+                >
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
 
-                {/* Mobile Drawer */}
-                <div className={`${styles.mobileDrawer} ${isOpen ? styles.open : ''}`}>
-                    {[...leftItems, ...rightItems].map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className={styles.mobileLink}
-                            onClick={() => setIsOpen(false)}
-                            style={{ color: headerProps.textColor }}
-                        >
-                            {item.name}
-                        </Link>
-                    ))}
-                    <Link
-                        href="#contacto"
-                        className={styles.contactBtn}
-                        onClick={() => setIsOpen(false)}
-                        style={{ backgroundColor: headerProps.themeColor, transition: 'background-color 0.3s ease' }}
-                    >
-                        Contacto
-                    </Link>
-                </div>
+            </div>
 
+            {/* Mobile Drawer */}
+            <div className={`${styles.mobileDrawer} ${isOpen ? styles.open : ''}`}>
+                {[...leftItems, ...rightItems].map((item) => (
+                    <Link
+                        key={item.name}
+                        href={item.href}
+                        className={styles.mobileLink}
+                        onClick={() => setIsOpen(false)}
+                        style={{ color: headerProps.textColor }}
+                    >
+                        {item.name}
+                    </Link>
+                ))}
+                <Link
+                    href="#contacto"
+                    className={styles.contactBtn}
+                    onClick={() => setIsOpen(false)}
+                    style={{ backgroundColor: headerProps.themeColor, transition: 'background-color 0.3s ease' }}
+                >
+                    Contacto
+                </Link>
             </div>
         </header>
     );

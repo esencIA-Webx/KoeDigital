@@ -2,6 +2,7 @@
 
 import styles from './Portfolio.module.css';
 import { motion } from 'framer-motion';
+import AnimatedTitle from './AnimatedTitle';
 
 export default function Portfolio() {
     const cases = [
@@ -12,18 +13,8 @@ export default function Portfolio() {
 
     return (
         <section className={styles.portfolioSection}>
-            <div className={styles.header}>
-                <motion.h2
-                    className={styles.title}
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    Nuestros Trabajos
-                </motion.h2>
+            <div className={styles.waveDividerTop} />
 
-            </div>
 
             <div className={styles.grid}>
                 {cases.map((p, i) => (

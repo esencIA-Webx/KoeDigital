@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import styles from './About.module.css';
 import AnimatedTitle from './AnimatedTitle';
 
-export default function About() {
+export default function AboutIntro() {
     const sectionRef = useRef(null);
 
     const { scrollYProgress } = useScroll({
@@ -19,7 +19,20 @@ export default function About() {
     const yCeci = useTransform(scrollYProgress, [0, 1], [30, -10]);
 
     return (
-        <section className={styles.aboutSection} ref={sectionRef}>
+        <section className={styles.aboutSection} ref={sectionRef} style={{
+            paddingBottom: '15rem',
+            minHeight: 'auto',
+            backgroundImage: "url('/textura 4.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            position: 'relative',
+            overflow: 'visible', // Allow wave to hang out
+            zIndex: 10 // Ensure it sits on top of Hero
+        }}>
+            {/* Wave Divider */}
+            <div className={styles.waveDividerTopIntro}></div>
             <div className={styles.contentContainer}>
                 {/* Title moved to top */}
                 <AnimatedTitle
@@ -87,72 +100,8 @@ export default function About() {
                             El principal objetivo es construir resultados reales y sostenibles.
                         </p>
                     </motion.div>
-
-
-                    <motion.div
-                        className={styles.institutionalBlock}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        viewport={{ once: true }}
-                    >
-                        {/* Brand Title Moved OUTSIDE Card */}
-
-
-                        {/* Presentation Card (Content Only) */}
-                        <motion.div
-                            className={styles.presentationCard}
-                            whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
-                            initial={{ y: 20, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
-                        >
-                            <div className={styles.brandContent}>
-                                <p>Somos una agencia de marketing digital que acompaña a marcas, emprendedores y negocios en el desarrollo de su comunicación, estrategia y presencia digital.</p>
-                                <p>El trabajo en KOE parte siempre del entendimiento profundo del negocio, su contexto, sus objetivos y su mercado, para luego diseñar estrategias personalizadas, realistas y sostenibles en el tiempo.</p>
-                                <p>No se trata solo de crear contenido, sino de construir resultados.</p>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-
-                    <motion.div
-                        className={styles.actionArea}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        viewport={{ once: true }}
-                    >
-                        <motion.div
-                            animate={{
-                                y: [0, -8, 0],
-                            }}
-                            transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{ display: 'inline-block' }}
-                        >
-                            <a href="#contacto" className={styles.contactButton}>
-                                Contáctanos
-                            </a>
-                        </motion.div>
-                    </motion.div>
                 </div>
             </div>
-
-            <motion.div
-                className={styles.footerAccent}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 0.6 }}
-                transition={{ delay: 0.6 }}
-                viewport={{ once: true }}
-            >
-
-            </motion.div>
         </section>
     );
 }

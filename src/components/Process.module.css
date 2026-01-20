@@ -13,6 +13,8 @@
     overflow: visible;
     /* Allow wave to hang out top */
     text-align: center;
+    z-index: 25;
+    /* Ensure overlapping previous section (zIndex 20) */
 }
 
 /* Wave Divider Top (Top of Process, overlaps About) */
@@ -51,19 +53,22 @@
 .scriptTitle {
     font-family: var(--font-script);
     font-size: 5rem;
-    color: var(--bg-coral);
+    color: var(--pink-light);
     position: relative;
     z-index: 1;
     text-shadow: 2px 2px 0px white;
     margin-bottom: 2rem;
     /* transform: rotate(-3deg); Removed per user request */
     display: inline-block;
+    transition: color 0.3s ease;
 }
+
+
 
 .descriptionText {
     max-width: 800px;
     margin: 0 auto 4rem auto;
-    color: var(--text-navy);
+    color: var(--pink-dark);
     font-family: var(--font-main);
     font-size: 1.2rem;
     line-height: 1.6;
@@ -93,7 +98,7 @@
 
 .descriptionText li::before {
     content: "•";
-    color: var(--bg-coral);
+    color: var(--pink-light);
     position: absolute;
     left: 0;
     font-weight: bold;
@@ -117,8 +122,8 @@
     background: white;
     border-radius: 12px;
     padding: 3rem;
-    box-shadow: 10px 10px 0px var(--bg-coral);
-    border: 3px solid var(--text-navy);
+    box-shadow: 10px 10px 0px var(--pink-light);
+    border: 3px solid var(--pink-dark);
     width: 100%;
     position: relative;
     background-color: white;
@@ -131,12 +136,14 @@
     background: white;
     padding: 8px 16px;
     font-family: var(--font-script);
-    color: var(--bg-coral);
+    color: var(--pink-light);
     font-size: 2rem;
     font-weight: 600;
-    transform: rotate(-10deg);
+    font-weight: 600;
+    /* transform: rotate(-10deg); Removed rotation */
     z-index: 10;
-    filter: drop-shadow(10px 10px 0px var(--bg-coral));
+    z-index: 10;
+    filter: drop-shadow(10px 10px 0px var(--pink-light));
     /* Hard shadow matches card exactly */
 
     /* Stamp Effect Mask */
@@ -171,13 +178,13 @@
     background: white;
     padding: 1rem 2rem;
     font-family: var(--font-script);
-    color: var(--text-navy);
+    color: var(--pink-dark);
     font-size: 1.8rem;
     font-weight: 600;
     /* transform handled by motion */
-    border: 3px solid var(--text-navy);
+    border: 3px solid var(--pink-dark);
     cursor: pointer;
-    box-shadow: 8px 8px 0px var(--bg-coral);
+    box-shadow: 8px 8px 0px var(--pink-light);
     /* transitions handled by motion */
     position: relative;
 
@@ -200,32 +207,37 @@
 }
 
 .navSticker:hover {
-    color: var(--bg-coral);
-    box-shadow: 10px 10px 0px var(--bg-coral);
+    color: var(--pink-light);
+    box-shadow: 10px 10px 0px var(--pink-light);
     z-index: 10;
     transform: translateY(-2px);
 }
 
+.navSticker:active {
+    transform: translateY(8px) translateX(10px);
+    box-shadow: 0px 0px 0px var(--pink-light);
+}
+
 .activeSticker {
-    background: var(--bg-coral);
+    background: var(--pink-light);
     color: white;
-    box-shadow: 10px 10px 0px var(--text-navy);
+    box-shadow: 10px 10px 0px var(--pink-dark);
     z-index: 10;
-    border-color: var(--text-navy);
+    border-color: var(--pink-dark);
 }
 
 .activeSticker:hover {
-    background: var(--bg-coral);
+    background: var(--pink-light);
     color: white;
-    box-shadow: 10px 10px 0px var(--text-navy);
+    box-shadow: 10px 10px 0px var(--pink-dark);
 }
 
 .processCard {
     background: white;
     border-radius: 12px;
     padding: 3rem;
-    box-shadow: 10px 10px 0px var(--bg-coral);
-    border: 3px solid var(--text-navy);
+    box-shadow: 10px 10px 0px var(--pink-light);
+    border: 3px solid var(--pink-dark);
     width: 100%;
     position: relative;
     background-color: white;
@@ -234,6 +246,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.processCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 12px 12px 0px var(--pink-light);
 }
 
 .cardHeader {
@@ -245,8 +263,9 @@
 
 .iconContainer {
     font-size: 3rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--text-purple);
+    color: var(--cyan-medium);
     filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.1));
 }
 
@@ -254,7 +273,7 @@
     font-family: var(--font-main);
     font-weight: 800;
     font-size: 1.5rem;
-    color: var(--text-navy);
+    color: var(--pink-dark);
     text-transform: uppercase;
     margin: 0;
 }
@@ -267,7 +286,7 @@
     font-family: var(--font-main);
     font-weight: 700;
     font-size: 1.4rem;
-    color: var(--text-navy);
+    color: var(--pink-dark);
     margin-bottom: 1.5rem;
     line-height: 1.4;
 }
@@ -276,7 +295,7 @@
     font-family: var(--font-main);
     font-weight: 400;
     font-size: 1.15rem;
-    color: var(--text-navy);
+    color: var(--pink-dark);
     margin-bottom: 1.5rem;
     line-height: 1.6;
     opacity: 0.9;
@@ -287,7 +306,7 @@
 
 .exploreBtn {
     display: inline-block;
-    background: var(--bg-coral);
+    background: var(--pink-light);
     /* Active Color */
     color: white;
     /* Active Text Color */
@@ -300,8 +319,8 @@
     /* margin-top handled by container */
     position: relative;
     z-index: 1;
-    border: 3px solid var(--text-navy);
-    box-shadow: 8px 8px 0px var(--text-navy);
+    border: 3px solid var(--pink-dark);
+    box-shadow: 8px 8px 0px var(--pink-dark);
     /* Active Shadow Color */
     /* transitions handled by motion */
     text-decoration: none;
@@ -309,11 +328,43 @@
 
 .exploreBtn:hover {
     /* transforms handled by motion */
-    box-shadow: 10px 10px 0px var(--text-navy);
+    box-shadow: 10px 10px 0px var(--pink-dark);
     color: white;
-    background: var(--bg-coral) !important;
+    background: var(--pink-light) !important;
     opacity: 1 !important;
     /* Force opacity 1 */
+}
+
+.exploreBtn:active {
+    transform: translateY(10px) translateX(10px);
+    box-shadow: 0px 0px 0px var(--pink-dark);
+}
+
+
+.introCard {
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 10px 10px 0px var(--pink-light);
+    border: 3px solid var(--pink-dark);
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.introCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 12px 12px 0px var(--pink-light);
+}
+
+.introCardTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--pink-dark);
+    margin-bottom: 1rem;
+    font-family: var(--font-main);
 }
 
 /* Responsive Styles */

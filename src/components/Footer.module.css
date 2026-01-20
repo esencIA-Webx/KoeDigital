@@ -98,6 +98,11 @@
     opacity: 1;
 }
 
+.iconLink:active {
+    transform: translateY(4px) translateX(6px);
+    box-shadow: 0px 0px 0px var(--text-navy);
+}
+
 /* Mobile Responsive */
 @media (max-width: 900px) {
     .container {

@@ -1,0 +1,67 @@
+.dividerSection {
+    padding: 14rem 0;
+    /* Increased padding significantly for taller sections */
+    min-height: 50vh;
+    /* Ensuring substantial height */
+    background-color: var(--bg-cream-light);
+    position: relative;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.contentContainer {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    padding: 0 1.5rem;
+}
+
+/* Wave Divider Top - Exact copy from FAQ.module.css */
+.waveDividerTop {
+    position: absolute;
+    top: -99px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 5;
+    background-color: var(--bg-cream-light);
+
+    /* Mask (Hill Shape) */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 L0,50 C320,120 960,-20 1440,50 L1440,100 Z' fill='black'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 L0,50 C320,120 960,-20 1440,50 L1440,100 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+/* Wave Divider Bottom - Exact copy from FAQ.module.css */
+.waveDividerBottom {
+    position: absolute;
+    bottom: -99px;
+    /* Pushing it down to hang off */
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 5;
+    background-color: var(--bg-cream-light);
+
+    /* Mask (Inverted Hill Shape for bottom flow) */
+    /* Using the same mask as FAQ bottom if it existed or mirroring Top */
+    /* FAQ.module.css has a bottom wave matching Manifesto texture, but here we want cream */
+
+    /* Let's use the inverted mask for a natural flow out or the same top mask flipped? */
+    /* Providing a standard bottom wave mask */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L0,50 C320,-20 960,120 1440,50 L1440,0 Z' fill='black'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L0,50 C320,-20 960,120 1440,50 L1440,0 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}

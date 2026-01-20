@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import styles from './Manifesto.module.css';
+import AnimatedTitle from './AnimatedTitle';
 
 export default function Manifesto() {
     return (
@@ -19,18 +20,25 @@ export default function Manifesto() {
                     transition={{ duration: 0.8 }}
                 >
                     <p className={styles.author}>Koe Digital - Manifesto</p>
-                    <p className={styles.quote}>
-                        "Donde las marcas encuentran su voz real, lejos del hype y cerca de los resultados."
-                    </p>
+                    <div className={styles.quote}>
+                        <AnimatedTitle
+                            text="Donde las marcas encuentran su voz real, lejos del hype y cerca de los resultados."
+                            className={styles.quote}
+                            as="h3" // Using h3 semantics but keeping quote style class
+                            hoverColor="var(--bg-cream-light)" // Cream hover for contrast on green
+                            shadowColor="rgba(0,0,0,0.3)"
+                            style={{ display: 'block', textShadow: 'none' }} // Override inline-block default and avoid double shadow (AnimatedTitle adds its own on chars)
+                        />
+                    </div>
                 </motion.div>
 
                 {/* Right Column: Form */}
                 <motion.div
                     className={styles.formContainer}
-                    initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
+                    style={{ display: 'flex', flexDirection: 'column' }}
                 >
                     <form className={styles.contactForm}>
                         <div className={styles.formRow}>
@@ -75,6 +83,7 @@ export default function Manifesto() {
                             <motion.button
                                 type="submit"
                                 className={styles.submitBtn}
+                                style={{ alignSelf: 'flex-end' }}
                                 animate={{
                                     y: [0, -8, 0],
                                     rotate: -2
@@ -95,7 +104,7 @@ export default function Manifesto() {
                                 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                Enviar mensaje
+                                Enviar
                             </motion.button>
                         </motion.div>
                     </form>
