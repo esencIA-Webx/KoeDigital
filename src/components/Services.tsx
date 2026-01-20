@@ -4,6 +4,7 @@ import styles from './Services.module.css';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import AnimatedTitle from './AnimatedTitle';
+import ScrollPop from './ScrollPop';
 
 export default function Services() {
     const plans = [
@@ -92,13 +93,10 @@ export default function Services() {
 
             <div className={styles.grid}>
                 {plans.map((plan, i) => (
-                    <motion.div
+                    <ScrollPop
                         key={plan.title}
                         className={styles.card}
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: i * 0.2 }}
+                        delay={i * 0.2}
                         whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                     >
                         <div className={styles.cardHeaderContent}>
@@ -140,7 +138,7 @@ export default function Services() {
                                 Contratar Plan
                             </Link>
                         </div>
-                    </motion.div>
+                    </ScrollPop>
                 ))}
             </div>
         </section>

@@ -20,7 +20,7 @@ export default function AboutIntro() {
 
     return (
         <section className={styles.aboutSection} ref={sectionRef} style={{
-            paddingBottom: '15rem',
+            paddingBottom: '5rem', /* Reduced further */
             minHeight: 'auto',
             backgroundImage: "url('/textura 4.png')",
             backgroundSize: 'cover',
@@ -36,7 +36,7 @@ export default function AboutIntro() {
             <div className={styles.contentContainer}>
                 {/* Title moved to top */}
                 <AnimatedTitle
-                    text="¡Hola! Somos Ceci y Sofi."
+                    text="¡Hola! Somos Sofi y Ceci."
                     className={styles.sectionHeading}
                     hoverColor="var(--pink-light)"
                     shadowColor="#1D3557"

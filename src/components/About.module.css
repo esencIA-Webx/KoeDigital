@@ -64,18 +64,23 @@
     /* Let's keep it simple: lift. But they have initial rotation. Providing a lift while preserving rotation might be cleaner in motion.div, but here we can do CSS. */
     /* Actually, "like other cards" implies the lift and shadow increase */
     box-shadow: 16px 16px 0px var(--text-navy);
-    z-index: 10;
+    /* Removed z-index: 10 to prevents popping over each other indiscriminately */
 }
 
 .photoContainerSofi {
-    z-index: 2;
+    z-index: 20;
+    /* High z-index to stay on top */
     transform: rotate(-3deg);
+    position: relative;
 }
 
 .photoContainerCeci {
-    z-index: 1;
-    /* margin-left: -50px; Removed to prevent overlap */
+    z-index: 10;
+    /* Lower z-index to remain behind */
+    margin-left: -50px;
+    /* Negative margin to create overlap */
     transform: rotate(3deg);
+    position: relative;
 }
 
 .aboutImage {
@@ -98,7 +103,8 @@
 .sectionHeading {
     font-family: var(--font-work-sans);
     font-weight: 800;
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    /* Increased size slightly */
     margin-bottom: 1.5rem;
 }
 

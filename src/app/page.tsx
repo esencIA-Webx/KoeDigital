@@ -40,12 +40,14 @@ export default function Home() {
             style={{ fontSize: '6rem', fontWeight: '800', color: '#cc5a78', textTransform: 'uppercase' }}
             hoverColor="var(--cyan-medium)"
             shadowColor="#1D3557"
+            enableReveal={true}
           />
           <AnimatedTitle
             text="Simples."
             style={{ fontFamily: 'var(--font-detail)', fontSize: '7rem', color: '#cc5a78', marginBottom: '-10px' }}
             hoverColor="var(--cyan-medium)"
             shadowColor="#1D3557"
+            enableReveal={true}
           />
         </div>
       </SectionDivider>
@@ -60,12 +62,14 @@ export default function Home() {
             style={{ fontSize: '6rem', fontWeight: '800', color: '#c1dcfd', textTransform: 'uppercase' }}
             hoverColor="var(--pink-light)"
             shadowColor="#7da1b9"
+            enableReveal={true}
           />
           <AnimatedTitle
             text="Social Media"
             style={{ fontFamily: 'var(--font-detail)', fontSize: '7rem', color: '#c1dcfd', marginBottom: '-10px' }}
             hoverColor="var(--pink-light)"
             shadowColor="#7da1b9"
+            enableReveal={true}
           />
         </div>
       </SectionDivider>
@@ -80,12 +84,14 @@ export default function Home() {
             style={{ fontSize: '6rem', fontWeight: '800', color: 'var(--orange-light)', textTransform: 'uppercase' }}
             hoverColor="var(--orange-dark)"
             shadowColor="#1D3557"
+            enableReveal={true}
           />
           <AnimatedTitle
             text="Portfolio"
             style={{ fontFamily: 'var(--font-detail)', fontSize: '7rem', color: 'var(--orange-light)', marginBottom: '-10px' }}
             hoverColor="var(--orange-dark)"
             shadowColor="#1D3557"
+            enableReveal={true}
           />
         </div>
       </SectionDivider>

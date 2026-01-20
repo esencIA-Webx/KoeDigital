@@ -6,14 +6,17 @@ import styles from './BrandTitle.module.css';
 
 export default function BrandTitle() {
     return (
-        <motion.div
-            className={styles.brandHeader}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-        >
+        <div className={styles.brandHeader}> {/* Removed parent motion to control children independently */}
             <motion.div
                 className={styles.brandLogoContainer}
+                initial={{ opacity: 0, scale: 0.5, y: 50 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20
+                }}
                 whileHover={{
                     y: -15,
                     rotate: -5,
@@ -29,7 +32,10 @@ export default function BrandTitle() {
                 className={styles.brandTitle}
                 hoverColor="#6c8c7d" // Green hover
                 shadowColor="#1D3557"
+                enableReveal={true}
+                revealDirection="right"
+                delay={0.5} // Wait for logo to emerge
             />
-        </motion.div>
+        </div>
     );
 }

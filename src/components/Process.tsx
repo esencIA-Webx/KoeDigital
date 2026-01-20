@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Search, Map, BarChart, Trophy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnimatedTitle from './AnimatedTitle';
+import ScrollPop from './ScrollPop';
 import styles from './Process.module.css';
 
 export default function Process() {
@@ -71,12 +72,9 @@ export default function Process() {
 
 
 
-            <motion.div
+            <ScrollPop
                 className={styles.introCard}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                delay={0.2}
                 whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
             >
                 <div className={styles.descriptionText} style={{ margin: 0, padding: 0 }}>
@@ -88,7 +86,7 @@ export default function Process() {
                         <li>Procesos claros, ordenados y medibles.</li>
                     </ul>
                 </div>
-            </motion.div>
+            </ScrollPop>
 
             <div className={styles.navContainer}>
                 {steps.map((step, index) => {
@@ -179,40 +177,40 @@ export default function Process() {
                 </AnimatePresence>
             </div>
 
-            <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }} // Entrance delay
+            <ScrollPop
+                delay={0.5}
+                className={styles.exploreBtnContainer}
+                style={{ marginTop: '4rem' }}
             >
-                <motion.div
-                    // Floating animation matching stickers
-                    animate={{
-                        y: [0, -8, 0],
-                        rotate: 0
-                    }}
-                    transition={{
-                        y: {
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 2 // Offset from nav buttons
-                        },
-                        rotate: { duration: 0 } // Fixed rotation
-                    }}
-                    whileHover={{
-                        scale: 1.1,
-                        rotate: 0,
-                        transition: { duration: 0.2 }
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    style={{ display: 'inline-block', marginTop: '4rem' }}
-                >
-                    <Link href="#servicios" className={styles.exploreBtn}>
-                        Explorá nuestros servicios
-                    </Link>
-                </motion.div>
-            </motion.div>
+                <div style={{ display: 'inline-block' }}> {/* Wrapper for float animation inner */}
+                    <motion.div
+                        // Floating animation matching stickers
+                        animate={{
+                            y: [0, -8, 0],
+                            rotate: 0
+                        }}
+                        transition={{
+                            y: {
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: 2 // Offset from nav buttons
+                            },
+                            rotate: { duration: 0 } // Fixed rotation
+                        }}
+                        whileHover={{
+                            scale: 1.1,
+                            rotate: 0,
+                            transition: { duration: 0.2 }
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <Link href="#servicios" className={styles.exploreBtn}>
+                            Explorá nuestros servicios
+                        </Link>
+                    </motion.div>
+                </div>
+            </ScrollPop>
         </section>
     );
 }

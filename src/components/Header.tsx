@@ -27,47 +27,47 @@ type SectionTheme = {
 };
 
 // Comprehensive Theme Mapping per Section
+// Comprehensive Theme Mapping per Section
 const SECTION_THEME: { [key: string]: SectionTheme } = {
     'hero': {
-        themeColor: 'var(--cyan-light)',
+        themeColor: 'var(--cyan-light)', // Keep as is or adapt if needed
         textColor: 'var(--text-navy)',
         shadowColor: 'var(--text-navy)'
     },
     'sobre': {
-        themeColor: 'var(--cyan-light)',
-        textColor: '#ccca4c', // Olive Light (Title color)
-        shadowColor: '#1D3557' // Navy (Card shadow)
+        themeColor: 'var(--bg-coral)', // Matching 'Contáctanos' button in AboutBody
+        textColor: 'var(--text-navy)',
+        shadowColor: 'var(--text-navy)'
     },
     'como-trabajamos': {
-        themeColor: 'var(--cyan-light)',
-        textColor: 'var(--bg-coral)', // Coral (Script title)
-        shadowColor: 'var(--bg-coral)'
-    },
-    'servicios': {
-        themeColor: 'var(--pink-light)',
-        textColor: 'var(--pink-dark)', // Pink (Matches Social Media section)
+        themeColor: 'var(--pink-light)', // Matches Script Title & Card Shadow
+        textColor: 'var(--pink-dark)',   // Matches Description & Card Border
         shadowColor: 'var(--pink-dark)'
     },
+    'servicios': {
+        themeColor: '#c1dcfd', // Light Blue (Matches Title/Button)
+        textColor: '#7da1b9',  // Dark Blue (Matches Text/Border)
+        shadowColor: '#7da1b9'
+    },
     'portfolio': {
-        themeColor: 'var(--orange-light)',
-        textColor: 'var(--text-purple)', // Purple (Title)
-        shadowColor: '#1D3557'
+        themeColor: 'var(--orange-light)', // Matches "NUESTRO" Title
+        textColor: 'var(--text-navy)',     // Matches Card Border/Text
+        shadowColor: 'var(--text-navy)'
     },
     'faq': {
-        // Inherits from Portfolio (Last Section) per user request
-        themeColor: 'var(--orange-light)',
-        textColor: 'var(--text-purple)',
-        shadowColor: '#1D3557'
+        themeColor: 'var(--text-yellow)',  // Matches "Frecuentes" hover / Accent
+        textColor: 'var(--text-navy)',
+        shadowColor: 'var(--text-navy)'
     },
     'manifesto': {
-        themeColor: 'var(--green-dark)',
-        textColor: 'var(--text-yellow)', // Yellow (Quote)
-        shadowColor: 'rgba(0,0,0,0.2)'
+        themeColor: 'var(--text-yellow)',  // Matches Quote text
+        textColor: 'var(--green-dark)',    // Contrast on white pill
+        shadowColor: 'var(--green-dark)'
     },
     'contacto': {
-        themeColor: 'var(--green-dark)',
-        textColor: 'white',
-        shadowColor: 'rgba(0,0,0,0.2)'
+        themeColor: 'var(--text-yellow)',
+        textColor: 'var(--green-dark)',
+        shadowColor: 'var(--green-dark)'
     },
 };
 

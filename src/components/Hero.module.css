@@ -40,9 +40,8 @@
 .playBtnContainer {
     position: absolute;
     bottom: 5rem;
-    /* Lowered from 8rem */
-    right: 8rem;
-    /* Moved further left from 6rem */
+    right: 6.4rem;
+    /* Slightly closer to pink border per request */
     z-index: 20;
     /* Increased to sit above AboutIntro wave */
 }

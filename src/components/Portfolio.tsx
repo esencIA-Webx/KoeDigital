@@ -3,6 +3,7 @@
 import styles from './Portfolio.module.css';
 import { motion } from 'framer-motion';
 import AnimatedTitle from './AnimatedTitle';
+import ScrollPop from './ScrollPop';
 
 export default function Portfolio() {
     const cases = [
@@ -18,13 +19,10 @@ export default function Portfolio() {
 
             <div className={styles.grid}>
                 {cases.map((p, i) => (
-                    <motion.div
+                    <ScrollPop
                         key={p.client}
                         className={styles.projectCard}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: i * 0.2 }}
+                        delay={i * 0.2}
                         whileHover={{ y: -5 }}
                     >
                         <div className={styles.imageContainer}>
@@ -36,7 +34,7 @@ export default function Portfolio() {
                             <p className={styles.desc}>{p.desc}</p>
                             <a href="#" className={styles.viewBtn}>Ver caso</a>
                         </div>
-                    </motion.div>
+                    </ScrollPop>
                 ))}
             </div>
         </section>

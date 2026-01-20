@@ -7,7 +7,7 @@ interface AnimatedTitleProps {
     className?: string; // For container styles (font, size, etc.)
     hoverColor?: string; // Color to change to on hover
     baseColor?: string; // Initial color (optional, usually handled by CSS class)
-    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'div' | 'span'; // Tag to render
+    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'div' | 'span' | 'p' | 'section'; // Tag to render
     style?: React.CSSProperties;
 }
 
@@ -17,12 +17,54 @@ export default function AnimatedTitle({
     hoverColor = "var(--bg-coral)", // Default fallback
     shadowColor = "rgba(0,0,0,0.2)", // Default shadow
     as = 'h2',
+    enableReveal = false, // New prop to toggle scroll animation
+    revealDirection = 'right', // 'right' (default) means text comes FROM right. 'left' means from left.
+    delay = 0.1, // Delay before starting animation
     style
-}: AnimatedTitleProps & { shadowColor?: string }) {
+}: AnimatedTitleProps & { shadowColor?: string, enableReveal?: boolean, revealDirection?: 'left' | 'right', delay?: number }) {
     const Tag = motion[as];
 
+    // Variants for the container to stagger children
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.08, // Time between each letter appearing
+                delayChildren: delay
+            }
+        }
+    };
+
+    // Variants for each letter
+    const letterVariants = {
+        hidden: {
+            opacity: 0,
+            x: revealDirection === 'right' ? 100 : -100, // Direction logic
+            rotate: revealDirection === 'right' ? 10 : -10
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            rotate: 0,
+            transition: {
+                type: "spring" as const,
+                damping: 12,
+                stiffness: 100
+            }
+        }
+    };
+
     return (
-        <Tag className={className} style={{ display: 'block', ...style }}>{/* Changed to block to allow container width to control wrapping */}
+        <Tag
+            className={className}
+            style={{ display: 'block', ...style }}
+            // Apply animations only if enableReveal is true
+            initial={enableReveal ? "hidden" : undefined}
+            whileInView={enableReveal ? "visible" : undefined}
+            viewport={enableReveal ? { once: false, margin: "-10%" } : undefined}
+            variants={enableReveal ? containerVariants : undefined}
+        >
             {text.split(" ").map((word, wordIndex) => (
                 <span key={wordIndex} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
                     {word.split("").map((char, charIndex) => (
@@ -33,6 +75,8 @@ export default function AnimatedTitle({
                                 color: 'inherit',
                                 textShadow: `4px 4px 0px ${shadowColor}`
                             }}
+                            // If reveal is enabled, use variants. Otherwise just hover.
+                            variants={enableReveal ? letterVariants : undefined}
                             transition={{
                                 type: "spring",
                                 stiffness: 150,
@@ -41,19 +85,13 @@ export default function AnimatedTitle({
                             whileHover={{
                                 y: -15,
                                 rotate: -5,
-                                scale: 1,
+                                scale: 1.1,
                                 color: hoverColor,
                             }}
                         >
                             {char}
                         </motion.span>
                     ))}
-                    {/* Add space as a separate non-breaking element or margin, but we need it to be selectable/copyable ideally. 
-                        A simple space string " " between inline-blocks might collapse. 
-                        Let's append a space to the word span, but putting it inside the nowrap span might make it stick to the word. 
-                        Actually we want the space to be part of the flow. 
-                        Let's just add a space char motion span? Or just a normal space char. 
-                     */}
                     <span style={{ display: 'inline-block', whiteSpace: 'pre' }}> </span>
                 </span>
             ))}

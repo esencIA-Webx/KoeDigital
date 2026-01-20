@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
+import ScrollPop from './ScrollPop';
 
 export default function AboutBody() {
     return (
@@ -31,30 +32,24 @@ export default function AboutBody() {
                         viewport={{ once: true }}
                     >
                         {/* Presentation Card (Content Only) */}
-                        <motion.div
+                        <ScrollPop
                             className={styles.presentationCard}
                             whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
-                            initial={{ y: 20, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
+                            delay={0.2}
                         >
                             <div className={styles.brandContent}>
                                 <p>Somos una agencia de marketing digital que acompaña a marcas, emprendedores y negocios en el desarrollo de su comunicación, estrategia y presencia digital.</p>
                                 <p>El trabajo en KOE parte siempre del entendimiento profundo del negocio, su contexto, sus objetivos y su mercado, para luego diseñar estrategias personalizadas, realistas y sostenibles en el tiempo.</p>
                                 <p>No se trata solo de crear contenido, sino de construir resultados.</p>
                             </div>
-                        </motion.div>
+                        </ScrollPop>
                     </motion.div>
 
-                    <motion.div
+                    <div
                         className={styles.actionArea}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        viewport={{ once: true }}
                     >
-                        <motion.div
+                        <ScrollPop
+                            delay={0.5}
                             animate={{
                                 y: [0, -8, 0],
                             }}
@@ -70,8 +65,8 @@ export default function AboutBody() {
                             <a href="#contacto" className={styles.contactButton}>
                                 Contáctanos
                             </a>
-                        </motion.div>
-                    </motion.div>
+                        </ScrollPop>
+                    </div>
                 </div>
             </div>
 

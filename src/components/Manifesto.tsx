@@ -19,7 +19,17 @@ export default function Manifesto() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <p className={styles.author}>Koe Digital - Manifesto</p>
+                    <div className={styles.author}>
+                        <AnimatedTitle
+                            text="Koe Digital - Manifesto"
+                            as="p"
+                            style={{ fontSize: '1.2rem', fontWeight: 600, margin: 0 }}
+                            hoverColor="var(--text-yellow)"
+                            shadowColor="transparent"
+                            enableReveal={true}
+                            revealDirection="left"
+                        />
+                    </div>
                     <div className={styles.quote}>
                         <AnimatedTitle
                             text="Donde las marcas encuentran su voz real, lejos del hype y cerca de los resultados."
@@ -27,7 +37,9 @@ export default function Manifesto() {
                             as="h3" // Using h3 semantics but keeping quote style class
                             hoverColor="var(--bg-cream-light)" // Cream hover for contrast on green
                             shadowColor="rgba(0,0,0,0.3)"
-                            style={{ display: 'block', textShadow: 'none' }} // Override inline-block default and avoid double shadow (AnimatedTitle adds its own on chars)
+                            style={{ display: 'block', textShadow: 'none' }}
+                            enableReveal={true}
+                            revealDirection="left"
                         />
                     </div>
                 </motion.div>
@@ -35,9 +47,15 @@ export default function Manifesto() {
                 {/* Right Column: Form */}
                 <motion.div
                     className={styles.formContainer}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20, // Critical damping ~32, so 20 is underdamped (bouncy) but controlled
+                        delay: 0.2
+                    }}
                     style={{ display: 'flex', flexDirection: 'column' }}
                 >
                     <form className={styles.contactForm}>

@@ -107,12 +107,16 @@ export default function FAQ() {
                         style={{ fontSize: '4rem', fontWeight: '800', color: 'var(--foreground)', textTransform: 'uppercase' }}
                         hoverColor="var(--text-yellow)"
                         shadowColor="#1D3557"
+                        enableReveal={true}
+                        revealDirection="right"
                     />
                     <AnimatedTitle
                         text="Frecuentes"
                         style={{ fontFamily: 'var(--font-detail)', fontSize: '5.5rem', color: 'var(--foreground)', marginBottom: '-10px' }}
                         hoverColor="var(--text-yellow)"
                         shadowColor="#1D3557"
+                        enableReveal={true}
+                        revealDirection="right"
                     />
                 </div>
 
