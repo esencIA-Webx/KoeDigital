@@ -30,14 +30,14 @@ type SectionTheme = {
 // Comprehensive Theme Mapping per Section
 const SECTION_THEME: { [key: string]: SectionTheme } = {
     'hero': {
-        themeColor: 'var(--cyan-light)', // Keep as is or adapt if needed
+        themeColor: 'var(--orange-dark)', // Changed to orange as initial color
         textColor: 'var(--text-navy)',
         shadowColor: 'var(--text-navy)'
     },
     'sobre': {
-        themeColor: 'var(--bg-coral)', // Matching 'Contáctanos' button in AboutBody
-        textColor: 'var(--text-navy)',
-        shadowColor: 'var(--text-navy)'
+        themeColor: 'var(--text-yellow)', // Changed to yellow for AboutIntro section
+        textColor: 'var(--bg-cream-light)',
+        shadowColor: 'var(--green-light)'
     },
     'como-trabajamos': {
         themeColor: 'var(--pink-light)', // Matches Script Title & Card Shadow

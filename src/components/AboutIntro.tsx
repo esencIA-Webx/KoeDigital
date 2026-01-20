@@ -39,7 +39,7 @@ export default function AboutIntro() {
                     />
                     <AnimatedTitle
                         text="y"
-                        className={styles.sectionHeading}
+                        style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
                         hoverColor="var(--text-yellow)"
                         shadowColor="rgba(0,0,0,0.3)"
                     />
