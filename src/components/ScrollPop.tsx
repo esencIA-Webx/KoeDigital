@@ -20,7 +20,10 @@ export default function ScrollPop({
     as = 'div',
     ...props
 }: ScrollPopProps) {
-    const Tag = motion[as];
+    // Cast to any to avoid "Expression produces a union type that is too complex to represent" 
+    // and strict event handler compatibility checks (button vs div). 
+    // Framer Motion handles this safely at runtime.
+    const Tag = motion[as] as any;
 
     return (
         <Tag
