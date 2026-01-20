@@ -36,7 +36,7 @@ const SECTION_THEME: { [key: string]: SectionTheme } = {
     },
     'sobre': {
         themeColor: 'var(--text-yellow)', // Changed to yellow for AboutIntro section
-        textColor: 'var(--bg-cream-light)',
+        textColor: 'var(--green-light)', // Changed to green for nav links
         shadowColor: 'var(--green-light)'
     },
     'como-trabajamos': {
