@@ -3,7 +3,8 @@
 import { motion, HTMLMotionProps } from 'framer-motion';
 import { ReactNode } from 'react';
 
-interface ScrollPopProps extends HTMLMotionProps<"div"> {
+// Use 'any' to allow swapping 'as' prop between div, button, etc without type conflicts
+interface ScrollPopProps extends HTMLMotionProps<any> {
     children: ReactNode;
     className?: string;
     style?: React.CSSProperties;
