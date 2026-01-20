@@ -142,7 +142,7 @@ export default function CustomCursor() {
                             key={i}
                             d={`M ${prev.x} ${prev.y} L ${point.x} ${point.y}`}
                             stroke={color}
-                            strokeWidth={6 - (points.length - i) * 0.15} // Taper logic: index near length is Thick (Head), near 0 is Thin (Tail). Correct?
+                            // Taper logic: index near length is Thick (Head), near 0 is Thin (Tail). Correct?
                             // i = 0 (Tail) -> Stroke small
                             // i = length (Head) -> Stroke big
                             // Formula: BaseWidth * (i / length)
