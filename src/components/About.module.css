@@ -60,25 +60,18 @@
 .photoContainerSofi:hover,
 .photoContainerCeci:hover {
     transform: translateY(-8px) rotate(0deg) !important;
-    /* Reset rotation on hover? Or keep? User said "effect like other cards". Cards lift. */
-    /* Let's keep it simple: lift. But they have initial rotation. Providing a lift while preserving rotation might be cleaner in motion.div, but here we can do CSS. */
-    /* Actually, "like other cards" implies the lift and shadow increase */
     box-shadow: 16px 16px 0px var(--text-navy);
-    /* Removed z-index: 10 to prevents popping over each other indiscriminately */
 }
 
 .photoContainerSofi {
     z-index: 20;
-    /* High z-index to stay on top */
     transform: rotate(-3deg);
     position: relative;
 }
 
 .photoContainerCeci {
     z-index: 10;
-    /* Lower z-index to remain behind */
     margin-left: -50px;
-    /* Negative margin to create overlap */
     transform: rotate(3deg);
     position: relative;
 }
@@ -104,7 +97,6 @@
     font-family: var(--font-work-sans);
     font-weight: 800;
     font-size: clamp(2.5rem, 6vw, 3.5rem);
-    /* Increased size slightly */
     margin-bottom: 1.5rem;
 }
 
@@ -112,7 +104,6 @@
     font-size: 1.25rem;
     line-height: 1.6;
     max-width: 100%;
-    /* Let the card constrain it */
     margin: 0;
     font-weight: 500;
 }
@@ -143,9 +134,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: fit-content;
     max-width: 800px;
-    /* Constraint width */
     margin: 0 auto 2rem auto;
-    /* Center and add bottom margin */
     display: block;
 }
 
@@ -164,14 +153,12 @@
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
-    /* Increased spacing */
     margin-bottom: 2rem;
 }
 
 .brandLogoContainer {
     position: relative;
     width: 180px;
-    /* Increased size */
     height: 180px;
     display: flex;
     align-items: center;
@@ -182,7 +169,6 @@
     position: absolute;
     inset: 0;
     background-color: #6c8c7d;
-    /* Match Brand Title Color */
     -webkit-mask-image: url('/koe-logo.png');
     mask-image: url('/koe-logo.png');
     -webkit-mask-size: contain;
@@ -195,15 +181,11 @@
 
 .brandTitle {
     font-size: 4rem;
-    /* Significantly larger */
     font-weight: 800;
-    /* text-transform: uppercase; Removed to allow Title Case */
     color: #6c8c7d;
-    /* margin-bottom handled by brandHeader */
     text-align: center;
     line-height: 1.1;
     margin: 0;
-    /* Reset for flex item */
 }
 
 .brandContent {
@@ -284,7 +266,6 @@
     z-index: 5;
 
     background-color: #f7f3f0;
-    /* Fallback */
     background-image: url('/textura 2.png');
     background-size: cover;
     background-position: center;
@@ -299,7 +280,40 @@
     mask-repeat: no-repeat;
 }
 
-/* Wave Divider Top for AboutIntro (textura 4) */
+/* Dark Green Theme for About Intro (Matches Manifesto) */
+.aboutIntroSection {
+    width: 100%;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+    background: var(--bg-green);
+    color: var(--bg-cream-light);
+    padding: 6rem 1.5rem 8rem;
+    z-index: 10;
+}
+
+.aboutIntroSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/manifesto-texture.png');
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 1;
+}
+
+/* Wave Divider Top for AboutIntro (Green Theme) */
 .waveDividerTopIntro {
     position: absolute;
     top: -99px;
@@ -308,11 +322,10 @@
     height: 100px;
     z-index: 5;
 
-    background-color: #f7f3f0;
-    /* Fallback */
-    background-image: url('/textura 4.png');
-    background-size: cover;
-    background-position: center;
+    background-color: var(--bg-green);
+    background-image: url('/manifesto-texture.png');
+    background-size: 100% auto;
+    background-position: center top;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
@@ -323,4 +336,32 @@
     mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+}
+
+/* Photo Styling Overrides for Dark Theme */
+.aboutIntroSection .photoContainerSofi,
+.aboutIntroSection .photoContainerCeci {
+    border-color: var(--green-light);
+    box-shadow: 12px 12px 0px var(--green-light);
+}
+
+.aboutIntroSection .photoContainerSofi:hover,
+.aboutIntroSection .photoContainerCeci:hover {
+    box-shadow: 16px 16px 0px var(--green-light);
+}
+
+/* Intro Card Override for Dark Theme */
+.aboutIntroSection .introCard {
+    background: var(--green-dark);
+    border: 3px solid var(--green-light);
+    box-shadow: 10px 10px 0px var(--green-light);
+    color: var(--bg-cream-light);
+}
+
+.aboutIntroSection .introCard:hover {
+    box-shadow: 12px 12px 0px var(--green-light);
+}
+
+.aboutIntroSection .introText {
+    color: var(--bg-cream-light);
 }

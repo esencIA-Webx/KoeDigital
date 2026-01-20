@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-// import About from "@/components/About"; // Deprecated
+// import About from "@/components/About"; // Deprecated -> Removed
 import AboutIntro from "@/components/AboutIntro";
 import AboutBody from "@/components/AboutBody";
 import Process from "@/components/Process";

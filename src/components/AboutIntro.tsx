@@ -19,28 +19,38 @@ export default function AboutIntro() {
     const yCeci = useTransform(scrollYProgress, [0, 1], [30, -10]);
 
     return (
-        <section className={styles.aboutSection} ref={sectionRef} style={{
-            paddingBottom: '5rem', /* Reduced further */
-            minHeight: 'auto',
-            backgroundImage: "url('/textura 4.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed',
-            position: 'relative',
-            overflow: 'visible', // Allow wave to hang out
-            zIndex: 10 // Ensure it sits on top of Hero
-        }}>
+        <section className={styles.aboutIntroSection} ref={sectionRef}>
             {/* Wave Divider */}
             <div className={styles.waveDividerTopIntro}></div>
             <div className={styles.contentContainer}>
-                {/* Title moved to top */}
-                <AnimatedTitle
-                    text="¡Hola! Somos Sofi y Ceci."
-                    className={styles.sectionHeading}
-                    hoverColor="var(--pink-light)"
-                    shadowColor="#1D3557"
-                />
+                {/* Title with cursive names */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                    <AnimatedTitle
+                        text="¡Hola! Somos"
+                        className={styles.sectionHeading}
+                        hoverColor="var(--text-yellow)"
+                        shadowColor="rgba(0,0,0,0.3)"
+                    />
+                    <AnimatedTitle
+                        text="Sofi"
+                        style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
+                        hoverColor="var(--text-yellow)"
+                        shadowColor="rgba(0,0,0,0.3)"
+                    />
+                    <AnimatedTitle
+                        text="y"
+                        className={styles.sectionHeading}
+                        hoverColor="var(--text-yellow)"
+                        shadowColor="rgba(0,0,0,0.3)"
+                    />
+                    <AnimatedTitle
+                        text="Ceci."
+                        style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
+                        hoverColor="var(--text-yellow)"
+                        shadowColor="rgba(0,0,0,0.3)"
+                    />
+                </div>
+
 
                 {/* Photos */}
                 <div className={styles.photosWrapper}>
