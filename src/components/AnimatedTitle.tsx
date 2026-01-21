@@ -7,7 +7,7 @@ interface AnimatedTitleProps {
     className?: string; // For container styles (font, size, etc.)
     hoverColor?: string; // Color to change to on hover
     baseColor?: string; // Initial color (optional, usually handled by CSS class)
-    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'div' | 'span' | 'p' | 'section'; // Tag to render
+    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'div' | 'span' | 'p' | 'section' | 'a'; // Added 'a' to types
     style?: React.CSSProperties;
 }
 
@@ -22,7 +22,7 @@ export default function AnimatedTitle({
     delay = 0.1, // Delay before starting animation
     style
 }: AnimatedTitleProps & { shadowColor?: string, enableReveal?: boolean, revealDirection?: 'left' | 'right', delay?: number }) {
-    const Tag = motion[as];
+    const Tag = motion[as as keyof typeof motion] || motion.div; // Safe access to motion component
 
     // Variants for the container to stagger children
     const containerVariants = {
@@ -56,7 +56,7 @@ export default function AnimatedTitle({
     };
 
     // Default display based on 'as' prop
-    const defaultDisplay = (as === 'span' || as === 'a') ? 'inline-block' : 'block';
+    const defaultDisplay = (as === 'span' || (as as string) === 'a') ? 'inline-block' : 'block';
 
     return (
         <Tag
