@@ -78,7 +78,14 @@ export default function Process() {
                 whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
             >
                 <div className={styles.descriptionText} style={{ margin: 0, padding: 0 }}>
-                    <p className={styles.introCardTitle}>En KOE no aplicamos fórmulas genéricas.</p>
+                    <p className={styles.introCardTitle}>
+                        <AnimatedTitle
+                            text="En KOE no aplicamos fórmulas genéricas."
+                            as="span"
+                            hoverColor="var(--pink-dark)"
+                            style={{ display: 'inline-block' }}
+                        />
+                    </p>
                     <p>Ofrecemos un servicio 100% personalizado, donde cada estrategia, diseño y acción está pensada a medida del negocio y alineada a objetivos concretos.</p>
                     <ul>
                         <li>Visión integral: marca, comunicación y resultados.</li>
@@ -166,7 +173,14 @@ export default function Process() {
                             <div className={styles.iconContainer}>
                                 {steps[currentIndex].icon}
                             </div>
-                            <h3 className={styles.cardTitle}>{steps[currentIndex].title}</h3>
+                            <AnimatedTitle
+                                text={steps[currentIndex].title}
+                                as="h3"
+                                className={styles.cardTitle}
+                                hoverColor="var(--pink-dark)"
+                                enableReveal={true}
+                                key={currentIndex} // Force re-mount on change for animation
+                            />
                         </div>
 
                         <div className={styles.cardContent}>

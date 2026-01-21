@@ -55,10 +55,13 @@ export default function AnimatedTitle({
         }
     };
 
+    // Default display based on 'as' prop
+    const defaultDisplay = (as === 'span' || as === 'a') ? 'inline-block' : 'block';
+
     return (
         <Tag
             className={className}
-            style={{ display: 'block', ...style }}
+            style={{ display: defaultDisplay, ...style }}
             // Apply animations only if enableReveal is true
             initial={enableReveal ? "hidden" : undefined}
             whileInView={enableReveal ? "visible" : undefined}
@@ -72,8 +75,7 @@ export default function AnimatedTitle({
                             key={charIndex}
                             style={{
                                 display: "inline-block",
-                                color: 'inherit',
-                                textShadow: `4px 4px 0px ${shadowColor}`
+                                color: 'inherit'
                             }}
                             // If reveal is enabled, use variants. Otherwise just hover.
                             variants={enableReveal ? letterVariants : undefined}
@@ -83,8 +85,8 @@ export default function AnimatedTitle({
                                 damping: 15
                             }}
                             whileHover={{
-                                y: -15,
-                                rotate: -5,
+                                y: -5, // Reduced movement for inline text
+                                rotate: -2,
                                 scale: 1.1,
                                 color: hoverColor,
                             }}

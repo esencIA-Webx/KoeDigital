@@ -26,7 +26,7 @@ export default function Home() {
       </div>
 
       {/* Divider: KOE Digital */}
-      <SectionDivider style={{ zIndex: 15 }}>
+      <SectionDivider style={{ zIndex: 15, padding: '4rem 0', minHeight: 'auto' }}>
         <BrandTitle />
       </SectionDivider>
 

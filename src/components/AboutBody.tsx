@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
 import ScrollPop from './ScrollPop';
+import AnimatedTitle from './AnimatedTitle';
 
 export default function AboutBody() {
     return (
@@ -39,8 +40,18 @@ export default function AboutBody() {
                         >
                             <div className={styles.brandContent}>
                                 <p>Somos una agencia de marketing digital que acompaña a marcas, emprendedores y negocios en el desarrollo de su comunicación, estrategia y presencia digital.</p>
-                                <p>El trabajo en KOE parte siempre del entendimiento profundo del negocio, su contexto, sus objetivos y su mercado, para luego diseñar estrategias personalizadas, realistas y sostenibles en el tiempo.</p>
-                                <p>No se trata solo de crear contenido, sino de construir resultados.</p>
+                                <p>El trabajo en KOE parte siempre del entendimiento profundo del negocio, su contexto, sus objetivos y su mercado, para luego diseñar <AnimatedTitle
+                                    text="estrategias personalizadas, realistas y sostenibles en el tiempo"
+                                    as="span"
+                                    style={{ fontWeight: '800', display: 'inline-block' }}
+                                    hoverColor="var(--orange-dark)"
+                                />.</p>
+                                <p>No se trata solo de crear contenido, sino de <AnimatedTitle
+                                    text="construir resultados"
+                                    as="span"
+                                    style={{ fontWeight: '800', display: 'inline-block' }}
+                                    hoverColor="var(--orange-dark)"
+                                />.</p>
                             </div>
                         </ScrollPop>
                     </motion.div>
@@ -52,13 +63,22 @@ export default function AboutBody() {
                             delay={0.5}
                             animate={{
                                 y: [0, -8, 0],
+                                rotate: 0
                             }}
                             transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "easeInOut"
+                                y: {
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: 2 // Offset
+                                },
+                                rotate: { duration: 0 }
                             }}
-                            whileHover={{ scale: 1.1 }}
+                            whileHover={{
+                                scale: 1.1,
+                                rotate: 0,
+                                transition: { duration: 0.2 }
+                            }}
                             whileTap={{ scale: 0.95 }}
                             style={{ display: 'inline-block' }}
                         >

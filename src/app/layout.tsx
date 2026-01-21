@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Work_Sans, Playfair_Display, Pinyon_Script } from "next/font/google"; // Removed Pinyon_Script check, assuming availability or similar standard
+import { Work_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const workSans = Work_Sans({
@@ -8,16 +9,16 @@ const workSans = Work_Sans({
   weight: ["300", "400", "500", "600", "800"],
 });
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"], // Weights suitable for subtitles
+const rocaOne = localFont({
+  src: "../../public/fonts/roca-one-regular.ttf",
+  variable: "--font-roca",
+  display: "swap",
 });
 
-const pinyonScript = Pinyon_Script({
-  variable: "--font-pinyon",
-  weight: "400",
-  subsets: ["latin"],
+const royalBrand = localFont({
+  src: "../../public/fonts/RoyalBrand-Regular.otf",
+  variable: "--font-royal",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -60,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${workSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable}`}>
+    <html lang="es" className={`${workSans.variable} ${rocaOne.variable} ${royalBrand.variable}`}>
       <body>
         {children}
       </body>

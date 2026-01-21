@@ -56,7 +56,6 @@
     color: var(--pink-light);
     position: relative;
     z-index: 1;
-    text-shadow: 2px 2px 0px white;
     margin-bottom: 2rem;
     /* transform: rotate(-3deg); Removed per user request */
     display: inline-block;
@@ -70,7 +69,8 @@
     margin: 0 auto 4rem auto;
     color: var(--pink-dark);
     font-family: var(--font-main);
-    font-size: 1.2rem;
+    font-size: 1.375rem;
+    /* Increased to 22px */
     line-height: 1.6;
     position: relative;
     z-index: 1;
@@ -270,8 +270,8 @@
 }
 
 .cardTitle {
-    font-family: var(--font-main);
-    font-weight: 800;
+    font-family: var(--font-roca), serif;
+    font-weight: 400;
     font-size: 1.5rem;
     color: var(--pink-dark);
     text-transform: uppercase;
@@ -285,7 +285,8 @@
 .cardDescription {
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1.625rem;
+    /* Increased to 26px */
     color: var(--pink-dark);
     margin-bottom: 1.5rem;
     line-height: 1.4;
@@ -294,7 +295,8 @@
 .cardSubtitle {
     font-family: var(--font-main);
     font-weight: 400;
-    font-size: 1.15rem;
+    font-size: 1.375rem;
+    /* Increased to 22px */
     color: var(--pink-dark);
     margin-bottom: 1.5rem;
     line-height: 1.6;
@@ -361,10 +363,10 @@
 
 .introCardTitle {
     font-size: 1.5rem;
-    font-weight: 800;
+    font-weight: 400;
     color: var(--pink-dark);
     margin-bottom: 1rem;
-    font-family: var(--font-main);
+    font-family: var(--font-roca), serif;
 }
 
 /* Responsive Styles */

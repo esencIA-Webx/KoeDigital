@@ -24,6 +24,7 @@ type SectionTheme = {
     themeColor: string;     // Logo & Button Background
     textColor: string;      // Nav Links Text
     shadowColor: string;    // Navbar Shadow
+    borderColor?: string;   // Navbar Border (Optional, defaults to shadowColor)
 };
 
 // Comprehensive Theme Mapping per Section
@@ -32,42 +33,50 @@ const SECTION_THEME: { [key: string]: SectionTheme } = {
     'hero': {
         themeColor: 'var(--orange-dark)', // Changed to orange as initial color
         textColor: 'var(--text-navy)',
-        shadowColor: 'var(--text-navy)'
+        shadowColor: 'var(--text-navy)',
+        borderColor: 'var(--text-navy)'
     },
     'sobre': {
-        themeColor: 'var(--text-yellow)', // Changed to yellow for AboutIntro section
+        themeColor: 'var(--orange-dark)', // Changed to orange per user request
         textColor: 'var(--green-light)', // Changed to green for nav links
-        shadowColor: 'var(--green-light)'
+        shadowColor: 'var(--green-light)',
+        borderColor: 'var(--green-light)'
     },
     'como-trabajamos': {
         themeColor: 'var(--pink-light)', // Matches Script Title & Card Shadow
         textColor: 'var(--pink-dark)',   // Matches Description & Card Border
-        shadowColor: 'var(--pink-dark)'
+        shadowColor: 'var(--pink-light)', // CHANGED: Matches Card Shadow (Light)
+        borderColor: 'var(--pink-dark)'   // Matches Card Border
     },
     'servicios': {
         themeColor: '#c1dcfd', // Light Blue (Matches Title/Button)
         textColor: '#7da1b9',  // Dark Blue (Matches Text/Border)
-        shadowColor: '#7da1b9'
+        shadowColor: '#7da1b9',
+        borderColor: '#7da1b9'
     },
     'portfolio': {
         themeColor: 'var(--orange-light)', // Matches "NUESTRO" Title
-        textColor: 'var(--text-navy)',     // Matches Card Border/Text
-        shadowColor: 'var(--text-navy)'
+        textColor: '#1D3557',     // Matches Card Border/Text
+        shadowColor: '#1D3557',   // CHANGED: Matches Card Shadow (Dark Blue)
+        borderColor: '#1D3557'    // CHANGED: Matches Card Border
     },
     'faq': {
         themeColor: 'var(--text-yellow)',  // Matches "Frecuentes" hover / Accent
         textColor: 'var(--text-navy)',
-        shadowColor: 'var(--text-navy)'
+        shadowColor: 'var(--text-navy)',
+        borderColor: 'var(--text-navy)'
     },
     'manifesto': {
         themeColor: 'var(--text-yellow)',  // Matches Quote text
         textColor: 'var(--green-dark)',    // Contrast on white pill
-        shadowColor: 'var(--green-dark)'
+        shadowColor: 'var(--green-light)', // CHANGED: Matches Card Shadow (Light Green)
+        borderColor: 'var(--green-light)'  // CHANGED: Matches Card Border
     },
     'contacto': {
         themeColor: 'var(--text-yellow)',
         textColor: 'var(--green-dark)',
-        shadowColor: 'var(--green-dark)'
+        shadowColor: 'var(--text-navy)', // CHANGED: Matches Icon Borders
+        borderColor: 'var(--text-navy)'  // CHANGED: Matches Icon Borders
     },
 };
 
@@ -135,10 +144,8 @@ export default function Header() {
     // Navbar Container Style (Dynamic Shadow)
     const containerStyle = {
         boxShadow: `4px 4px 0px ${headerProps.shadowColor}`,
-        transition: 'box-shadow 0.3s ease',
-        border: '3px solid var(--text-navy)' // Adding border to match card style completely if desired? User just said shadow. 
-        // Logic: The pill usually is white. Cards are white.
-        // Let's keep the pill white background from CSS, just override shadow.
+        transition: 'all 0.3s ease',
+        border: `3px solid ${headerProps.borderColor || headerProps.shadowColor}` // Dynamic Border
     };
 
     // Desktop Items
@@ -223,7 +230,12 @@ export default function Header() {
                     <Link
                         href="#contacto"
                         className={styles.contactBtn}
-                        style={{ backgroundColor: headerProps.themeColor, transition: 'background-color 0.3s ease' }}
+                        style={{
+                            backgroundColor: headerProps.themeColor,
+                            transition: 'all 0.3s ease',
+                            border: `2px solid ${headerProps.borderColor || headerProps.shadowColor}`, // Dynamic Border
+                            boxShadow: `5px 5px 0px ${headerProps.borderColor || headerProps.shadowColor}` // Dynamic Shadow
+                        }}
                     >
                         Contacto
                     </Link>

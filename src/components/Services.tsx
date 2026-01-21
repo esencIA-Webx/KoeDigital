@@ -19,12 +19,6 @@ export default function Services() {
                 "Creación de categorías de contenido por red social",
                 "Guía creativa simple con guiones orientativos para reels"
             ],
-            process: [
-                { week: "Semana 1", task: "Análisis inicial, objetivos y optimización de perfiles." },
-                { week: "Semana 2", task: "Desarrollo de estrategia: enfoque, tono y lineamientos." },
-                { week: "Semana 3", task: "Creación de categorías de contenido específicas." },
-                { week: "Semana 4", task: "Entrega de guía creativa con guiones para reels." }
-            ],
             deliverables: [
                 "Estrategia de comunicación",
                 "Categorías de contenido",
@@ -45,12 +39,6 @@ export default function Services() {
                 "Análisis de métricas",
                 "Publicidad en Meta Ads / Google Ads"
             ],
-            process: [
-                { week: "Semana 1", task: "Análisis, brief estratégico y calendario de contenido." },
-                { week: "Semana 2", task: "Corrección de ideas y comienzo de diseño/edición." },
-                { week: "Semana 3", task: "Producción visual y edición asegurando calidad." },
-                { week: "Semana 4", task: "Correcciones finales y programación." }
-            ],
             deliverables: [
                 "6 posteos",
                 "2 reels",
@@ -69,12 +57,6 @@ export default function Services() {
                 "Guión y edición simple de reels",
                 "Análisis de métricas",
                 "Publicidad en Meta Ads / Google Ads"
-            ],
-            process: [
-                { week: "Semana 1", task: "Análisis de marca, brief estratégico y calendario." },
-                { week: "Semana 2", task: "Correcciones y comienzo del diseño y edición." },
-                { week: "Semana 3", task: "Producción visual y edición de contenido." },
-                { week: "Semana 4", task: "Correcciones finales, programación y publicación." }
             ],
             deliverables: [
                 "8 posteos",
@@ -100,13 +82,25 @@ export default function Services() {
                         whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                     >
                         <div className={styles.cardHeaderContent}>
-                            <h3 className={styles.cardTitle}>{plan.title}</h3>
+                            <AnimatedTitle
+                                text={plan.title}
+                                as="h3"
+                                className={styles.cardTitle}
+                                hoverColor="var(--cyan-medium)" // Matching Services theme
+                                enableReveal={true}
+                            />
                             {/* Price removed */}
                             <p className={styles.cardDesc}>{plan.desc}</p>
                         </div>
 
                         <div className={styles.contentSection}>
-                            <h4 className={styles.sectionTitle}>Qué incluye</h4>
+                            <AnimatedTitle
+                                text="Qué incluye"
+                                as="h4"
+                                className={styles.sectionTitle}
+                                hoverColor="var(--cyan-medium)"
+                                enableReveal={true}
+                            />
                             <ul className={styles.detailList}>
                                 {plan.includes.map((item, idx) => (
                                     <li key={idx}>{item}</li>
@@ -114,18 +108,16 @@ export default function Services() {
                             </ul>
                         </div>
 
-                        <div className={styles.contentSection}>
-                            <h4 className={styles.sectionTitle}>Proceso de trabajo</h4>
-                            {plan.process.map((step, idx) => (
-                                <div key={idx} className={styles.weekItem}>
-                                    <span className={styles.weekTitle}>{step.week}</span>
-                                    <p className={styles.weekDesc}>{step.task}</p>
-                                </div>
-                            ))}
-                        </div>
+
 
                         <div className={styles.contentSection}>
-                            <h4 className={styles.sectionTitle}>Entregables</h4>
+                            <AnimatedTitle
+                                text="Entregables"
+                                as="h4"
+                                className={styles.sectionTitle}
+                                hoverColor="var(--cyan-medium)"
+                                enableReveal={true}
+                            />
                             <ul className={styles.detailList}>
                                 {plan.deliverables.map((item, idx) => (
                                     <li key={idx}>{item}</li>

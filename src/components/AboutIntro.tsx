@@ -106,7 +106,12 @@ export default function AboutIntro() {
                         viewport={{ once: true }}
                     >
                         <p className={styles.introText}>
-                            Nuestra intención es acompañar a las marcas con estrategia, criterio y foco en resultados.
+                            Nuestra intención es acompañar a las marcas con <AnimatedTitle
+                                text="estrategia, criterio y foco en resultados"
+                                as="span"
+                                style={{ fontWeight: '800', display: 'inline-block' }}
+                                hoverColor="var(--orange-dark)"
+                            />.
                             El principal objetivo es construir resultados reales y sostenibles.
                         </p>
                     </motion.div>

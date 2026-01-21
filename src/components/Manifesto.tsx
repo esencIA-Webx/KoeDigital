@@ -19,28 +19,91 @@ export default function Manifesto() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className={styles.author}>
-                        <AnimatedTitle
-                            text="Koe Digital - Manifesto"
-                            as="p"
-                            style={{ fontSize: '1.2rem', fontWeight: 600, margin: 0 }}
-                            hoverColor="var(--text-yellow)"
-                            shadowColor="transparent"
-                            enableReveal={true}
-                            revealDirection="left"
-                        />
-                    </div>
                     <div className={styles.quote}>
-                        <AnimatedTitle
-                            text="Donde las marcas encuentran su voz real, lejos del hype y cerca de los resultados."
+                        <motion.h3
                             className={styles.quote}
-                            as="h3" // Using h3 semantics but keeping quote style class
-                            hoverColor="var(--bg-cream-light)" // Cream hover for contrast on green
-                            shadowColor="rgba(0,0,0,0.3)"
-                            style={{ display: 'block', textShadow: 'none' }}
-                            enableReveal={true}
-                            revealDirection="left"
-                        />
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-10%" }}
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: {
+                                        staggerChildren: 0.08,
+                                        delayChildren: 0.1
+                                    }
+                                }
+                            }}
+                        >
+                            {/* Part 1: Roca One - Block 1 */}
+                            <AnimatedTitle
+                                text="DONDE LAS MARCAS"
+                                as="div"
+                                style={{
+                                    fontFamily: 'var(--font-roca)',
+                                    fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                                    marginBottom: '0.5rem',
+                                    color: 'white',
+                                    display: 'block'
+                                }}
+                                hoverColor="var(--green-light)"
+                                enableReveal={true}
+                                revealDirection="right"
+                            />
+
+                            {/* Part 2: Block 2 (ENCUENTRAN + su voz) */}
+                            <div style={{ display: 'block' }}>
+                                <AnimatedTitle
+                                    text="ENCUENTRAN"
+                                    as="span"
+                                    style={{
+                                        fontFamily: 'var(--font-roca)',
+                                        fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                                        color: 'white',
+                                        display: 'inline-block',
+                                        marginRight: '0.5rem'
+                                    }}
+                                    hoverColor="var(--green-light)"
+                                    enableReveal={true}
+                                    revealDirection="right"
+                                    delay={0.2}
+                                />
+
+                                {/* Part 2b: su voz (Cursive) */}
+                                {"su voz".split("").map((char, index) => (
+                                    <motion.span
+                                        key={`block2-part2-${index}`}
+                                        style={{
+                                            display: "inline-block",
+                                            fontFamily: 'var(--font-script)',
+                                            color: 'white',
+                                            whiteSpace: "pre",
+                                            textTransform: 'none',
+                                            fontSize: 'clamp(2rem, 4.5vw, 3.5rem)'
+                                        }}
+                                        variants={{
+                                            hidden: { opacity: 0, x: -20, rotate: -5 },
+                                            visible: {
+                                                opacity: 1,
+                                                x: 0,
+                                                rotate: 0,
+                                                transition: { type: "spring", damping: 12, stiffness: 100, delay: 0.3 }
+                                            }
+                                        }}
+                                        whileHover={{
+                                            y: -5,
+                                            rotate: -2,
+                                            scale: 1.1,
+                                            color: 'var(--orange-dark)',
+                                            transition: { duration: 0.2 }
+                                        }}
+                                    >
+                                        {char}
+                                    </motion.span>
+                                ))}
+                            </div>
+                        </motion.h3>
                     </div>
                 </motion.div>
 
@@ -127,7 +190,7 @@ export default function Manifesto() {
                         </motion.div>
                     </form>
                 </motion.div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }

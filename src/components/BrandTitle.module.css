@@ -10,8 +10,8 @@
 
 .brandLogoContainer {
     position: relative;
-    width: 180px;
-    height: 180px;
+    width: 360px;
+    height: 360px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,12 +35,14 @@
 }
 
 .brandLogoContainer:hover .brandLogoMask {
-    background-color: var(--text-yellow);
-    /* Yellow per user request */
+    background-color: var(--orange-dark);
+    /* Orange per user request */
     filter: drop-shadow(0 0 10px #6c8c7d);
 }
 
 .brandTitle {
+    font-family: var(--font-main);
+    /* Changed to Work Sans per user request */
     font-size: 7rem;
     /* Increased from 4rem */
     color: var(--bg-coral);

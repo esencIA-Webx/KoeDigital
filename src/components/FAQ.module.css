@@ -73,8 +73,8 @@
     text-align: center;
     font-size: 4rem;
     margin-bottom: 4rem;
-    font-family: var(--font-main);
-    font-weight: 800;
+    font-family: var(--font-roca), serif;
+    font-weight: 400;
     color: var(--foreground);
 }
 
@@ -116,7 +116,8 @@
     color: #666;
     line-height: 1.6;
     line-height: 1.6;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    /* Increased from 1.2rem */
 }
 
 /* Navigation Buttons */

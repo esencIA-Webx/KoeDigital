@@ -30,7 +30,13 @@ export default function Portfolio() {
                         </div>
                         <div className={styles.content}>
                             <span className={styles.role}>{p.role}</span>
-                            <h3 className={styles.clientName}>{p.client}</h3>
+                            <AnimatedTitle
+                                text={p.client}
+                                as="h3"
+                                className={styles.clientName}
+                                hoverColor="var(--orange-dark)"
+                                enableReveal={true}
+                            />
                             <p className={styles.desc}>{p.desc}</p>
                             <a href="#" className={styles.viewBtn}>Ver caso</a>
                         </div>

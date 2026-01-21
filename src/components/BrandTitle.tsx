@@ -27,15 +27,7 @@ export default function BrandTitle() {
                 <div className={styles.brandLogoMask} />
             </motion.div>
 
-            <AnimatedTitle
-                text="Digital"
-                className={styles.brandTitle}
-                hoverColor="#6c8c7d" // Green hover
-                shadowColor="#1D3557"
-                enableReveal={true}
-                revealDirection="right"
-                delay={0.5} // Wait for logo to emerge
-            />
+
         </div>
     );
 }
