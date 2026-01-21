@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import styles from './Services.module.css';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -7,9 +8,12 @@ import AnimatedTitle from './AnimatedTitle';
 import ScrollPop from './ScrollPop';
 
 export default function Services() {
+    const [activeTab, setActiveTab] = useState(1); // Default to second plan (Esencial)
+
     const plans = [
         {
             title: "Plan Dirección",
+            label: "DIRECCIÓN",
             // Price removed
             desc: "Un plan enfocado en el análisis estratégico y la organización de la comunicación de la marca. Está pensado para definir objetivos, ordenar la presencia digital y establecer una base clara para el desarrollo de contenido.",
             includes: [
@@ -71,13 +75,25 @@ export default function Services() {
             {/* Wave Divider Top */}
             <div className={styles.waveDividerTop} />
 
-
+            {/* Mobile Tabs */}
+            <div className={styles.mobileTabs}>
+                {plans.map((plan, index) => (
+                    <button
+                        key={index}
+                        className={`${styles.tabButton} ${activeTab === index ? styles.activeTab : ''}`}
+                        onClick={() => setActiveTab(index)}
+                    >
+                        {plan.label || plan.title.replace('Plan ', '')}
+                    </button>
+                ))}
+            </div>
 
             <div className={styles.grid}>
                 {plans.map((plan, i) => (
                     <ScrollPop
                         key={plan.title}
-                        className={styles.card}
+                        // Add hiddenMobile class if not active tab (logic handled in CSS via media query to only apply on mobile)
+                        className={`${styles.card} ${activeTab !== i ? styles.hiddenMobile : ''}`}
                         delay={i * 0.2}
                         whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                     >

@@ -37,14 +37,14 @@ export default function Home() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <AnimatedTitle
             text="4 PASOS TAN"
-            style={{ fontSize: '6rem', fontWeight: '800', color: '#cc5a78', textTransform: 'uppercase' }}
+            style={{ fontSize: 'clamp(3rem, 10vw, 6rem)', fontWeight: '800', color: '#cc5a78', textTransform: 'uppercase' }}
             hoverColor="var(--cyan-medium)"
             shadowColor="#1D3557"
             enableReveal={true}
           />
           <AnimatedTitle
             text="Simples."
-            style={{ fontFamily: 'var(--font-detail)', fontSize: '7rem', color: '#cc5a78', marginBottom: '-10px' }}
+            style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(4rem, 12vw, 7rem)', color: '#cc5a78', marginBottom: '-10px' }}
             hoverColor="var(--cyan-medium)"
             shadowColor="#1D3557"
             enableReveal={true}
@@ -59,14 +59,14 @@ export default function Home() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <AnimatedTitle
             text="PLANES"
-            style={{ fontSize: '6rem', fontWeight: '800', color: '#c1dcfd', textTransform: 'uppercase' }}
+            style={{ fontSize: 'clamp(3rem, 10vw, 6rem)', fontWeight: '800', color: '#c1dcfd', textTransform: 'uppercase' }}
             hoverColor="var(--pink-light)"
             shadowColor="#7da1b9"
             enableReveal={true}
           />
           <AnimatedTitle
             text="Social Media"
-            style={{ fontFamily: 'var(--font-detail)', fontSize: '7rem', color: '#c1dcfd', marginBottom: '-10px' }}
+            style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(4rem, 12vw, 7rem)', color: '#c1dcfd', marginBottom: '-10px' }}
             hoverColor="var(--pink-light)"
             shadowColor="#7da1b9"
             enableReveal={true}
@@ -81,14 +81,14 @@ export default function Home() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <AnimatedTitle
             text="NUESTRO"
-            style={{ fontSize: '6rem', fontWeight: '800', color: 'var(--orange-light)', textTransform: 'uppercase' }}
+            style={{ fontSize: 'clamp(3rem, 10vw, 6rem)', fontWeight: '800', color: 'var(--orange-light)', textTransform: 'uppercase' }}
             hoverColor="var(--orange-dark)"
             shadowColor="#1D3557"
             enableReveal={true}
           />
           <AnimatedTitle
             text="Portfolio"
-            style={{ fontFamily: 'var(--font-detail)', fontSize: '7rem', color: 'var(--orange-light)', marginBottom: '-10px' }}
+            style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(4rem, 12vw, 7rem)', color: 'var(--orange-light)', marginBottom: '-10px' }}
             hoverColor="var(--orange-dark)"
             shadowColor="#1D3557"
             enableReveal={true}

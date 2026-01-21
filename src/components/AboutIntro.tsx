@@ -24,31 +24,34 @@ export default function AboutIntro() {
             <div className={styles.waveDividerTopIntro}></div>
             <div className={styles.contentContainer}>
                 {/* Title with cursive names */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <div className={styles.titleContainer}>
                     <AnimatedTitle
                         text="¡Hola! Somos"
                         className={styles.sectionHeading}
                         hoverColor="var(--text-yellow)"
                         shadowColor="rgba(0,0,0,0.3)"
                     />
-                    <AnimatedTitle
-                        text="Sofi"
-                        style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
-                        hoverColor="var(--text-yellow)"
-                        shadowColor="rgba(0,0,0,0.3)"
-                    />
-                    <AnimatedTitle
-                        text="y"
-                        style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
-                        hoverColor="var(--text-yellow)"
-                        shadowColor="rgba(0,0,0,0.3)"
-                    />
-                    <AnimatedTitle
-                        text="Ceci."
-                        style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
-                        hoverColor="var(--text-yellow)"
-                        shadowColor="rgba(0,0,0,0.3)"
-                    />
+                    {/* Container to keep names on one line even in flex-col layout */}
+                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'nowrap', alignItems: 'baseline' }}>
+                        <AnimatedTitle
+                            text="Sofi"
+                            style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
+                            hoverColor="var(--text-yellow)"
+                            shadowColor="rgba(0,0,0,0.3)"
+                        />
+                        <AnimatedTitle
+                            text="y"
+                            style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
+                            hoverColor="var(--text-yellow)"
+                            shadowColor="rgba(0,0,0,0.3)"
+                        />
+                        <AnimatedTitle
+                            text="Ceci."
+                            style={{ fontFamily: 'var(--font-detail)', fontSize: 'clamp(3rem, 7vw, 4rem)', marginBottom: '-10px' }}
+                            hoverColor="var(--text-yellow)"
+                            shadowColor="rgba(0,0,0,0.3)"
+                        />
+                    </div>
                 </div>
 
 

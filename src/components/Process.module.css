@@ -418,7 +418,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
     .scriptTitle {
         font-size: 2.5rem;
     }
@@ -443,5 +443,14 @@
     .processSection {
         background-size: cover;
         background-position: center top;
+    }
+
+    .processCtaContainer {
+        margin-top: 0 !important;
+        margin-bottom: 6rem;
+        position: relative;
+        z-index: 50;
+        transform: translateY(-80px);
+        /* Lift significantly for all mobile/tablet */
     }
 }

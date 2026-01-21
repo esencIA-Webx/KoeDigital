@@ -8,6 +8,8 @@
     align-items: center;
     background: var(--bg-cyan);
     /* Fallback */
+    padding-top: 60px;
+    /* Safe area for header */
 }
 
 /* Decorative Bottom Texture (Texture 3) - REMOVED per user req */

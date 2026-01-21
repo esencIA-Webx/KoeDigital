@@ -85,11 +85,188 @@
     margin: 0 auto;
 }
 
-@media (max-width: 768px) {
+/* Mobile Tabs */
+.mobileTabs {
+    display: none;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
+}
+
+.tabButton {
+    background: white;
+    border: 2px solid #7da1b9;
+    /* Dark Cyan */
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-family: var(--font-roca), serif;
+    font-weight: 800;
+    /* Bolder as per image */
+    color: #7da1b9;
+    /* Dark Cyan text */
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+
+    /* Inactive: Light Cyan Shadow */
+    box-shadow: 4px 4px 0px #c1dcfd;
+    transition: all 0.2s ease;
+}
+
+.tabButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px #c1dcfd;
+}
+
+.tabButton:active {
+    transform: translateY(2px) translateX(2px);
+    box-shadow: 0px 0px 0px #c1dcfd;
+}
+
+.activeTab {
+    background: #7da1b9;
+    /* User asked for Light Cyan fill? checking request: "relleno celeste claro" -> #c1dcfd. Sombra "celeste oscura" -> #7da1b9 */
+    /* Wait, the user said: "sin seleccionar sean celeste oscuro con sombra celeste clara" (Inactive: Dark text, Light shadow). Correct. 
+       "al estar seleccionado tengan sombra celeste oscura y con relleno celeste claro" (Active: Light BG, Dark shadow). */
+
+    background: #c1dcfd !important;
+    /* Light Cyan Fill */
+    color: #ffffff !important;
+    /* White text looks best on light cyan? Or Dark Cyan text? Image shows white text often. Let's try white. */
+    border-color: #c1dcfd !important;
+    box-shadow: 4px 4px 0px #7da1b9 !important;
+    /* Dark Cyan Shadow */
+}
+
+/* Fix text color for active tab if contrast is low with white on light blue */
+/* Actually #c1dcfd is very light. White text might be unreadable. 
+   If user wants "relleno celeste claro", typically the text should be dark.
+   But let's stick to the prompt. If "relleno" is light cyan, text is likely dark or white. 
+   Let's check the uploaded image. It shows "ESENCIAL" white text on a MID-BLUE background.
+   So "celeste claro" might be interpreted as the mid-blue (#7da1b9 is 'medium'). 
+   Let's swap them to match the "feel" if needed, but strictly:
+   #7da1b9 (Medium/Darker)
+   #c1dcfd (Light/Pale) target.
+   
+   If I use #7da1b9 as the "relleno" (fill) for active, it matches the "Darker" look of an active button usually. 
+   But user said "relleno celeste claro" (Light fill). 
+   Let's use #7da1b9 (Darker) for text and #c1dcfd (Lighter) for Fill.
+   
+   Wait, looking at my previous code "var(--cyan-medium)" is #7da1b9. "var(--cyan-light)" is #C1DEDB.
+   Let's try:
+   Inactive: Text #7da1b9, Shadow #c1dcfd.
+   Active: BG #7da1b9 (Darker fill?), Shadow #c1dcfd? 
+   NO, User said: "selected: dark shadow, light fill".
+   OK: Active BG = #c1dcfd, Shadow = #7da1b9.
+   Text on #c1dcfd should probably be #7da1b9 (Dark) to be readable, or White if #c1dcfd is dark enough. 
+   #c1dcfd is quite light. White will be invisible. 
+   I will use White text on #7da1b9 (Darker) if the user meant that. 
+   
+   Let's LOOK at the image provided in prompt "uploaded_image_...". 
+   The image shows:
+   "DIRECCIÓN" (Inactive): White BG, Dark Text, Light Shadow.
+   "ESENCIAL" (Active): Darker Blue BG, White Text, No/Light Shadow?
+   
+   Actually, the user REQUEST text is:
+   "sin seleccionar sean celeste oscuro [referring to content/bg?] con sombra celeste clara"
+   "al estar seleccionado tengan sombra celeste oscura y con relleno celeste claro"
+   
+   This phrasing is tricky. 
+   Maybe "celeste oscuro" = The button ITSELF is dark blue (inactive)? 
+   Or the TEXT is dark blue? 
+   "sean celeste oscuro" -> Be dark blue.
+   
+   Let's assume:
+   Inactive: BG White, Text Dark Blue (#7da1b9), Shadow Light Blue (#c1dcfd).
+   Active: BG Light Blue (#c1dcfd)? OR BG Dark Blue?
+   
+   If I follow the image: "ESENCIAL" is active and has a SOLID BLUE BG. "DIRECCIÓN" has WHITE BG.
+   So Active = Solid Color.
+   
+   Let's try:
+   Active: BG #7da1b9 (Darker Cyan), Shadow #c1dcfd (Light), Text White. 
+   (This matches the "standard" active state).
+   
+   BUT User said for active: "sombra celeste oscura y relleno celeste claro".
+   Shadow = Dark (#7da1b9). Fill = Light (#c1dcfd).
+   
+   Okay, I will follow the text strictly:
+   Active: BG #c1dcfd, Shadow #7da1b9.
+   Text: I'll make it White (drop shadow maybe?) or #7da1b9. I'll make it #ffff (White) with a text-shadow or #1D3557 (Navy) if it's too light. 
+   Actually, #c1dcfd is "Pale Blue". White text is bad.
+   I will make the active text distinct.
+*/
+
+.activeTab {
+    background: #7da1b9 !important;
+    /* Using the darker cyan for fill because 'celeste claro' might be relative or user might be confused. The image shows a solid medium blue. */
+    color: white !important;
+    box-shadow: 4px 4px 0px #1D3557 !important;
+    /* Dark shadow */
+    border-color: #7da1b9 !important;
+}
+
+/* User said: "Active: Dark Shadow, Light Fill". 
+   Let's consider #7da1b9 as "Light" compared to #1D3557? 
+   Or #c1dcfd as "Light"?
+   
+   Pivot: I will use #7da1b9 (Medium Cyan) as the "Fill", and #537867 (Dark Navy) or similar for Shadow.
+   Wait, "sombra celeste oscura". 
+   Maybe #7da1b9 IS the dark shadow? And #c1dcfd is the fill?
+   
+   Let's try:
+   Active BG: #c1dcfd (Light Cyan).
+   Active Shadow: #7da1b9 (Dark Cyan).
+   Active Text: #7da1b9 (Dark Cyan) - for contrast.
+   
+   Inactive BG: White.
+   Inactive Text: #7da1b9 (Dark Cyan).
+   Inactive Shadow: #c1dcfd (Light Cyan).
+   
+   This matches the description perfectly.
+*/
+.activeTab {
+    background: #c1dcfd !important;
+    color: #ffffff !important;
+    /* Wait, if BG is #c1dcfd (very light), white text is invisible. 
+       I'll use #7da1b9 for text to be safe and readable. */
+    color: #7da1b9 !important;
+    font-weight: 900;
+    box-shadow: 4px 4px 0px #7da1b9 !important;
+    border-color: #c1dcfd !important;
+}
+
+.activeTab:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px #7da1b9 !important;
+}
+
+.activeTab:active {
+    transform: translateY(2px) translateX(2px);
+    box-shadow: 0px 0px 0px #7da1b9 !important;
+}
+
+.hiddenMobile {
+    /* Class to toggle visibility on mobile */
+}
+
+@media (max-width: 900px) {
     .grid {
         grid-template-columns: 1fr;
         gap: 2rem;
         padding: 0 1rem;
+    }
+
+    .mobileTabs {
+        display: flex;
+    }
+
+    /* Hide cards that are not active */
+    .hiddenMobile {
+        display: none !important;
     }
 
     .blockHeader {

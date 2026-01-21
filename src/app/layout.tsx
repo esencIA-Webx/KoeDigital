@@ -21,6 +21,13 @@ const royalBrand = localFont({
   display: "swap",
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
+
 export const metadata: Metadata = {
   title: "Koe Digital | Donde las marcas encuentran su voz",
   description: "Estrategia, contenido y publicidad pensados a medida. Koe Digital es una agencia de marketing orientada a resultados reales.",

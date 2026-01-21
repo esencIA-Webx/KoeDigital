@@ -230,3 +230,18 @@
         font-size: 0.9rem;
     }
 }
+
+@media (max-width: 768px) {
+    .faqHeader {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .faqContainer {
+        padding: 0 1rem;
+    }
+
+    .faqItem {
+        padding: 1rem;
+    }
+}

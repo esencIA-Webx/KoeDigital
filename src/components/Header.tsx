@@ -246,7 +246,12 @@ export default function Header() {
                     className={styles.mobileMenuBtn}
                     onClick={toggleMenu}
                     aria-label="Menu"
-                    style={{ backgroundColor: headerProps.themeColor, transition: 'background-color 0.3s ease' }}
+                    style={{
+                        backgroundColor: headerProps.themeColor,
+                        transition: 'all 0.3s ease',
+                        boxShadow: `5px 5px 0px ${headerProps.borderColor || headerProps.shadowColor}`, // Dynamic Shadow
+                        border: `2px solid ${headerProps.borderColor || headerProps.shadowColor}`      // Dynamic Border
+                    }}
                 >
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
