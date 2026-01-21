@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, HTMLMotionProps } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 
 // Use 'any' to allow swapping 'as' prop between div, button, etc without type conflicts
 interface ScrollPopProps extends HTMLMotionProps<any> {
@@ -12,7 +12,7 @@ interface ScrollPopProps extends HTMLMotionProps<any> {
     as?: 'div' | 'section' | 'article' | 'li' | 'button' | 'span';
 }
 
-export default function ScrollPop({
+function ScrollPop({
     children,
     className,
     style,
@@ -44,3 +44,5 @@ export default function ScrollPop({
         </Tag>
     );
 }
+
+export default memo(ScrollPop);

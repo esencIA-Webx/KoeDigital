@@ -193,7 +193,7 @@ export default function Process() {
 
             <ScrollPop
                 delay={0.5}
-                className={styles.exploreBtnContainer}
+                className={styles.processCtaContainer}
                 style={{ marginTop: '4rem' }}
             >
                 <div style={{ display: 'inline-block' }}> {/* Wrapper for float animation inner */}

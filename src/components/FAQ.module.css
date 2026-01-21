@@ -61,6 +61,11 @@
     mask-repeat: no-repeat;
 }
 
+.faqTitlePrefix {
+    font-size: 4rem;
+    /* Default Desktop Size */
+}
+
 /* .waveSvgBottom removed as it is no longer used */
 
 .faqContainer {
@@ -228,6 +233,11 @@
 
     .answer {
         font-size: 0.9rem;
+    }
+
+    .faqTitlePrefix {
+        font-size: 2.5rem !important;
+        /* Smaller text for mobile */
     }
 }
 

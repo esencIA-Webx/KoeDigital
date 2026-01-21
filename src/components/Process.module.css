@@ -375,6 +375,22 @@
         font-size: 3rem;
     }
 
+    .navContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        padding: 0 2rem;
+    }
+
+    .navSticker {
+        font-size: 1rem;
+        padding: 0.8rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .cardsContainer {
         padding: 0 1rem;
         padding-bottom: 5rem;

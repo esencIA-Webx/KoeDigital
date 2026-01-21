@@ -104,7 +104,8 @@ export default function FAQ() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '4rem' }}>
                     <AnimatedTitle
                         text="PREGUNTAS"
-                        style={{ fontSize: '4rem', fontWeight: '800', color: 'var(--foreground)', textTransform: 'uppercase' }}
+                        className={styles.faqTitlePrefix}
+                        style={{ fontWeight: '800', color: 'var(--foreground)', textTransform: 'uppercase' }}
                         hoverColor="var(--text-yellow)"
                         shadowColor="#1D3557"
                         enableReveal={true}

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import { memo } from 'react';
 
 interface AnimatedTitleProps {
     text: string;
@@ -11,7 +12,7 @@ interface AnimatedTitleProps {
     style?: React.CSSProperties;
 }
 
-export default function AnimatedTitle({
+function AnimatedTitle({
     text,
     className,
     hoverColor = "var(--bg-coral)", // Default fallback
@@ -102,3 +103,5 @@ export default function AnimatedTitle({
         </Tag>
     );
 }
+
+export default memo(AnimatedTitle);

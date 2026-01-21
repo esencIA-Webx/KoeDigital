@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 import AnimatedTitle from './AnimatedTitle';
 import ScrollPop from './ScrollPop';
 
+const cardHover = { y: -8, transition: { type: "spring" as const, stiffness: 300 } };
+
 export default function Services() {
     const [activeTab, setActiveTab] = useState(1); // Default to second plan (Esencial)
 
@@ -95,7 +97,7 @@ export default function Services() {
                         // Add hiddenMobile class if not active tab (logic handled in CSS via media query to only apply on mobile)
                         className={`${styles.card} ${activeTab !== i ? styles.hiddenMobile : ''}`}
                         delay={i * 0.2}
-                        whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
+                        whileHover={cardHover}
                     >
                         <div className={styles.cardHeaderContent}>
                             <AnimatedTitle
