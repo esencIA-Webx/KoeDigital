@@ -70,38 +70,23 @@ export default function Manifesto() {
                                     delay={0.2}
                                 />
 
-                                {/* Part 2b: su voz (Cursive) */}
-                                {"su voz".split("").map((char, index) => (
-                                    <motion.span
-                                        key={`block2-part2-${index}`}
-                                        style={{
-                                            display: "inline-block",
-                                            fontFamily: 'var(--font-script)',
-                                            color: 'white',
-                                            whiteSpace: "pre",
-                                            textTransform: 'none',
-                                            fontSize: 'clamp(2rem, 4.5vw, 3.5rem)'
-                                        }}
-                                        variants={{
-                                            hidden: { opacity: 0, x: -20, rotate: -5 },
-                                            visible: {
-                                                opacity: 1,
-                                                x: 0,
-                                                rotate: 0,
-                                                transition: { type: "spring", damping: 12, stiffness: 100, delay: 0.3 }
-                                            }
-                                        }}
-                                        whileHover={{
-                                            y: -5,
-                                            rotate: -2,
-                                            scale: 1.1,
-                                            color: 'var(--orange-dark)',
-                                            transition: { duration: 0.2 }
-                                        }}
-                                    >
-                                        {char}
-                                    </motion.span>
-                                ))}
+                                {/* Part 2b: su voz (Royal Brand) */}
+                                <AnimatedTitle
+                                    text="su voz"
+                                    as="span"
+                                    style={{
+                                        fontFamily: 'var(--font-detail)',
+                                        fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                                        color: 'white',
+                                        display: 'inline-block',
+                                        marginLeft: '0.5rem',
+                                        textTransform: 'lowercase'
+                                    }}
+                                    hoverColor="var(--orange-dark)"
+                                    enableReveal={true}
+                                    revealDirection="right"
+                                    delay={0.3}
+                                />
                             </div>
                         </motion.h3>
                     </div>
