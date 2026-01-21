@@ -22,7 +22,9 @@ export default function AnimatedTitle({
     delay = 0.1, // Delay before starting animation
     style
 }: AnimatedTitleProps & { shadowColor?: string, enableReveal?: boolean, revealDirection?: 'left' | 'right', delay?: number }) {
-    const Tag = motion[as as keyof typeof motion] || motion.div; // Safe access to motion component
+    // Use 'any' cast to avoid "Type instantiation is excessively deep" error
+    // caused by strict typing of dynamic motion components with broad unions
+    const Tag = (motion as any)[as] || motion.div;
 
     // Variants for the container to stagger children
     const containerVariants = {
