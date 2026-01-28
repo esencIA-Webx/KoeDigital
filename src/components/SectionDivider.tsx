@@ -16,6 +16,7 @@ export default function SectionDivider({ children, id, style }: SectionDividerPr
             <div className={styles.contentContainer}>
                 {children}
             </div>
+            <div className={styles.waveDividerBottom}></div>
 
         </section>
     );

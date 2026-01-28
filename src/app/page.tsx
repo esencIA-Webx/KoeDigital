@@ -77,7 +77,7 @@ export default function Home() {
         <Services />
       </div>
 
-      <SectionDivider>
+      <SectionDivider style={{ zIndex: 40 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <AnimatedTitle
             text="NUESTRO"
@@ -95,14 +95,14 @@ export default function Home() {
           />
         </div>
       </SectionDivider>
-      <div id="portfolio">
+      <div id="portfolio" style={{ position: 'relative', zIndex: 45 }}>
         <Portfolio />
       </div>
-      <div id="faq">
+      <div id="faq" style={{ position: 'relative', zIndex: 50 }}>
         <FAQ />
       </div>
 
-      <div id="manifesto">
+      <div id="manifesto" style={{ position: 'relative', zIndex: 55 }}>
         <Manifesto />
       </div>
 

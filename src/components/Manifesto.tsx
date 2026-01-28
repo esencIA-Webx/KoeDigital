@@ -1,10 +1,48 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import styles from './Manifesto.module.css';
 import AnimatedTitle from './AnimatedTitle';
 
 export default function Manifesto() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+
+        const formData = new FormData(event.currentTarget);
+
+        // Web3Forms configuration
+        formData.append("access_key", "YOUR_ACCESS_KEY_HERE"); // Placeholder for user or default
+        formData.append("subject", "Nueva Cotización - Koe Digital");
+        formData.append("from_name", "Koe Digital Web");
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setSubmitStatus('success');
+                (event.target as HTMLFormElement).reset();
+            } else {
+                setSubmitStatus('error');
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
+
     return (
         <section className={styles.manifestoSection}>
             {/* Wave Divider Top */}
@@ -106,37 +144,37 @@ export default function Manifesto() {
                     }}
                     style={{ display: 'flex', flexDirection: 'column' }}
                 >
-                    <form className={styles.contactForm}>
+                    <form className={styles.contactForm} onSubmit={handleSubmit}>
                         <div className={styles.formRow}>
                             <div className={styles.formGroup}>
                                 <label className={styles.formLabel}>NOMBRE</label>
-                                <input type="text" className={styles.formInput} placeholder="Ingresá tu nombre" />
+                                <input name="nombre" type="text" className={styles.formInput} placeholder="Ingresá tu nombre" required />
                             </div>
                             <div className={styles.formGroup}>
                                 <label className={styles.formLabel}>APELLIDO</label>
-                                <input type="text" className={styles.formInput} placeholder="Ingresá tu apellido" />
+                                <input name="apellido" type="text" className={styles.formInput} placeholder="Ingresá tu apellido" required />
                             </div>
                         </div>
 
                         <div className={styles.formRow}>
                             <div className={styles.formGroup}>
                                 <label className={styles.formLabel}>EMAIL</label>
-                                <input type="email" className={styles.formInput} placeholder="Ingresá tu email" />
+                                <input name="email" type="email" className={styles.formInput} placeholder="Ingresá tu email" required />
                             </div>
                             <div className={styles.formGroup}>
                                 <label className={styles.formLabel}>TELÉFONO</label>
-                                <input type="tel" className={styles.formInput} placeholder="Ingresá tu teléfono" />
+                                <input name="telefono" type="tel" className={styles.formInput} placeholder="Ingresá tu teléfono" />
                             </div>
                         </div>
 
                         <div className={styles.formGroup}>
                             <label className={styles.formLabel}>ME INTERESA...</label>
-                            <input type="text" className={styles.formInput} placeholder="Servicio" />
+                            <input name="interes" type="text" className={styles.formInput} placeholder="Servicio" />
                         </div>
 
                         <div className={styles.formGroup}>
                             <label className={styles.formLabel}>CONTANOS UN POCO MÁS</label>
-                            <textarea className={styles.formTextarea} placeholder="Escribí un breve mensaje" rows={4}></textarea>
+                            <textarea name="mensaje" className={styles.formTextarea} placeholder="Escribí un breve mensaje" rows={4}></textarea>
                         </div>
 
                         <motion.div
@@ -144,13 +182,14 @@ export default function Manifesto() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5 }}
-                            style={{ marginTop: '1rem' }}
+                            style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.5rem' }}
                         >
                             <motion.button
                                 type="submit"
+                                disabled={isSubmitting}
                                 className={styles.submitBtn}
-                                style={{ alignSelf: 'flex-end' }}
-                                animate={{
+                                style={{ alignSelf: 'flex-end', opacity: isSubmitting ? 0.7 : 1 }}
+                                animate={isSubmitting ? {} : {
                                     y: [0, -8, 0],
                                     rotate: -2
                                 }}
@@ -170,8 +209,19 @@ export default function Manifesto() {
                                 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                Enviar
+                                {isSubmitting ? 'Enviando...' : 'Enviar'}
                             </motion.button>
+
+                            {submitStatus === 'success' && (
+                                <p style={{ color: 'var(--olive-light)', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                                    ¡Mensaje enviado con éxito!
+                                </p>
+                            )}
+                            {submitStatus === 'error' && (
+                                <p style={{ color: 'var(--orange-dark)', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                                    Error al enviar. Intenta nuevamente.
+                                </p>
+                            )}
                         </motion.div>
                     </form>
                 </motion.div>
@@ -179,3 +229,4 @@ export default function Manifesto() {
         </section >
     );
 }
+
