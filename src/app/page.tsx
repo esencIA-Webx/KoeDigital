@@ -13,6 +13,8 @@ import SectionDivider from "@/components/SectionDivider";
 import BrandTitle from "@/components/BrandTitle";
 import AnimatedTitle from "@/components/AnimatedTitle";
 
+import Contact from "@/components/Contact";
+
 export default function Home() {
   return (
     <main>
@@ -106,9 +108,12 @@ export default function Home() {
         <Manifesto />
       </div>
 
-      <div id="contacto">
+      <Contact />
+
+      <footer>
         <Footer />
-      </div>
+      </footer>
+
     </main>
   );
 }
