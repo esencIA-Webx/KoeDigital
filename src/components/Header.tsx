@@ -66,12 +66,6 @@ const SECTION_THEME: { [key: string]: SectionTheme } = {
         shadowColor: 'var(--text-navy)',
         borderColor: 'var(--text-navy)'
     },
-    'manifesto': {
-        themeColor: 'var(--text-yellow)',  // Matches Quote text
-        textColor: 'var(--green-dark)',    // Contrast on white pill
-        shadowColor: 'var(--green-light)', // CHANGED: Matches Card Shadow (Light Green)
-        borderColor: 'var(--green-light)'  // CHANGED: Matches Card Border
-    },
     'contacto': {
         themeColor: 'var(--text-yellow)',
         textColor: 'var(--green-dark)',

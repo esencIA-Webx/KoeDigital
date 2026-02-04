@@ -106,7 +106,7 @@ export default function Home() {
         <FAQ />
       </div>
 
-      <div id="manifesto" style={{ position: 'relative', zIndex: 55 }}>
+      <div id="contacto" style={{ position: 'relative', zIndex: 55 }}>
         <Manifesto />
       </div>
 
