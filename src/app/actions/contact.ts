@@ -16,6 +16,7 @@ export async function sendContactEmail(formData: FormData) {
 
     const emailUser = process.env.EMAIL_USER;
     const emailPass = process.env.EMAIL_PASS;
+    const emailRecipient = process.env.CONTACT_RECIPIENT_EMAIL || emailUser;
 
     if (!emailUser || !emailPass) {
         console.error("EMAIL_USER or EMAIL_PASS environment variables are not set.");
@@ -34,8 +35,8 @@ export async function sendContactEmail(formData: FormData) {
 
     try {
         await transporter.sendMail({
-            from: `"${fullName}" <${emailUser}>`,
-            to: emailUser,
+            from: `"Koe Digital - Web" <${emailUser}>`,
+            to: emailRecipient,
             replyTo: email,
             subject: `Nuevo mensaje de contacto: ${fullName}`,
             text: `
@@ -65,8 +66,16 @@ export async function sendContactEmail(formData: FormData) {
         });
 
         return { success: true };
-    } catch (error) {
-        console.error("Error sending email:", error);
-        return { success: false, error: "Hubo un problema al enviar el correo. Inténtalo más tarde." };
+    } catch (error: any) {
+        console.error("CRITICAL ERROR sending email:", {
+            message: error.message,
+            stack: error.stack,
+            recipient: emailRecipient,
+            sender: emailUser
+        });
+        return {
+            success: false,
+            error: `Error al enviar el correo: ${error.message || "Error desconocido"}`
+        };
     }
 }

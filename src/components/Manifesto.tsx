@@ -8,7 +8,8 @@ import { sendContactEmail } from '@/app/actions/contact';
 
 export default function Manifesto() {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState("");
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -25,9 +26,11 @@ export default function Manifesto() {
                 (event.target as HTMLFormElement).reset();
             } else {
                 setSubmitStatus('error');
+                // We can log or handle result.error if we want to show it to the user
+                console.error("Server Action Error:", result.error);
             }
         } catch (error) {
-            console.error("Error submitting form:", error);
+            console.error("Network or Unexpected Error:", error);
             setSubmitStatus('error');
         } finally {
             setIsSubmitting(false);
@@ -203,14 +206,14 @@ export default function Manifesto() {
                                 {isSubmitting ? 'Enviando...' : 'Enviar'}
                             </motion.button>
 
-                            {submitStatus === 'success' && (
+                            {status === 'success' && (
                                 <p style={{ color: 'var(--olive-light)', fontSize: '0.8rem', fontWeight: 'bold' }}>
                                     ¡Mensaje enviado con éxito!
                                 </p>
                             )}
-                            {submitStatus === 'error' && (
-                                <p style={{ color: 'var(--orange-dark)', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                                    Error al enviar. Intenta nuevamente.
+                            {status === 'error' && (
+                                <p style={{ color: 'var(--orange-dark)', fontSize: '0.8rem', fontWeight: 'bold', textAlign: 'right', maxWidth: '300px' }}>
+                                    {errorMessage}
                                 </p>
                             )}
                         </motion.div>
