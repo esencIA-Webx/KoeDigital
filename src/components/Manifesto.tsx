@@ -14,7 +14,8 @@ export default function Manifesto() {
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         setIsSubmitting(true);
-        setSubmitStatus('idle');
+        setStatus('idle');
+        setErrorMessage("");
 
         const formData = new FormData(event.currentTarget);
 
@@ -22,16 +23,17 @@ export default function Manifesto() {
             const result = await sendContactEmail(formData);
 
             if (result.success) {
-                setSubmitStatus('success');
+                setStatus('success');
                 (event.target as HTMLFormElement).reset();
             } else {
-                setSubmitStatus('error');
-                // We can log or handle result.error if we want to show it to the user
+                setStatus('error');
+                setErrorMessage(result.error || "Error al enviar el formulario.");
                 console.error("Server Action Error:", result.error);
             }
-        } catch (error) {
-            console.error("Network or Unexpected Error:", error);
-            setSubmitStatus('error');
+        } catch (error: any) {
+            console.error("Error submitting form:", error);
+            setStatus('error');
+            setErrorMessage("Error de conexión con el servidor.");
         } finally {
             setIsSubmitting(false);
         }
