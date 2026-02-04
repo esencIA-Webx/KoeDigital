@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import styles from './Manifesto.module.css';
 import AnimatedTitle from './AnimatedTitle';
+import { sendContactEmail } from '@/app/actions/contact';
 
 export default function Manifesto() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,20 +17,10 @@ export default function Manifesto() {
 
         const formData = new FormData(event.currentTarget);
 
-        // Web3Forms configuration
-        formData.append("access_key", "YOUR_ACCESS_KEY_HERE"); // Placeholder for user or default
-        formData.append("subject", "Nueva Cotización - Koe Digital");
-        formData.append("from_name", "Koe Digital Web");
-
         try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: formData
-            });
+            const result = await sendContactEmail(formData);
 
-            const data = await response.json();
-
-            if (data.success) {
+            if (result.success) {
                 setSubmitStatus('success');
                 (event.target as HTMLFormElement).reset();
             } else {
