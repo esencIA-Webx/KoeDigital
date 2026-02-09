@@ -105,7 +105,7 @@ export default function Services() {
                                 as="h3"
                                 className={styles.cardTitle}
                                 hoverColor="var(--cyan-medium)" // Matching Services theme
-                                enableReveal={true}
+                                enableReveal={false}
                             />
                             {/* Price removed */}
                             <p className={styles.cardDesc}>{plan.desc}</p>
@@ -117,7 +117,7 @@ export default function Services() {
                                 as="h4"
                                 className={styles.sectionTitle}
                                 hoverColor="var(--cyan-medium)"
-                                enableReveal={true}
+                                enableReveal={false}
                             />
                             <ul className={styles.detailList}>
                                 {plan.includes.map((item, idx) => (
@@ -134,7 +134,7 @@ export default function Services() {
                                 as="h4"
                                 className={styles.sectionTitle}
                                 hoverColor="var(--cyan-medium)"
-                                enableReveal={true}
+                                enableReveal={false}
                             />
                             <ul className={styles.detailList}>
                                 {plan.deliverables.map((item, idx) => (

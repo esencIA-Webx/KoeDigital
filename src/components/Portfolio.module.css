@@ -57,12 +57,56 @@
     display: inline-block;
 }
 
+.carouselContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+    .carouselContainer {
+        display: block;
+        overflow-x: auto;
+        padding: 1rem 1rem 3.5rem;
+        /* Added bottom padding for shadows */
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+        scroll-snap-type: x mandatory;
+        scroll-padding: 1.5rem;
+        scroll-behavior: smooth;
+    }
+
+    .carouselContainer::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari and Opera */
+    }
+
+    .grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1.25rem;
+        width: fit-content;
+        padding-right: 5rem;
+        /* Extra buffer */
+    }
+
+    .projectCard {
+        min-width: 280px;
+        width: 75vw;
+        max-width: 340px;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        user-select: none;
+    }
 }
 
 .projectCard {
@@ -144,6 +188,85 @@
 .viewBtn:hover {
     transform: translateY(-2px);
     box-shadow: 7px 7px 0px #1D3557;
+}
+
+/* Lightbox Styles */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 2147483647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: zoom-out;
+}
+
+.lightboxContent {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+    aspect-ratio: 16/9;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: default;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 3px solid #1D3557;
+}
+
+.fullImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.fullImage {
+    object-fit: contain;
+    background-color: #f7f3f0;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-coral);
+    color: white;
+    border: 2px solid #1D3557;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 0px #1D3557;
+}
+
+.closeBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 6px 6px 0px #1D3557;
+}
+
+@media (max-width: 768px) {
+    .lightbox {
+        padding: 1rem;
+    }
+
+    .lightboxContent {
+        aspect-ratio: auto;
+        height: 80vh;
+    }
 }
 
 .viewBtn:active {
