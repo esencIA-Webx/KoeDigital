@@ -67,7 +67,7 @@ export default function AboutIntro() {
                         whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                     >
                         <Image
-                            src="/Sofi.png?v=3"
+                            src="/Sofi_new.png"
                             alt="Sofi"
                             width={300}
                             height={420}
@@ -86,7 +86,7 @@ export default function AboutIntro() {
                         whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                     >
                         <Image
-                            src="/Ceci.png?v=3"
+                            src="/Ceci_new.png"
                             alt="Ceci"
                             width={300}
                             height={420}
