@@ -250,9 +250,7 @@
     box-shadow: 0px 0px 0px #7da1b9 !important;
 }
 
-.hiddenMobile {
-    /* Class to toggle visibility on mobile */
-}
+
 
 @media (max-width: 900px) {
     .grid {
