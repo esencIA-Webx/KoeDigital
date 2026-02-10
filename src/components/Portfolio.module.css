@@ -95,8 +95,8 @@
         flex-wrap: nowrap;
         gap: 1.25rem;
         width: fit-content;
-        padding-right: 5rem;
-        /* Extra buffer */
+        padding-right: 2rem;
+        /* Reduced from 5rem - ensures end of list feels natural */
     }
 
     .projectCard {

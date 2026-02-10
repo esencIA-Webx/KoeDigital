@@ -193,8 +193,9 @@
     }
 
     .navButton {
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
+        /* Increased to meet 48px min touch target */
         font-size: 1.2rem;
     }
 
@@ -203,11 +204,12 @@
     }
 
     .question {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        /* Increased for legibility */
     }
 
     .answer {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
 
     .dot {
@@ -222,17 +224,19 @@
     }
 
     .navButton {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
+        width: 48px;
+        height: 48px;
+        /* Kept at 48px even on small screens for ergonomics */
+        font-size: 1.2rem;
     }
 
     .question {
-        font-size: 1rem;
+        font-size: 1.25rem;
+        /* Readable Minimum */
     }
 
     .answer {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
     }
 
     .faqTitlePrefix {

@@ -140,11 +140,13 @@
 
     .socialContainer {
         justify-content: center;
-        margin-top: 1rem;
+        margin-top: 2rem;
+        /* More breathing room */
     }
 
     .socialIcons {
-        gap: 1.5rem;
+        gap: 2rem;
+        /* Increased spacing */
     }
 
     .iconLink {

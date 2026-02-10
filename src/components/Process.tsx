@@ -78,15 +78,22 @@ export default function Process() {
                 whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
             >
                 <div className={styles.descriptionText} style={{ margin: 0, padding: 0 }}>
-                    <p className={styles.introCardTitle}>
-                        <AnimatedTitle
-                            text="En KOE no aplicamos fórmulas genéricas."
-                            as="span"
-                            hoverColor="var(--pink-dark)"
-                            style={{ display: 'inline-block' }}
-                        />
-                    </p>
-                    <p>Ofrecemos un servicio 100% personalizado, donde cada estrategia, diseño y acción está pensada a medida del negocio y alineada a objetivos concretos.</p>
+                    <div className={styles.introCardHeader}>
+                        <p className={styles.introCardTitle}>
+                            <AnimatedTitle
+                                text="En KOE no aplicamos fórmulas genéricas."
+                                as="span"
+                                hoverColor="var(--pink-dark)"
+                                style={{ display: 'inline-block' }}
+                            />
+                        </p>
+                        <p>
+                            Ofrecemos un servicio 100% personalizado, <br className={styles.mobileBreak} />
+                            donde cada estrategia, diseño y acción <br className={styles.mobileBreak} />
+                            está pensada a medida del negocio <br className={styles.mobileBreak} />
+                            y alineada a objetivos concretos.
+                        </p>
+                    </div>
                     <ul>
                         <li>Visión integral: marca, comunicación y resultados.</li>
                         <li>Estudio del mercado y la competencia directa.</li>
@@ -112,7 +119,7 @@ export default function Process() {
                             aria-current={currentIndex === index ? 'step' : undefined}
                             // Floating animation
                             animate={{
-                                y: [0, -8, 0],
+                                y: [0, -5, 0],
                                 rotate: 0 // Maintain base rotation logic
                             }}
                             transition={{

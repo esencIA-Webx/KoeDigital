@@ -46,11 +46,13 @@ export default function Hero() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
+                    disablePictureInPicture
                     onEnded={() => setIsPlaying(false)}
                 >
-                    {/* Mobile Source (Prioritized) */}
-                    <source src="/KoeVert.mov" type="video/quicktime" media="(max-width: 768px)" />
+                    {/* Mobile Source (Prioritized - MP4 First for Speed) */}
                     <source src="/KoeVert.mov" type="video/mp4" media="(max-width: 768px)" />
+                    <source src="/KoeVert.mov" type="video/quicktime" media="(max-width: 768px)" />
 
                     {/* Desktop Source */}
                     <source src="/Koe.mov" type="video/quicktime" />

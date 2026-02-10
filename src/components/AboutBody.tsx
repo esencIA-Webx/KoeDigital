@@ -25,27 +25,44 @@ export default function AboutBody() {
             {/* Using texture background to follow divider */}
             <div className={styles.contentContainer}>
                 <div className={styles.textColumn}>
-                    <motion.div
-                        className={styles.institutionalBlock}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        viewport={{ once: true }}
-                    >
-                        {/* Presentation Card (Content Only) */}
+                    {/* Mobile Layout: 3 Split Cards */}
+                    <div className={styles.mobileOnly}>
+                        {/* Card 1: Mission (Short Paragraph) */}
                         <ScrollPop
                             className={styles.presentationCard}
                             whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                             delay={0.2}
                         >
                             <div className={styles.brandContent}>
-                                <p>Somos una agencia de marketing digital que acompaña a marcas, emprendedores y negocios en el desarrollo de su comunicación, estrategia y presencia digital.</p>
+                                <p>
+                                    Somos una agencia de marketing digital que acompaña a marcas, emprendedores y negocios en el desarrollo de su comunicación, estrategia y presencia digital.
+                                </p>
+                            </div>
+                        </ScrollPop>
+
+                        {/* Card 2: Agency Description Part 1 */}
+                        <ScrollPop
+                            className={styles.presentationCard}
+                            whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
+                            delay={0.3}
+                        >
+                            <div className={styles.brandContent}>
                                 <p>El trabajo en KOE parte siempre del entendimiento profundo del negocio, su contexto, sus objetivos y su mercado, para luego diseñar <AnimatedTitle
                                     text="estrategias personalizadas, realistas y sostenibles en el tiempo"
                                     as="span"
                                     style={{ fontWeight: '800', display: 'inline-block' }}
                                     hoverColor="var(--orange-dark)"
                                 />.</p>
+                            </div>
+                        </ScrollPop>
+
+                        {/* Card 3: Agency Description Part 2 */}
+                        <ScrollPop
+                            className={styles.presentationCard}
+                            whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
+                            delay={0.4}
+                        >
+                            <div className={styles.brandContent}>
                                 <p>No se trata solo de crear contenido, sino de <AnimatedTitle
                                     text="construir resultados"
                                     as="span"
@@ -54,7 +71,38 @@ export default function AboutBody() {
                                 />.</p>
                             </div>
                         </ScrollPop>
-                    </motion.div>
+                    </div>
+
+                    {/* Desktop Layout: 1 Unified Card */}
+                    <div className={styles.desktopOnly}>
+                        <ScrollPop
+                            className={styles.presentationCard}
+                            whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
+                            delay={0.2}
+                        >
+                            <div className={styles.brandContent}>
+                                <p>
+                                    Somos una agencia de marketing digital que acompaña a marcas, emprendedores y negocios en el desarrollo de su comunicación, estrategia y presencia digital.
+                                </p>
+                                <p>
+                                    El trabajo en KOE parte siempre del entendimiento profundo del negocio, su contexto, sus objetivos y su mercado, para luego diseñar <AnimatedTitle
+                                        text="estrategias personalizadas, realistas y sostenibles en el tiempo"
+                                        as="span"
+                                        style={{ fontWeight: '800', display: 'inline-block' }}
+                                        hoverColor="var(--orange-dark)"
+                                    />.
+                                </p>
+                                <p>
+                                    No se trata solo de crear contenido, sino de <AnimatedTitle
+                                        text="construir resultados"
+                                        as="span"
+                                        style={{ fontWeight: '800', display: 'inline-block' }}
+                                        hoverColor="var(--orange-dark)"
+                                    />.
+                                </p>
+                            </div>
+                        </ScrollPop>
+                    </div>
 
                     <div
                         className={styles.actionArea}
@@ -98,6 +146,6 @@ export default function AboutBody() {
                 viewport={{ once: true }}
             >
             </motion.div>
-        </section>
+        </section >
     );
 }

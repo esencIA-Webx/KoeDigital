@@ -349,7 +349,9 @@
     padding: 3rem;
     box-shadow: 10px 10px 0px var(--pink-light);
     border: 3px solid var(--pink-dark);
-    max-width: 800px;
+    max-width: 900px;
+    /* Matched to About cards */
+    width: 100%;
     margin: 0 auto 4rem auto;
     position: relative;
     z-index: 1;
@@ -361,12 +363,30 @@
     box-shadow: 12px 12px 0px var(--pink-light);
 }
 
-.introCardTitle {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--pink-dark);
-    margin-bottom: 1rem;
-    font-family: var(--font-roca), serif;
+.introCardHeader {
+    margin-bottom: 2rem;
+    /* Separation from bullets */
+}
+
+/* ... introCardTitle ... */
+
+.mobileBreak {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .introCard {
+        padding: 2rem;
+        /* Matches About card mobile padding */
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .mobileBreak {
+        display: block;
+        height: 0.5rem;
+        content: "";
+    }
 }
 
 /* Responsive Styles */
@@ -378,7 +398,8 @@
     .navContainer {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        gap: 1.25rem;
+        /* Increased spacing */
         padding: 0 2rem;
     }
 
@@ -401,6 +422,12 @@
 
     .processCard {
         padding: 1.5rem;
+    }
+
+    .introCard {
+        padding: 1.5rem;
+        width: auto;
+        margin: 0 1rem 2rem 1rem;
     }
 
     .navButton {

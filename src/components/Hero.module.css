@@ -34,6 +34,10 @@
     height: 100%;
     object-fit: cover;
     opacity: 1;
+    /* CSS Poster Strategy: Background image shows while video loads */
+    background-image: url('/Marco.png');
+    background-size: cover;
+    background-position: center;
 }
 
 /* Unused Content Overlay Styles Removed */
@@ -97,7 +101,7 @@
 
 @media (max-width: 768px) {
     .playBtnContainer {
-        bottom: 5rem;
+        bottom: 7rem;
         right: 1.5rem;
     }
 
@@ -112,5 +116,9 @@
         font-size: 0.7rem;
         top: 10%;
         right: 5%;
+    }
+
+    .heroVideo {
+        background-image: url('/MarcoVert.png');
     }
 }

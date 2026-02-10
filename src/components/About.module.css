@@ -88,36 +88,42 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
+    /* Reduced from 3rem for split cards rhythm */
     text-align: center;
     color: var(--text-navy);
 }
 
-.sectionHeading {
-    font-family: var(--font-roca), serif;
-    font-weight: 400;
-    font-size: clamp(2.5rem, 6vw, 3.5rem);
-    margin-bottom: 1.5rem;
-}
-
-.introText {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    max-width: 100%;
-    margin: 0;
-    font-weight: 500;
-}
+/* ... */
 
 .presentationCard {
     background: white;
     border: 3px solid var(--text-navy);
     box-shadow: 10px 10px 0px var(--text-navy);
     border-radius: 12px;
-    padding: 3rem;
+    padding: 2.5rem;
+    /* Slightly less padding for multiple cards */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     max-width: 900px;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 0;
+    /* Layout handled by flex gap */
+}
+
+.mobileBreak {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .presentationCard {
+        padding: 1.5rem;
+    }
+
+    .mobileBreak {
+        display: block;
+        height: 0.5rem;
+        content: "";
+    }
 }
 
 .presentationCard:hover {
@@ -415,4 +421,24 @@
 
 .aboutIntroSection .introText {
     color: var(--bg-cream-light);
+}
+
+.mobileOnly {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.desktopOnly {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .mobileOnly {
+        display: none;
+    }
+
+    .desktopOnly {
+        display: block;
+    }
 }

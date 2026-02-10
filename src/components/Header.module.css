@@ -1,6 +1,6 @@
 .headerWrapper {
     position: fixed;
-    top: 2rem;
+    top: 1.5rem;
     left: 0;
     width: 100%;
     z-index: 1000;
@@ -247,7 +247,7 @@
         transition: all 0.2s ease;
         z-index: 2;
         /* Keep above logo/drawer */
-        
+
         /* Init styles handled by inline dynamic props */
     }
 
@@ -277,7 +277,8 @@
         padding: 6rem 2rem 2rem;
         /* Top padding to avoid header */
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 2.5rem;
+        /* Increased from 1.5rem for better touch separation */
         align-items: center;
         justify-content: center;
         transform: translateY(-100%);
@@ -342,8 +343,13 @@
 
     .contactBtn {
         margin-left: 0;
-        margin-top: 1rem;
-        font-size: 1rem;
-        padding: 1rem 2.5rem;
+        margin-top: 2.5rem;
+        /* Increased separation from links */
+        font-size: 1.1rem;
+        /* Slightly larger font */
+        padding: 1.2rem 3rem;
+        /* Larger touch target */
+        box-shadow: 6px 6px 0px var(--text-navy);
+        /* Stronger shadow */
     }
 }
