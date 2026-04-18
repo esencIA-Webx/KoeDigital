@@ -61,6 +61,13 @@ function AnimatedTitle({
     // Default display based on 'as' prop
     const defaultDisplay = (as === 'span' || (as as string) === 'a') ? 'inline-block' : 'block';
 
+    // Manejo óptimo de transiciones para evitar instanciamientos por cada render.
+    const defaultSpringParams = {
+        type: "spring" as const,
+        stiffness: 150,
+        damping: 15
+    };
+
     return (
         <Tag
             className={className}
@@ -68,7 +75,7 @@ function AnimatedTitle({
             // Apply animations only if enableReveal is true
             initial={enableReveal ? "hidden" : undefined}
             whileInView={enableReveal ? "visible" : undefined}
-            viewport={enableReveal ? { once: false, margin: "-10%" } : undefined}
+            viewport={enableReveal ? { once: true, margin: "0px" } : undefined}
             variants={enableReveal ? containerVariants : undefined}
         >
             {text.split(" ").map((word, wordIndex) => (
@@ -78,15 +85,12 @@ function AnimatedTitle({
                             key={charIndex}
                             style={{
                                 display: "inline-block",
-                                color: 'inherit'
+                                color: 'inherit',
+                                willChange: enableReveal ? "transform, opacity" : "auto"
                             }}
                             // If reveal is enabled, use variants. Otherwise just hover.
                             variants={enableReveal ? letterVariants : undefined}
-                            transition={{
-                                type: "spring",
-                                stiffness: 150,
-                                damping: 15
-                            }}
+                            transition={defaultSpringParams}
                             whileHover={{
                                 y: -5, // Reduced movement for inline text
                                 rotate: -2,

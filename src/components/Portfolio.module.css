@@ -122,9 +122,11 @@
     flex-direction: column;
 }
 
-.projectCard:hover {
-    transform: translateY(-8px);
-    box-shadow: 12px 12px 0px #1D3557;
+@media (hover: hover) and (pointer: fine) {
+    .projectCard:hover {
+        transform: translateY(-8px);
+        box-shadow: 12px 12px 0px #1D3557;
+    }
 }
 
 .imageContainer {
@@ -185,9 +187,11 @@
     transition: all 0.2s ease;
 }
 
-.viewBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 7px 7px 0px #1D3557;
+@media (hover: hover) and (pointer: fine) {
+    .viewBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 7px 7px 0px #1D3557;
+    }
 }
 
 /* Lightbox Styles */
@@ -253,9 +257,11 @@
     box-shadow: 4px 4px 0px #1D3557;
 }
 
-.closeBtn:hover {
-    transform: scale(1.1);
-    box-shadow: 6px 6px 0px #1D3557;
+@media (hover: hover) and (pointer: fine) {
+    .closeBtn:hover {
+        transform: scale(1.1);
+        box-shadow: 6px 6px 0px #1D3557;
+    }
 }
 
 @media (max-width: 768px) {

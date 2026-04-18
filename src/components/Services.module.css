@@ -117,9 +117,11 @@
     transition: all 0.2s ease;
 }
 
-.tabButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 6px 6px 0px #c1dcfd;
+@media (hover: hover) and (pointer: fine) {
+    .tabButton:hover {
+        transform: translateY(-2px);
+        box-shadow: 6px 6px 0px #c1dcfd;
+    }
 }
 
 .tabButton:active {
@@ -240,9 +242,11 @@
     border-color: #c1dcfd !important;
 }
 
-.activeTab:hover {
-    transform: translateY(-2px);
-    box-shadow: 6px 6px 0px #7da1b9 !important;
+@media (hover: hover) and (pointer: fine) {
+    .activeTab:hover {
+        transform: translateY(-2px);
+        box-shadow: 6px 6px 0px #7da1b9 !important;
+    }
 }
 
 .activeTab:active {
@@ -302,10 +306,12 @@
     flex-direction: column;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 12px 12px 0px #7da1b9;
-    opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 12px 12px 0px #7da1b9;
+        opacity: 1;
+    }
 }
 
 .cardHeaderContent {
@@ -428,11 +434,13 @@
     cursor: pointer;
 }
 
-.cardBtn:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 8px 8px 0px #7da1b9;
-    background: #c1dcfd;
-    opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+    .cardBtn:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 8px 8px 0px #7da1b9;
+        background: #c1dcfd;
+        opacity: 1;
+    }
 }
 
 .cardBtn:active {

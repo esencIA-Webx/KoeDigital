@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -67,9 +68,11 @@
     color: var(--text-navy);
 }
 
-.playToggleBtn:hover {
-    transform: scale(1.1);
-    background: var(--olive-light);
+@media (hover: hover) and (pointer: fine) {
+    .playToggleBtn:hover {
+        transform: scale(1.1);
+        background: var(--olive-light);
+    }
 }
 
 .playToggleBtn:active {

@@ -1,17 +1,20 @@
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 // import About from "@/components/About"; // Deprecated -> Removed
 import AboutIntro from "@/components/AboutIntro";
-import AboutBody from "@/components/AboutBody";
-import Process from "@/components/Process";
-import Services from "@/components/Services";
-import Portfolio from "@/components/Portfolio";
-import FAQ from "@/components/FAQ";
-import Manifesto from "@/components/Manifesto";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
 import BrandTitle from "@/components/BrandTitle";
 import AnimatedTitle from "@/components/AnimatedTitle";
+
+// Lazy Loaded Sections (Below the fold)
+const AboutBody = dynamic(() => import("@/components/AboutBody"));
+const Process = dynamic(() => import("@/components/Process"));
+const Services = dynamic(() => import("@/components/Services"));
+const Portfolio = dynamic(() => import("@/components/Portfolio"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const Manifesto = dynamic(() => import("@/components/Manifesto"));
 
 
 

@@ -206,11 +206,13 @@
     border-radius: 12px;
 }
 
-.navSticker:hover {
-    color: var(--pink-light);
-    box-shadow: 10px 10px 0px var(--pink-light);
-    z-index: 10;
-    transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+    .navSticker:hover {
+        color: var(--pink-light);
+        box-shadow: 10px 10px 0px var(--pink-light);
+        z-index: 10;
+        transform: translateY(-2px);
+    }
 }
 
 .navSticker:active {
@@ -226,10 +228,12 @@
     border-color: var(--pink-dark);
 }
 
-.activeSticker:hover {
-    background: var(--pink-light);
-    color: white;
-    box-shadow: 10px 10px 0px var(--pink-dark);
+@media (hover: hover) and (pointer: fine) {
+    .activeSticker:hover {
+        background: var(--pink-light);
+        color: white;
+        box-shadow: 10px 10px 0px var(--pink-dark);
+    }
 }
 
 .processCard {
@@ -249,9 +253,11 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.processCard:hover {
-    transform: translateY(-8px);
-    box-shadow: 12px 12px 0px var(--pink-light);
+@media (hover: hover) and (pointer: fine) {
+    .processCard:hover {
+        transform: translateY(-8px);
+        box-shadow: 12px 12px 0px var(--pink-light);
+    }
 }
 
 .cardHeader {
@@ -328,13 +334,15 @@
     text-decoration: none;
 }
 
-.exploreBtn:hover {
-    /* transforms handled by motion */
-    box-shadow: 10px 10px 0px var(--pink-dark);
-    color: white;
-    background: var(--pink-light) !important;
-    opacity: 1 !important;
-    /* Force opacity 1 */
+@media (hover: hover) and (pointer: fine) {
+    .exploreBtn:hover {
+        /* transforms handled by motion */
+        box-shadow: 10px 10px 0px var(--pink-dark);
+        color: white;
+        background: var(--pink-light) !important;
+        opacity: 1 !important;
+        /* Force opacity 1 */
+    }
 }
 
 .exploreBtn:active {
@@ -358,9 +366,11 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.introCard:hover {
-    transform: translateY(-8px);
-    box-shadow: 12px 12px 0px var(--pink-light);
+@media (hover: hover) and (pointer: fine) {
+    .introCard:hover {
+        transform: translateY(-8px);
+        box-shadow: 12px 12px 0px var(--pink-light);
+    }
 }
 
 .introCardHeader {
@@ -436,8 +446,10 @@
         transform: translateY(0);
     }
 
-    .navButton:hover {
-        transform: translateY(0) scale(1.1);
+    @media (hover: hover) and (pointer: fine) {
+        .navButton:hover {
+            transform: translateY(0) scale(1.1);
+        }
     }
 
     .navButton:active {

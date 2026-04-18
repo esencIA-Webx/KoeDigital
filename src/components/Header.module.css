@@ -55,11 +55,13 @@
     white-space: nowrap;
 }
 
-.navLink:hover {
-    opacity: 1;
-    /* Keep opacity full to show colors clearly */
-    color: var(--orange-dark);
-    /* Optional: Change text color to match active state if desired, or keep as is */
+@media (hover: hover) and (pointer: fine) {
+    .navLink:hover {
+        opacity: 1;
+        /* Keep opacity full to show colors clearly */
+        color: var(--orange-dark);
+        /* Optional: Change text color to match active state if desired, or keep as is */
+    }
 }
 
 /* 3 Strokes Animation (Top) - Custom Shape using SVG */
@@ -80,9 +82,11 @@
     pointer-events: none;
 }
 
-.navLink:hover::before {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+@media (hover: hover) and (pointer: fine) {
+    .navLink:hover::before {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* Underline Animation (Bottom) - Fade In only (No width expansion) */
@@ -102,8 +106,10 @@
     pointer-events: none;
 }
 
-.navLink:hover::after {
-    opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+    .navLink:hover::after {
+        opacity: 1;
+    }
 }
 
 
@@ -156,9 +162,11 @@
     transition: all 0.2s ease;
 }
 
-.contactBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 7px 7px 0px var(--text-navy);
+@media (hover: hover) and (pointer: fine) {
+    .contactBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 7px 7px 0px var(--text-navy);
+    }
 }
 
 .contactBtn:active {
@@ -251,9 +259,11 @@
         /* Init styles handled by inline dynamic props */
     }
 
-    .mobileMenuBtn:hover {
-        transform: translateY(-2px);
-        box-shadow: 7px 7px 0px var(--text-navy);
+    @media (hover: hover) and (pointer: fine) {
+        .mobileMenuBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 7px 7px 0px var(--text-navy);
+        }
     }
 
     .mobileMenuBtn:active {
@@ -317,10 +327,16 @@
         pointer-events: none;
     }
 
-    .mobileLink:active::before,
-    .mobileLink:hover::before {
+    .mobileLink:active::before {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .mobileLink:hover::before {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
     }
 
     .mobileLink::after {
@@ -336,9 +352,14 @@
         pointer-events: none;
     }
 
-    .mobileLink:active::after,
-    .mobileLink:hover::after {
+    .mobileLink:active::after {
         opacity: 1;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .mobileLink:hover::after {
+            opacity: 1;
+        }
     }
 
     .contactBtn {

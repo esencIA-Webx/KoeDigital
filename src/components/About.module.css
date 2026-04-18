@@ -57,10 +57,12 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.photoContainerSofi:hover,
-.photoContainerCeci:hover {
-    transform: translateY(-8px) rotate(0deg) !important;
-    box-shadow: 16px 16px 0px var(--text-navy);
+@media (hover: hover) and (pointer: fine) {
+    .photoContainerSofi:hover,
+    .photoContainerCeci:hover {
+        transform: translateY(-8px) rotate(0deg) !important;
+        box-shadow: 16px 16px 0px var(--text-navy);
+    }
 }
 
 .photoContainerSofi {
@@ -126,9 +128,11 @@
     }
 }
 
-.presentationCard:hover {
-    transform: translateY(-8px);
-    box-shadow: 12px 12px 0px var(--text-navy);
+@media (hover: hover) and (pointer: fine) {
+    .presentationCard:hover {
+        transform: translateY(-8px);
+        box-shadow: 12px 12px 0px var(--text-navy);
+    }
 }
 
 .introCard {
@@ -144,9 +148,11 @@
     display: block;
 }
 
-.introCard:hover {
-    transform: translateY(-8px);
-    box-shadow: 12px 12px 0px var(--text-navy);
+@media (hover: hover) and (pointer: fine) {
+    .introCard:hover {
+        transform: translateY(-8px);
+        box-shadow: 12px 12px 0px var(--text-navy);
+    }
 }
 
 .institutionalBlock {
@@ -226,9 +232,11 @@
     transition: all 0.2s ease;
 }
 
-.contactButton:hover {
-    transform: translateY(-3px);
-    box-shadow: 10px 10px 0px var(--text-navy);
+@media (hover: hover) and (pointer: fine) {
+    .contactButton:hover {
+        transform: translateY(-3px);
+        box-shadow: 10px 10px 0px var(--text-navy);
+    }
 }
 
 .contactButton:active {
@@ -402,9 +410,11 @@
     box-shadow: 12px 12px 0px var(--green-light);
 }
 
-.aboutIntroSection .photoContainerSofi:hover,
-.aboutIntroSection .photoContainerCeci:hover {
-    box-shadow: 16px 16px 0px var(--green-light);
+@media (hover: hover) and (pointer: fine) {
+    .aboutIntroSection .photoContainerSofi:hover,
+    .aboutIntroSection .photoContainerCeci:hover {
+        box-shadow: 16px 16px 0px var(--green-light);
+    }
 }
 
 /* Intro Card Override for Dark Theme */
@@ -415,8 +425,10 @@
     color: var(--bg-cream-light);
 }
 
-.aboutIntroSection .introCard:hover {
-    box-shadow: 12px 12px 0px var(--green-light);
+@media (hover: hover) and (pointer: fine) {
+    .aboutIntroSection .introCard:hover {
+        box-shadow: 12px 12px 0px var(--green-light);
+    }
 }
 
 .aboutIntroSection .introText {

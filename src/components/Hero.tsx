@@ -51,12 +51,10 @@ export default function Hero() {
                     onEnded={() => setIsPlaying(false)}
                 >
                     {/* Mobile Source (Prioritized - MP4 First for Speed) */}
-                    <source src="/KoeVert.mov" type="video/mp4" media="(max-width: 768px)" />
-                    <source src="/KoeVert.mov" type="video/quicktime" media="(max-width: 768px)" />
+                    <source src="/Koevert.mp4" type="video/mp4" media="(max-width: 768px)" />
 
                     {/* Desktop Source */}
-                    <source src="/Koe.mov" type="video/quicktime" />
-                    <source src="/Koe.mov" type="video/mp4" />
+                    <source src="/Koe.mp4" type="video/mp4" />
                 </video>
             </div>
 
