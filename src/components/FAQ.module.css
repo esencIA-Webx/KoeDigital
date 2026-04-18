@@ -258,4 +258,8 @@
     .faqItem {
         padding: 1rem;
     }
+
+    .waveDividerBottom {
+        display: none !important;
+    }
 }

@@ -447,3 +447,17 @@
     transform: translateY(6px) translateX(8px) scale(1.05);
     box-shadow: 0px 0px 0px #7da1b9;
 }
+
+@media (max-width: 1024px) {
+    .servicesSection,
+    .waveDividerTop {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Ocultar ola solicitada en Mobile */
+@media (max-width: 768px) {
+    .waveDividerTop {
+        display: none !important;
+    }
+}

@@ -35,10 +35,18 @@
     height: 100%;
     object-fit: cover;
     opacity: 1;
-    /* CSS Poster Strategy: Background image shows while video loads */
-    background-image: url('/Marco.png');
     background-size: cover;
     background-position: center;
+}
+
+.desktopVideo {
+    display: block;
+    background-image: url('/Marco.png');
+}
+
+.mobileVideo {
+    display: none;
+    background-image: url('/MarcoVert.png');
 }
 
 /* Unused Content Overlay Styles Removed */
@@ -121,7 +129,11 @@
         right: 5%;
     }
 
-    .heroVideo {
-        background-image: url('/MarcoVert.png');
+    .desktopVideo {
+        display: none;
+    }
+    
+    .mobileVideo {
+        display: block;
     }
 }

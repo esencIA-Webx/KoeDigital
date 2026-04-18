@@ -8,11 +8,10 @@ import styles from './Hero.module.css';
 
 export default function Hero() {
     const [isPlaying, setIsPlaying] = useState(true);
-    // Video ref for play/pause control
-    const videoRef = useRef<HTMLVideoElement>(null);
+    // Video refs for play/pause control
+    const desktopVideoRef = useRef<HTMLVideoElement>(null);
+    const mobileVideoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLElement>(null);
-
-    // Removed manual resize listener for performance - using native <source media> instead
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -23,15 +22,25 @@ export default function Hero() {
     const textY = useTransform(scrollYProgress, [0, 1], [0, 50]);
 
     const toggleVideo = () => {
-        if (videoRef.current) {
-            if (videoRef.current.paused) {
-                videoRef.current.play();
-                setIsPlaying(true);
-            } else {
-                videoRef.current.pause();
-                setIsPlaying(false);
+        const vids = [desktopVideoRef.current, mobileVideoRef.current];
+        let wasPaused = false;
+        
+        // Find if the currently visible video is paused
+        vids.forEach(vid => {
+            if (vid && vid.offsetParent !== null) { // visible check
+                if (vid.paused) wasPaused = true;
             }
-        }
+        });
+
+        // Toggle both just in case resize happens
+        vids.forEach(vid => {
+            if (vid) {
+                if (wasPaused) vid.play();
+                else vid.pause();
+            }
+        });
+        
+        setIsPlaying(wasPaused);
     };
 
     return (
@@ -39,23 +48,33 @@ export default function Hero() {
 
             {/* Video Background */}
             <div className={styles.videoContainer}>
+                {/* Desktop Source */}
                 <video
-                    ref={videoRef}
-                    className={`${styles.heroVideo} ${styles.active}`}
+                    ref={desktopVideoRef}
+                    className={`${styles.heroVideo} ${styles.desktopVideo}`}
                     autoPlay
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                     disablePictureInPicture
                     onEnded={() => setIsPlaying(false)}
-                >
-                    {/* Mobile Source (Prioritized - MP4 First for Speed) */}
-                    <source src="/Koevert.mp4" type="video/mp4" media="(max-width: 768px)" />
+                    src="/Koe.mp4"
+                />
 
-                    {/* Desktop Source */}
-                    <source src="/Koe.mp4" type="video/mp4" />
-                </video>
+                {/* Mobile Source */}
+                <video
+                    ref={mobileVideoRef}
+                    className={`${styles.heroVideo} ${styles.mobileVideo}`}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    disablePictureInPicture
+                    onEnded={() => setIsPlaying(false)}
+                    src="/Koevert.mp4"
+                />
             </div>
 
             {/* Play/Pause Toggle */}

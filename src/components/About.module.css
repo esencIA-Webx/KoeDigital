@@ -454,3 +454,20 @@
         display: block;
     }
 }
+
+@media (max-width: 1024px) {
+    .aboutSection::before,
+    .waveDividerTop,
+    .aboutIntroSection::before,
+    .waveDividerTopIntro {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Ocultar olas solicitadas en Mobile */
+@media (max-width: 768px) {
+    .waveDividerTop,
+    .waveDividerTopIntro {
+        display: none !important;
+    }
+}

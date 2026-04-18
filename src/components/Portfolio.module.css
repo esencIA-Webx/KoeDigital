@@ -279,3 +279,17 @@
     transform: translateY(5px) translateX(7px);
     box-shadow: 0px 0px 0px var(--text-navy);
 }
+
+@media (max-width: 1024px) {
+    .portfolioSection,
+    .waveDividerTop {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Ocultar ola solicitada en Mobile */
+@media (max-width: 768px) {
+    .waveDividerTop {
+        display: none !important;
+    }
+}

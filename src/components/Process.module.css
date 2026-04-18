@@ -509,3 +509,18 @@
         /* Lift significantly for all mobile/tablet */
     }
 }
+
+@media (max-width: 1024px) {
+    .processSection,
+    .processSection::before,
+    .waveDividerTop {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Ocultar ola solicitada en Mobile */
+@media (max-width: 768px) {
+    .waveDividerTop {
+        display: none !important;
+    }
+}

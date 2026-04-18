@@ -138,7 +138,7 @@
     border-radius: 8px;
     background: var(--bg-cream-light);
     color: #333;
-    font-size: 0.95rem;
+    font-size: 16px; /* Prevents iOS auto-zoom bug */
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
@@ -250,5 +250,19 @@
 
     .formContainer {
         padding: 1.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .manifestoSection::before,
+    .waveDividerTop {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Ocultar ola solicitada en Mobile */
+@media (max-width: 768px) {
+    .waveDividerTop {
+        display: none !important;
     }
 }
