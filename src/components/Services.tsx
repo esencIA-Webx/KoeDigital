@@ -151,6 +151,7 @@ export default function Services() {
                             className={styles.card}
                             delay={i * 0.2}
                             whileHover={cardHover}
+                            disableMobileAnimation={true}
                         >
                             <div className={styles.cardHeaderContent}>
                                 <AnimatedTitle

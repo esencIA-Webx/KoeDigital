@@ -121,6 +121,7 @@ export default function Process() {
                 className={styles.introCard}
                 delay={0.2}
                 whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
+                disableMobileAnimation={true}
             >
                 <div className={styles.descriptionText} style={{ margin: 0, padding: 0 }}>
                     <div className={styles.introCardHeader}>
@@ -243,7 +244,7 @@ export default function Process() {
 
             <div className={styles.mobileCardsContainer} ref={carouselRef} onScroll={handleCarouselScroll}>
                 {steps.map((step, index) => (
-                    <ScrollPop key={index} className={styles.mobileCardWrapper} delay={index * 0.2}>
+                    <ScrollPop key={index} className={styles.mobileCardWrapper} delay={index * 0.2} disableMobileAnimation={true}>
                         <div className={styles.processCard}>
                             <motion.div
                                 className={styles.stepSticker}

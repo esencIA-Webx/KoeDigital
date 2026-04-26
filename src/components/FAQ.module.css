@@ -83,6 +83,39 @@
     color: var(--foreground);
 }
 
+.desktopCarousel {
+    display: block;
+}
+
+.mobileCarousel {
+    display: none;
+}
+
+.mobileSlideWrapper {
+    flex: 1;
+    position: relative;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    display: flex;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.mobileSlideWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.mobileSlide {
+    width: 100%;
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    padding: 2rem 1rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
 /* Carousel Container */
 .carouselContainer {
     position: relative;
@@ -214,6 +247,14 @@
     .dot {
         width: 10px;
         height: 10px;
+    }
+
+    .desktopCarousel {
+        display: none;
+    }
+
+    .mobileCarousel {
+        display: block;
     }
 }
 

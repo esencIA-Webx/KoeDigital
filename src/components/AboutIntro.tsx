@@ -58,7 +58,7 @@ export default function AboutIntro() {
                 {/* Photos */}
                 <div className={styles.photosWrapper}>
                     <motion.div
-                        className={styles.photoContainerSofi}
+                        className={`${styles.photoContainerSofi} disable-mobile-scrollpop`}
                         style={{ y: ySofi }}
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -77,7 +77,7 @@ export default function AboutIntro() {
                         />
                     </motion.div>
                     <motion.div
-                        className={styles.photoContainerCeci}
+                        className={`${styles.photoContainerCeci} disable-mobile-scrollpop`}
                         style={{ y: yCeci }}
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -101,7 +101,7 @@ export default function AboutIntro() {
                 <div className={styles.textColumn}>
                     {/* Intro Card (Small) */}
                     <motion.div
-                        className={styles.introCard}
+                        className={`${styles.introCard} disable-mobile-scrollpop`}
                         whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                         initial={{ scale: 0.9, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}

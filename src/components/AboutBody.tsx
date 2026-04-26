@@ -32,6 +32,7 @@ export default function AboutBody() {
                             className={styles.presentationCard}
                             whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                             delay={0.2}
+                            disableMobileAnimation={true}
                         >
                             <div className={styles.brandContent}>
                                 <p>
@@ -45,6 +46,7 @@ export default function AboutBody() {
                             className={styles.presentationCard}
                             whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                             delay={0.3}
+                            disableMobileAnimation={true}
                         >
                             <div className={styles.brandContent}>
                                 <p>El trabajo en KOE parte siempre del entendimiento profundo del negocio, su contexto, sus objetivos y su mercado, para luego diseñar <AnimatedTitle
@@ -61,6 +63,7 @@ export default function AboutBody() {
                             className={styles.presentationCard}
                             whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                             delay={0.4}
+                            disableMobileAnimation={true}
                         >
                             <div className={styles.brandContent}>
                                 <p>No se trata solo de crear contenido, sino de <AnimatedTitle
@@ -109,6 +112,7 @@ export default function AboutBody() {
                     >
                         <ScrollPop
                             delay={0.5}
+                            disableMobileAnimation={true}
                             animate={{
                                 y: [0, -8, 0],
                                 rotate: 0

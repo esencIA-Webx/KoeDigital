@@ -91,6 +91,7 @@ export default function Portfolio() {
                             className={styles.projectCard}
                             delay={i * 0.2}
                             whileHover={{ y: -5 }}
+                            disableMobileAnimation={true}
                         >
                             <div className={styles.imageContainer}>
                                 <Image

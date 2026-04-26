@@ -68,7 +68,6 @@ export default function Hero() {
                     className={`${styles.heroVideo} ${styles.mobileVideo}`}
                     autoPlay
                     muted
-                    loop
                     playsInline
                     preload="auto"
                     disablePictureInPicture
