@@ -104,7 +104,7 @@
     font-weight: bold;
 }
 
-.cardsContainer {
+.desktopCardsContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,10 +113,13 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 8rem;
-    /* More space for buttons */
-    /* Space for arrows */
     min-height: 500px;
 }
+
+.mobileCardsContainer {
+    display: none;
+}
+
 
 .processCard {
     background: white;
@@ -172,6 +175,46 @@
     position: relative;
     z-index: 2;
     padding: 0 1rem;
+}
+
+/* Mobile numbered nav (hidden on desktop) */
+.mobileNavContainer {
+    display: none;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.numButton {
+    background: #ffffff;
+    border: 3px solid var(--pink-dark);
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    font-family: var(--font-roca), serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--pink-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 6px 0px var(--pink-dark);
+    transition: all 0.15s ease;
+}
+
+.numButton:active {
+    transform: translateY(4px) translateX(2px);
+    box-shadow: 0px 2px 0px var(--pink-dark);
+}
+
+.numButtonActive {
+    background: var(--pink-light);
+    color: white;
+    border-color: var(--pink-dark);
+    box-shadow: 4px 6px 0px var(--pink-dark);
 }
 
 .navSticker {
@@ -406,11 +449,11 @@
     }
 
     .navContainer {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.25rem;
-        /* Increased spacing */
-        padding: 0 2rem;
+        display: none;
+    }
+
+    .mobileNavContainer {
+        display: flex;
     }
 
     .navSticker {
@@ -422,12 +465,33 @@
         align-items: center;
     }
 
-    .cardsContainer {
-        padding: 0 1rem;
-        padding-bottom: 5rem;
-        /* Space for buttons below */
-        display: block;
-        /* Stack for mobile if needed, but we keep flex for centering */
+    .desktopCardsContainer {
+        display: none;
+    }
+
+    .mobileCardsContainer {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1.25rem;
+        padding: 1rem 1rem 3.5rem;
+        overflow-x: auto;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+    }
+
+    .mobileCardsContainer::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+    }
+
+    .mobileCardWrapper {
+        min-width: 280px;
+        width: 85vw;
+        max-width: 340px;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        display: flex;
     }
 
     .processCard {

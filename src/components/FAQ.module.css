@@ -128,32 +128,31 @@
 /* Navigation Buttons */
 .navButton {
     background: white;
-    color: var(--text-navy);
-    border: 2px solid var(--text-navy);
-    border-radius: 8px;
-    /* Slightly more modern rectangular */
-    width: 44px;
-    height: 44px;
-    font-size: 1.2rem;
+    color: var(--foreground);
+    border: 3px solid var(--foreground);
+    border-radius: 12px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
-    box-shadow: 4px 4px 0px var(--text-navy);
+    box-shadow: 4px 6px 0px var(--foreground);
 }
 
-.navButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 6px 6px 0px var(--text-navy);
-    background: var(--bg-cream-light);
+@media (hover: hover) and (pointer: fine) {
+    .navButton:hover {
+        transform: translateY(-2px);
+        box-shadow: 6px 8px 0px var(--foreground);
+    }
 }
 
 .navButton:active {
-    transform: translateY(4px) translateX(6px);
-    box-shadow: 0px 0px 0px var(--text-navy);
+    transform: translateY(4px) translateX(2px);
+    box-shadow: 0px 2px 0px var(--foreground);
 }
 
 /* Dot Indicators */

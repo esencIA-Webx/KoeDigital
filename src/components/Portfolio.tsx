@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Portfolio.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,10 +11,29 @@ import ScrollPop from './ScrollPop';
 export default function Portfolio() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [mounted, setMounted] = useState(false);
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const [isAtStart, setIsAtStart] = useState(true);
+    const [isAtEnd, setIsAtEnd] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    const checkScroll = () => {
+        if (!carouselRef.current) return;
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        setIsAtStart(scrollLeft <= 5);
+        setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 5);
+    };
+
+    useEffect(() => {
+        checkScroll();
+        window.addEventListener('resize', checkScroll);
+        return () => window.removeEventListener('resize', checkScroll);
+    }, []);
+
+    const handlePrev = () => carouselRef.current?.scrollBy({ left: -carouselRef.current.clientWidth * 0.8, behavior: 'smooth' });
+    const handleNext = () => carouselRef.current?.scrollBy({ left: carouselRef.current.clientWidth * 0.8, behavior: 'smooth' });
 
     const cases = [
         {
@@ -44,7 +63,27 @@ export default function Portfolio() {
         <section className={styles.portfolioSection}>
             <div className={styles.waveDividerTop} />
 
-            <div className={styles.carouselContainer}>
+            {/* Mobile arrow buttons */}
+            <div className={styles.mobileArrows}>
+                <button
+                    className={styles.arrowBtn}
+                    onClick={handlePrev}
+                    disabled={isAtStart}
+                    aria-label="Proyecto anterior"
+                >
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button
+                    className={styles.arrowBtn}
+                    onClick={handleNext}
+                    disabled={isAtEnd}
+                    aria-label="Proyecto siguiente"
+                >
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+
+            <div className={styles.carouselContainer} ref={carouselRef} onScroll={checkScroll}>
                 <div className={styles.grid}>
                     {cases.map((p, i) => (
                         <ScrollPop

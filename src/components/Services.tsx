@@ -1,16 +1,14 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './Services.module.css';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import AnimatedTitle from './AnimatedTitle';
 import ScrollPop from './ScrollPop';
 
 const cardHover = { y: -8, transition: { type: "spring" as const, stiffness: 300 } };
 
 export default function Services() {
-    const [activeTab, setActiveTab] = useState(1); // Default to second plan (Esencial)
 
     const plans = [
         {
@@ -72,84 +70,137 @@ export default function Services() {
         }
     ];
 
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const [isAtStart, setIsAtStart] = useState(false);
+    const [isAtEnd, setIsAtEnd] = useState(false);
+
+    const checkScrollPosition = () => {
+        if (carouselRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+            setIsAtStart(scrollLeft <= 5);
+            setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 5);
+        }
+    };
+
+    // Al montar y en resize, verificar posición
+    useEffect(() => {
+        checkScrollPosition();
+        window.addEventListener('resize', checkScrollPosition);
+        return () => window.removeEventListener('resize', checkScrollPosition);
+    }, []);
+
+    // Scroll to middle (Esencial) initially on mobile
+    useEffect(() => {
+        if (carouselRef.current && window.innerWidth <= 900) {
+            // Give layout a tick to paint for correct scrollWidth
+            setTimeout(() => {
+                if (carouselRef.current) {
+                    const itemWidth = carouselRef.current.scrollWidth / plans.length;
+                    carouselRef.current.scrollTo({ left: itemWidth, behavior: 'instant' as ScrollBehavior });
+                    checkScrollPosition();
+                }
+            }, 100);
+        }
+    }, [plans.length]);
+
+    const handlePrev = () => {
+        if (carouselRef.current) {
+            const slideWidth = carouselRef.current.clientWidth * 0.8; // roughly the width of a card + gap
+            carouselRef.current.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+        }
+    };
+
+    const handleNext = () => {
+        if (carouselRef.current) {
+            const slideWidth = carouselRef.current.clientWidth * 0.8;
+            carouselRef.current.scrollBy({ left: slideWidth, behavior: 'smooth' });
+        }
+    };
+
     return (
         <section className={styles.servicesSection}>
             {/* Wave Divider Top */}
             <div className={styles.waveDividerTop} />
 
-            {/* Mobile Tabs */}
+            {/* Mobile Tabs (Arrows) */}
             <div className={styles.mobileTabs}>
-                {plans.map((plan, index) => (
-                    <button
-                        key={index}
-                        className={`${styles.tabButton} ${activeTab === index ? styles.activeTab : ''}`}
-                        onClick={() => setActiveTab(index)}
-                    >
-                        {plan.label || plan.title.replace('Plan ', '')}
-                    </button>
-                ))}
+                <button
+                    className={styles.arrowButton}
+                    onClick={handlePrev}
+                    disabled={isAtStart}
+                    aria-label="Plan anterior"
+                >
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button
+                    className={styles.arrowButton}
+                    onClick={handleNext}
+                    disabled={isAtEnd}
+                    aria-label="Plan siguiente"
+                >
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
             </div>
 
-            <div className={styles.grid}>
-                {plans.map((plan, i) => (
-                    <ScrollPop
-                        key={plan.title}
-                        // Add hiddenMobile class if not active tab (logic handled in CSS via media query to only apply on mobile)
-                        className={`${styles.card} ${activeTab !== i ? styles.hiddenMobile : ''}`}
-                        delay={i * 0.2}
-                        whileHover={cardHover}
-                    >
-                        <div className={styles.cardHeaderContent}>
-                            <AnimatedTitle
-                                text={plan.title}
-                                as="h3"
-                                className={styles.cardTitle}
-                                hoverColor="var(--cyan-medium)" // Matching Services theme
-                                enableReveal={false}
-                            />
-                            {/* Price removed */}
-                            <p className={styles.cardDesc}>{plan.desc}</p>
-                        </div>
+            {/* Grid / Carousel View */}
+            <div className={styles.carouselContainer} ref={carouselRef} onScroll={checkScrollPosition}>
+                <div className={styles.grid}>
+                    {plans.map((plan, i) => (
+                        <ScrollPop
+                            key={plan.title}
+                            className={styles.card}
+                            delay={i * 0.2}
+                            whileHover={cardHover}
+                        >
+                            <div className={styles.cardHeaderContent}>
+                                <AnimatedTitle
+                                    text={plan.title}
+                                    as="h3"
+                                    className={styles.cardTitle}
+                                    hoverColor="var(--cyan-medium)"
+                                    enableReveal={false}
+                                />
+                                <p className={styles.cardDesc}>{plan.desc}</p>
+                            </div>
 
-                        <div className={styles.contentSection}>
-                            <AnimatedTitle
-                                text="Qué incluye"
-                                as="h4"
-                                className={styles.sectionTitle}
-                                hoverColor="var(--cyan-medium)"
-                                enableReveal={false}
-                            />
-                            <ul className={styles.detailList}>
-                                {plan.includes.map((item, idx) => (
-                                    <li key={idx}>{item}</li>
-                                ))}
-                            </ul>
-                        </div>
+                            <div className={styles.contentSection}>
+                                <AnimatedTitle
+                                    text="Qué incluye"
+                                    as="h4"
+                                    className={styles.sectionTitle}
+                                    hoverColor="var(--cyan-medium)"
+                                    enableReveal={false}
+                                />
+                                <ul className={styles.detailList}>
+                                    {plan.includes.map((item: string, idx: number) => (
+                                        <li key={idx}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
 
+                            <div className={styles.contentSection}>
+                                <AnimatedTitle
+                                    text="Entregables"
+                                    as="h4"
+                                    className={styles.sectionTitle}
+                                    hoverColor="var(--cyan-medium)"
+                                    enableReveal={false}
+                                />
+                                <ul className={styles.detailList}>
+                                    {plan.deliverables.map((item: string, idx: number) => (
+                                        <li key={idx}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
 
-
-                        <div className={styles.contentSection}>
-                            <AnimatedTitle
-                                text="Entregables"
-                                as="h4"
-                                className={styles.sectionTitle}
-                                hoverColor="var(--cyan-medium)"
-                                enableReveal={false}
-                            />
-                            <ul className={styles.detailList}>
-                                {plan.deliverables.map((item, idx) => (
-                                    <li key={idx}>{item}</li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className={styles.cardBtnWrapper}>
-                            <Link href="#contacto" className={styles.cardBtn}>
-                                Contratar Plan
-                            </Link>
-                        </div>
-                    </ScrollPop>
-                ))}
+                            <div className={styles.cardBtnWrapper}>
+                                <Link href="#contacto" className={styles.cardBtn}>
+                                    Contratar Plan
+                                </Link>
+                            </div>
+                        </ScrollPop>
+                    ))}
+                </div>
             </div>
         </section>
     );

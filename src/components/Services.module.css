@@ -76,6 +76,12 @@
 
 
 
+.carouselContainer {
+    width: 100%;
+    margin: 0 auto;
+    overflow: visible;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -96,37 +102,39 @@
     z-index: 10;
 }
 
-.tabButton {
-    background: white;
-    border: 2px solid #7da1b9;
-    /* Dark Cyan */
-    padding: 0.8rem 1.8rem;
-    /* Larger touch target */
-    border-radius: 50px;
-    font-family: var(--font-roca), serif;
-    font-weight: 800;
-    /* Bolder as per image */
+.arrowButton {
+    background: #ffffff;
+    border: 3px solid #7da1b9; /* Dark Cyan */
+    padding: 0.8rem;
+    border-radius: 12px;
     color: #7da1b9;
-    /* Dark Cyan text */
     cursor: pointer;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-
-    /* Inactive: Light Cyan Shadow */
-    box-shadow: 4px 4px 0px #c1dcfd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 6px 0px #7da1b9;
     transition: all 0.2s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .tabButton:hover {
+    .arrowButton:hover:not(:disabled) {
         transform: translateY(-2px);
-        box-shadow: 6px 6px 0px #c1dcfd;
+        box-shadow: 6px 8px 0px #7da1b9;
     }
 }
 
-.tabButton:active {
+.arrowButton:active:not(:disabled) {
+    transform: translateY(4px) translateX(2px);
+    box-shadow: 0px 2px 0px #7da1b9;
+}
+
+.arrowButton:disabled {
+    cursor: not-allowed;
+    border-color: #c1dcfd; /* Light cyan instead of dark */
+    color: #c1dcfd;
+    box-shadow: 2px 2px 0px #c1dcfd;
     transform: translateY(2px) translateX(2px);
-    box-shadow: 0px 0px 0px #c1dcfd;
+    background: #ffffff; /* Keep full opacity white background */
 }
 
 .activeTab {
@@ -257,27 +265,43 @@
 
 
 @media (max-width: 900px) {
+    .carouselContainer {
+        display: block;
+        overflow-x: auto;
+        padding: 1rem 1rem 3.5rem;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        scroll-snap-type: x mandatory;
+        scroll-padding: 1.5rem;
+        scroll-behavior: smooth;
+    }
+
+    .carouselContainer::-webkit-scrollbar {
+        display: none;
+    }
+
     .grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 0 1rem;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1.25rem;
+        width: fit-content;
+        padding-right: 2rem;
     }
 
     .mobileTabs {
         display: flex;
         gap: 1.25rem;
-        /* Increased from 1rem */
         flex-wrap: wrap;
     }
 
     .card {
+        min-width: 280px;
+        width: 80vw;
+        max-width: 320px;
+        flex-shrink: 0;
+        scroll-snap-align: center;
         padding: 1.5rem !important;
-        /* Reduced from 2rem for mobile */
-    }
-
-    /* Hide cards that are not active */
-    .hiddenMobile {
-        display: none !important;
+        height: auto;
     }
 
     .blockHeader {

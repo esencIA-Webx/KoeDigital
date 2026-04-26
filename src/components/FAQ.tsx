@@ -131,7 +131,7 @@ export default function FAQ() {
                         onClick={() => handleNavClick(prevSlide)}
                         aria-label="Pregunta anterior"
                     >
-                        ←
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                     </button>
 
                     <div className={styles.slideWrapper}>
@@ -162,7 +162,7 @@ export default function FAQ() {
                         onClick={() => handleNavClick(nextSlide)}
                         aria-label="Siguiente pregunta"
                     >
-                        →
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                     </button>
                 </div>
 

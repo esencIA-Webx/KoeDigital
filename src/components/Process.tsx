@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Search, Map, BarChart, Trophy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -38,6 +38,15 @@ export default function Process() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.matchMedia('(max-width: 768px)').matches);
+        checkMobile();
+        const mq = window.matchMedia('(max-width: 768px)');
+        mq.addEventListener('change', checkMobile);
+        return () => mq.removeEventListener('change', checkMobile);
+    }, []);
 
 
 
@@ -45,24 +54,60 @@ export default function Process() {
         enter: (direction: number) => ({
             x: direction > 0 ? 300 : -300,
             opacity: 0,
-            rotate: direction > 0 ? 5 : -5,
-            scale: 0.9,
-            zIndex: 0
         }),
         center: {
             zIndex: 1,
             x: 0,
             opacity: 1,
-            rotate: 0,
-            scale: 1
         },
         exit: (direction: number) => ({
             zIndex: 0,
             x: direction < 0 ? 300 : -300,
             opacity: 0,
-            rotate: direction < 0 ? 5 : -5,
-            scale: 0.9
         })
+    };
+
+    const carouselRef = useRef<HTMLDivElement>(null);
+
+    const handleCarouselScroll = () => {
+        if (!carouselRef.current) return;
+        const container = carouselRef.current;
+        const scrollLeft = container.scrollLeft;
+        const clientWidth = container.clientWidth;
+        
+        // Find which card is closest to the center of the view
+        let closestIndex = currentIndex;
+        let minDistance = Infinity;
+        
+        Array.from(container.children).forEach((child, index) => {
+            const htmlChild = child as HTMLElement;
+            const childCenter = htmlChild.offsetLeft + htmlChild.offsetWidth / 2 - container.offsetLeft;
+            const viewCenter = scrollLeft + clientWidth / 2;
+            const distance = Math.abs(childCenter - viewCenter);
+            
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = index;
+            }
+        });
+
+        if (closestIndex !== currentIndex) {
+            setCurrentIndex(closestIndex);
+        }
+    };
+
+    const scrollToSlide = (index: number) => {
+        setDirection(index > currentIndex ? 1 : -1);
+        setCurrentIndex(index);
+        
+        if (carouselRef.current) {
+            const container = carouselRef.current;
+            const child = container.children[index] as HTMLElement;
+            if (child) {
+                const paddingLeft = parseInt(window.getComputedStyle(container).paddingLeft || '0');
+                container.scrollTo({ left: child.offsetLeft - container.offsetLeft - paddingLeft, behavior: 'smooth' });
+            }
+        }
     };
 
     return (
@@ -102,11 +147,10 @@ export default function Process() {
                 </div>
             </ScrollPop>
 
+            {/* Desktop nav stickers */}
             <div className={styles.navContainer}>
                 {steps.map((step, index) => {
-                    // Stagger animation slightly based on index
                     const randomDelay = index * 0.5;
-
                     return (
                         <motion.button
                             key={index}
@@ -117,25 +161,12 @@ export default function Process() {
                             className={`${styles.navSticker} ${currentIndex === index ? styles.activeSticker : ''}`}
                             aria-label={`Go to step ${index + 1}: ${step.title}`}
                             aria-current={currentIndex === index ? 'step' : undefined}
-                            // Floating animation
-                            animate={{
-                                y: [0, -5, 0],
-                                rotate: 0 // Maintain base rotation logic
-                            }}
+                            animate={{ y: [0, -5, 0], rotate: 0 }}
                             transition={{
-                                y: {
-                                    duration: 3,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                    delay: randomDelay
-                                },
-                                rotate: { duration: 0.3 } // Quick rotation change on select
+                                y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: randomDelay },
+                                rotate: { duration: 0.3 }
                             }}
-                            whileHover={{
-                                scale: 1.1,
-                                rotate: 0,
-                                transition: { duration: 0.2 }
-                            }}
+                            whileHover={{ scale: 1.1, rotate: 0, transition: { duration: 0.2 } }}
                             whileTap={{ scale: 0.95 }}
                         >
                             {step.title}
@@ -144,7 +175,21 @@ export default function Process() {
                 })}
             </div>
 
-            <div className={styles.cardsContainer}>
+            {/* Mobile numbered buttons */}
+            <div className={styles.mobileNavContainer}>
+                {steps.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`${styles.numButton} ${currentIndex === index ? styles.numButtonActive : ''}`}
+                        onClick={() => scrollToSlide(index)}
+                        aria-label={`Paso ${index + 1}`}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+            </div>
+
+            <div className={styles.desktopCardsContainer}>
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -154,10 +199,8 @@ export default function Process() {
                         animate="center"
                         exit="exit"
                         transition={{
-                            x: { type: "spring", stiffness: 200, damping: 25 },
-                            opacity: { duration: 0.3 },
-                            scale: { duration: 0.3 },
-                            rotate: { duration: 0.3 }
+                            x: { type: "spring", stiffness: 280, damping: 28 },
+                            opacity: { duration: 0.15 },
                         }}
                         className={styles.processCard}
                         whileHover={{ y: -10, transition: { type: "spring", stiffness: 300 } }}
@@ -165,8 +208,8 @@ export default function Process() {
                         <motion.div
                             className={styles.stepSticker}
                             animate={{
-                                y: [0, -10, 0], // Only float up and down
-                                rotate: -10     // Keep fixed rotation like CSS
+                                y: [0, -10, 0],
+                                rotate: -10
                             }}
                             transition={{
                                 duration: 4,
@@ -186,7 +229,7 @@ export default function Process() {
                                 className={styles.cardTitle}
                                 hoverColor="var(--pink-dark)"
                                 enableReveal={true}
-                                key={currentIndex} // Force re-mount on change for animation
+                                key={currentIndex}
                             />
                         </div>
 
@@ -196,6 +239,42 @@ export default function Process() {
                         </div>
                     </motion.div>
                 </AnimatePresence>
+            </div>
+
+            <div className={styles.mobileCardsContainer} ref={carouselRef} onScroll={handleCarouselScroll}>
+                {steps.map((step, index) => (
+                    <ScrollPop key={index} className={styles.mobileCardWrapper} delay={index * 0.2}>
+                        <div className={styles.processCard}>
+                            <motion.div
+                                className={styles.stepSticker}
+                                animate={{
+                                    y: [0, -10, 0],
+                                    rotate: -10
+                                }}
+                                transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                <span className={styles.stickerInner}>#{index + 1}</span>
+                            </motion.div>
+                            <div className={styles.cardHeader}>
+                                <div className={styles.iconContainer}>
+                                    {step.icon}
+                                </div>
+                                <h3 className={styles.cardTitle} style={{ color: 'var(--pink-dark)' }}>
+                                    {step.title}
+                                </h3>
+                            </div>
+
+                            <div className={styles.cardContent}>
+                                <p className={styles.cardDescription}>{step.description}</p>
+                                <p className={styles.cardSubtitle}>{step.subtitle}</p>
+                            </div>
+                        </div>
+                    </ScrollPop>
+                ))}
             </div>
 
             <ScrollPop
